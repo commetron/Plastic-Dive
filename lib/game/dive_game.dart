@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 
 class DiveGame extends FlameGame<DiveWorld> {
   final score = ValueNotifier(0);
+  final diveDepth = ValueNotifier(0.0);
 
   late Joystick joystick;
   late Background background;
@@ -24,12 +25,12 @@ class DiveGame extends FlameGame<DiveWorld> {
   FutureOr<void> onLoad() {
     camera.backdrop.add(background = Background());
     camera.viewport.add(FpsTextComponent(position: Vector2(Constants.gameWidth - 20, 20), anchor: Anchor.topRight));
-    camera.viewport.add(Hud(scoreNotifier: score));
+    camera.viewport.add(Hud(scoreNotifier: score, diveDepthNotifier: diveDepth));
     camera.viewport.add(joystick = Joystick());
   }
 
   @override
-  bool get debugMode => false;
+  bool get debugMode => true;
 
   // @override
   // Color backgroundColor() => const Color(0xFF0A6163);

@@ -4,16 +4,22 @@ import 'package:flutter/cupertino.dart';
 
 class Hud extends PositionComponent {
   late TextComponent<TextRenderer> scoreTextComponent;
+  late TextComponent<TextRenderer> diveDepthTextComponent;
 
-  Hud({required ValueNotifier<int> scoreNotifier}) : super(size: Vector2(100, 100)) {
+  Hud({required ValueNotifier<int> scoreNotifier, required ValueNotifier<double> diveDepthNotifier}) : super(size: Vector2(100, 100)) {
     // Add callback to update score text
     scoreNotifier.addListener(() {
       scoreTextComponent.text = 'Score: ${scoreNotifier.value}';
+    });
+
+    diveDepthNotifier.addListener(() {
+      diveDepthTextComponent.text = 'Dive depth: ${diveDepthNotifier.value.toStringAsFixed(2)}m';
     });
   }
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    add(scoreTextComponent = TextComponent(text: 'Score: 0'));
+    add(scoreTextComponent = TextComponent(text: 'Score: 0', position: Vector2(0, 0)));
+    add(diveDepthTextComponent = TextComponent(text: 'Dive depth: 0.00m', position: Vector2(0, 20)));
   }
 }

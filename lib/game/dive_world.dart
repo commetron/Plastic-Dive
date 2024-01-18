@@ -14,10 +14,11 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
 
   Vector2 get size => (parent as FlameGame).size;
 
-  final double groundLevel = 0;
+  final Vector2 groundLevel = Vector2.zero();
 
   @override
   Future<void> onLoad() async {
+    add(Surface(position: groundLevel));
     add(diver = Diver(joystick: game.joystick));
     add(diverTrail = DiverTrail(diver: diver));
 
@@ -30,8 +31,8 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
         maxPeriod: 5,
         // selfPositioning: true, // Use only to self position the component ourselves
         area: Rectangle.fromPoints(
-          Vector2(-300, -300),
-          Vector2(300, groundLevel),
+          Vector2(300, groundLevel.y - 10),
+          Vector2(-300, 300),
         ),
         random: _random,
       ),

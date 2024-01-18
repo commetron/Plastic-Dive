@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dive_game/constants.dart';
 import 'package:dive_game/game/components/components.dart';
 import 'package:dive_game/game/dive_game.dart';
 import 'package:flame/collisions.dart';
@@ -43,9 +44,26 @@ class Diver extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef
     super.update(dt);
     if (!joystick.delta.isZero() && activeCollisions.isEmpty) {
       velocity = joystick.relativeDelta * maxSpeed * dt;
+
+      // Add velocity to not pass the bounds
+      if (position.x + velocity.x > Constants.worldWidth / 2) {
+        velocity.x = 0;
+      }
+      if (position.x + velocity.x < -Constants.worldWidth / 2) {
+        velocity.x = 0;
+      }
+      if (position.y + velocity.y > Constants.worldDeepness) {
+        velocity.y = 0;
+      }
+      if (position.y + velocity.y < 0) {
+        velocity.y = 0;
+      }
+
       position.add(velocity);
       angle = joystick.relativeDelta.screenAngle();
-      // angle = joystick.delta.screenAngle();
+
+      // Update dive depth
+      game.diveDepth.value = divingDepth;
     } else {
       velocity = Vector2.zero();
     }
@@ -66,6 +84,10 @@ class Diver extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef
     if (other is Garbage) {
       collectGarbage(other);
     }
+
+    if (other is Surface) {
+      print("OK");
+    }
   }
 
   @override
@@ -74,6 +96,9 @@ class Diver extends SpriteAnimationComponent with CollisionCallbacks, HasGameRef
     // TODO disable button
     if (other is Garbage) {
       collectGarbage(other);
+    }
+    if (other is Surface) {
+      print("OK");
     }
   }
 }

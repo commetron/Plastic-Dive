@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dive_game/constants.dart';
 import 'package:dive_game/game/dive_game.dart';
 import 'package:flame/components.dart';
