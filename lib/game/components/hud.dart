@@ -7,7 +7,7 @@ class Hud extends PositionComponent {
   late TextComponent<TextRenderer> diveDepthTextComponent;
   late TextComponent<TextRenderer> countdownTextComponent;
 
-  Hud({required ValueNotifier<int> scoreNotifier, required ValueNotifier<double> diveDepthNotifier, required ValueNotifier<int> remainingTime})
+  Hud({required ValueNotifier<int> scoreNotifier, required ValueNotifier<double> diveDepthNotifier, required ValueNotifier<double> remainingTime})
       : super(size: Vector2(100, 100)) {
     // Add callback to update score text
     scoreNotifier.addListener(() {

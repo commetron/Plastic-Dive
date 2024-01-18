@@ -13,10 +13,10 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   // Value Notifiers
   final score = ValueNotifier(0);
   final diveDepth = ValueNotifier(0.0);
-  final ValueNotifier<int> remainingTime = ValueNotifier(20);
+  final ValueNotifier<double> remainingTime = ValueNotifier(20.0);
 
   // Timer
-  final countdown = Timer(1, autoStart: true, repeat: true);
+  final countdown = Timer(0.1, autoStart: true, repeat: true);
 
   late Joystick joystick;
   late Background background;
@@ -34,8 +34,9 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     camera.viewport.add(Hud(scoreNotifier: score, diveDepthNotifier: diveDepth, remainingTime: remainingTime));
     camera.viewport.add(joystick = Joystick());
 
+    // Add callback to update score text
     countdown.onTick = () {
-      remainingTime.value -= 1;
+      remainingTime.value -= 0.1;
       if (remainingTime.value <= 0) {
         pauseEngine();
       }
