@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:dive_game/constants.dart';
 import 'package:dive_game/game/components/components.dart';
+import 'package:dive_game/game/components/floor.dart';
 import 'package:dive_game/game/dive_game.dart';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
@@ -15,10 +17,12 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
   Vector2 get size => (parent as FlameGame).size;
 
   final Vector2 groundLevel = Vector2.zero();
+  final Vector2 floorLevel = Vector2(0, Constants.worldDeepness);
 
   @override
   Future<void> onLoad() async {
-    add(Surface(position: groundLevel));
+    add(Surface(position: groundLevel, size: Vector2(Constants.worldWidth, 10)));
+    add(Floor(position: floorLevel, size: Vector2(Constants.worldWidth, 10)));
     add(diver = Diver(joystick: game.joystick));
     add(diverTrail = DiverTrail(diver: diver));
 
@@ -31,8 +35,8 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
         maxPeriod: 5,
         // selfPositioning: true, // Use only to self position the component ourselves
         area: Rectangle.fromPoints(
-          Vector2(300, groundLevel.y - 10),
-          Vector2(-300, 300),
+          Vector2(-Constants.worldWidth / 2, groundLevel.y + 10),
+          Vector2(Constants.worldWidth / 2, Constants.worldDeepness),
         ),
         random: _random,
       ),

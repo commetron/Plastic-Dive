@@ -6,11 +6,17 @@ import 'package:dive_game/game/components/hud.dart';
 import 'package:dive_game/game/dive_world.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flame/input.dart';
 import 'package:flutter/cupertino.dart';
 
-class DiveGame extends FlameGame<DiveWorld> {
+class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
+  // Value Notifiers
   final score = ValueNotifier(0);
   final diveDepth = ValueNotifier(0.0);
+  final ValueNotifier<int> remainingTime = ValueNotifier(20);
+
+  // Timer
+  final countdown = Timer(1, autoStart: true, repeat: true);
 
   late Joystick joystick;
   late Background background;
@@ -25,13 +31,25 @@ class DiveGame extends FlameGame<DiveWorld> {
   FutureOr<void> onLoad() {
     camera.backdrop.add(background = Background());
     camera.viewport.add(FpsTextComponent(position: Vector2(Constants.gameWidth - 20, 20), anchor: Anchor.topRight));
-    camera.viewport.add(Hud(scoreNotifier: score, diveDepthNotifier: diveDepth));
+    camera.viewport.add(Hud(scoreNotifier: score, diveDepthNotifier: diveDepth, remainingTime: remainingTime));
     camera.viewport.add(joystick = Joystick());
+
+    countdown.onTick = () {
+      remainingTime.value -= 1;
+      if (remainingTime.value <= 0) {
+        pauseEngine();
+      }
+    };
+
+    return super.onLoad();
   }
 
   @override
   bool get debugMode => true;
 
-  // @override
-  // Color backgroundColor() => const Color(0xFF0A6163);
+  @override
+  void update(double dt) {
+    super.update(dt);
+    countdown.update(dt);
+  }
 }

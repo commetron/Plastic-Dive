@@ -4,7 +4,7 @@ class Constants {
   static const double gameWidth = gameHeight * ratio;
 
   static const double worldDeepness = 1000;
-  static const double worldWidth = 800;
+  static const double worldWidth = 5000;
 
   // Background
   static const double backgroundVelocityMultiplier = 50;

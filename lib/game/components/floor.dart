@@ -3,8 +3,8 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 
-class Surface extends PositionComponent {
-  Surface({
+class Floor extends PositionComponent {
+  Floor({
     required Vector2 position,
     required Vector2 size,
     Anchor anchor = Anchor.center,
