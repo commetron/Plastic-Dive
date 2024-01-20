@@ -1,4 +1,9 @@
 class Constants {
+  // App constants
+
+  // @end App constants
+
+  // Game constants
   static const ratio = 16 / 9;
   static const double gameHeight = 800;
   static const double gameWidth = gameHeight * ratio;
@@ -8,4 +13,5 @@ class Constants {
 
   // Background
   static const double backgroundVelocityMultiplier = 50;
+  // @end Game constants
 }

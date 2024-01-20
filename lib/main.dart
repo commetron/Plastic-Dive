@@ -1,17 +1,35 @@
-import 'package:dive_game/game/dive_game.dart';
 import 'package:flame/flame.dart';
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:plastic_diver/app/app.bottomsheets.dart';
+import 'package:plastic_diver/app/app.dialogs.dart';
+import 'package:plastic_diver/app/app.locator.dart';
+import 'package:plastic_diver/app/app.router.dart';
+import 'package:stacked_services/stacked_services.dart';
 
-Future main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Flame.device.setLandscape();
   await Flame.device.fullScreen();
 
-  runApp(GameWidget(
-    game: DiveGame(),
-    autofocus: true,
-    // TODO initialActiveOverlays: [],
-    // TODO overlayBuilderMap:
-  ));
+  await setupLocator();
+  setupDialogUi();
+  setupBottomSheetUi();
+  runApp(const MainApp());
+}
+
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: Routes.startupView,
+      onGenerateRoute: StackedRouter().onGenerateRoute,
+      navigatorKey: StackedService.navigatorKey,
+      navigatorObservers: [
+        StackedService.routeObserver,
+      ],
+    );
+  }
 }

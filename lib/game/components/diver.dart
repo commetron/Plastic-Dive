@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:dive_game/constants.dart';
-import 'package:dive_game/game/components/components.dart';
-import 'package:dive_game/game/dive_game.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:plastic_diver/game/components/components.dart';
+import 'package:plastic_diver/game/dive_game.dart';
+import 'package:plastic_diver/constants.dart';
 
 class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, CollisionCallbacks, KeyboardHandler {
   final spriteSize = Vector2(101.1, 40.0);
@@ -81,9 +81,9 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
       flipHorizontallyAroundCenter();
     }
     if (velocity.y < 0) {
-      angle =  0.3  * (isGoingRight ? -1 : 1);
+      angle = 0.3 * (isGoingRight ? -1 : 1);
     } else if (velocity.y > 0) {
-      angle =  0.3  * (isGoingRight ? 1 : -1);
+      angle = 0.3 * (isGoingRight ? 1 : -1);
     } else {
       angle = 0;
     }

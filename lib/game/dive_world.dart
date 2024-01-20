@@ -1,12 +1,11 @@
 import 'dart:math';
 
-import 'package:dive_game/constants.dart';
-import 'package:dive_game/game/components/components.dart';
-import 'package:dive_game/game/components/floor.dart';
-import 'package:dive_game/game/dive_game.dart';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
+import 'package:plastic_diver/game/components/components.dart';
+import 'package:plastic_diver/game/dive_game.dart';
+import 'package:plastic_diver/constants.dart';
 
 class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetection {
   late Diver diver;

@@ -1,4 +1,4 @@
-package com.example.dive_game
+package com.example.plastic_diver
 
 import io.flutter.embedding.android.FlutterActivity
 

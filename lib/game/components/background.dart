@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:dive_game/constants.dart';
-import 'package:dive_game/game/dive_game.dart';
 import 'package:flame/components.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/rendering.dart';
+import 'package:plastic_diver/game/dive_game.dart';
+import 'package:plastic_diver/constants.dart';
 
 class Background extends ParallaxComponent<DiveGame> {
   Background()

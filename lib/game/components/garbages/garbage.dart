@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:dive_game/game/components/garbages/bottle.dart';
-import 'package:dive_game/game/dive_game.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
+import 'package:plastic_diver/game/components/garbages/bottle.dart';
+import 'package:plastic_diver/game/dive_game.dart';
 
 enum GarbageType { bottle }
 

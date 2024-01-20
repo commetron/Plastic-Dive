@@ -1,5 +1,5 @@
-import 'package:dive_game/game/components/garbages/garbage.dart';
 import 'package:flame/components.dart';
+import 'package:plastic_diver/game/components/components.dart';
 
 class Bottle extends Garbage {
   Bottle({

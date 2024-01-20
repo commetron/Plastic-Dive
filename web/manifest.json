@@ -1,6 +1,6 @@
 {
-    "name": "dive_game",
-    "short_name": "dive_game",
+    "name": "plastic_diver",
+    "short_name": "plastic_diver",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FFF",
