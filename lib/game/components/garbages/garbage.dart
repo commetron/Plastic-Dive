@@ -5,9 +5,15 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:plastic_diver/game/components/garbages/bottle.dart';
+import 'package:plastic_diver/game/components/garbages/household_cleaner_bottle.dart';
+import 'package:plastic_diver/game/components/garbages/microplastic_cloud.dart';
+import 'package:plastic_diver/game/components/garbages/plastic_bag.dart';
+import 'package:plastic_diver/game/components/garbages/shampoo_bottle.dart';
+import 'package:plastic_diver/game/components/garbages/soda_can.dart';
+import 'package:plastic_diver/game/components/garbages/straw.dart';
 import 'package:plastic_diver/game/dive_game.dart';
 
-enum GarbageType { bottle }
+enum GarbageType { bottle, sodaCan, householdCleanerBottle, shampooBottle, plasticBag, straw, microplasticCloud }
 
 abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame>, CollisionCallbacks {
   abstract final int points;
@@ -29,7 +35,8 @@ abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame>, 
   @override
   FutureOr<void> onLoad() async {
     sprite = await game.loadSprite('garbages/$image');
-    size = sprite!.originalSize;
+    final ratio = sprite!.originalSize.x / sprite!.originalSize.y;
+    size = Vector2(35 * ratio, 35);
 
     add(RectangleHitbox());
   }
@@ -47,9 +54,20 @@ abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame>, 
   }
 
   factory Garbage.random({Vector2? position, Random? random}) {
-    final values = [GarbageType.bottle];
-    final obstacleType = values.random(random);
+    final obstacleType = GarbageType.values.random(random);
     switch (obstacleType) {
+      case GarbageType.sodaCan:
+        return SodaCan(position: position);
+      case GarbageType.householdCleanerBottle:
+        return HouseholdCleanerBottle(position: position);
+      case GarbageType.shampooBottle:
+        return ShampooBottle(position: position);
+      case GarbageType.plasticBag:
+        return PlasticBag(position: position);
+      case GarbageType.straw:
+        return Straw(position: position);
+      case GarbageType.microplasticCloud:
+        return MicroplasticCloud(position: position);
       case GarbageType.bottle:
       default:
         // TODO not good that the abstraction knows the implementations
