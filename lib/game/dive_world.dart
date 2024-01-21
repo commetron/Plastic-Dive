@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
+import 'package:plastic_diver/constants.dart';
 import 'package:plastic_diver/game/components/components.dart';
 import 'package:plastic_diver/game/dive_game.dart';
-import 'package:plastic_diver/constants.dart';
 
 class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetection {
   late Diver diver;
@@ -30,8 +30,8 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
         factory: (_) => Garbage.random(
           random: _random,
         ),
-        minPeriod: 0.5,
-        maxPeriod: 5,
+        minPeriod: 0.1,
+        maxPeriod: 3,
         // selfPositioning: true, // Use only to self position the component ourselves
         area: Rectangle.fromPoints(
           Vector2(-Constants.worldWidth / 2, groundLevel.y + 10),

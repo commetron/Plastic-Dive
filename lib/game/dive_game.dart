@@ -4,9 +4,9 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:plastic_diver/constants.dart';
 import 'package:plastic_diver/game/components/components.dart';
 import 'package:plastic_diver/game/dive_world.dart';
-import 'package:plastic_diver/constants.dart';
 
 class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   // Value Notifiers
@@ -14,13 +14,15 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   final diveDepth = ValueNotifier(0.0);
   final ValueNotifier<double> remainingTime = ValueNotifier(20.0);
 
+  Function(bool hasWon, int score) onGameOver;
+
   // Timer
   final countdown = Timer(0.1, autoStart: true, repeat: true);
 
   late Joystick joystick;
   late Background background;
 
-  DiveGame()
+  DiveGame({required this.onGameOver})
       : super(
           world: DiveWorld(),
           camera: CameraComponent.withFixedResolution(width: Constants.gameWidth, height: Constants.gameHeight),
@@ -38,6 +40,8 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
       remainingTime.value -= 0.1;
       if (remainingTime.value <= 0) {
         pauseEngine();
+        // TODO, know if the player has won or not
+        onGameOver(true, score.value);
       }
     };
 

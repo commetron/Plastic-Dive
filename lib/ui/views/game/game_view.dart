@@ -6,7 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'game_viewmodel.dart';
 
 class GameView extends StackedView<GameViewModel> {
-  const GameView({Key? key}) : super(key: key);
+  const GameView({super.key});
 
   @override
   Widget builder(
@@ -15,7 +15,7 @@ class GameView extends StackedView<GameViewModel> {
     Widget? child,
   ) {
     return GameWidget(
-      game: DiveGame(),
+      game: DiveGame(onGameOver: viewModel.onGameOver),
       autofocus: true,
     );
   }

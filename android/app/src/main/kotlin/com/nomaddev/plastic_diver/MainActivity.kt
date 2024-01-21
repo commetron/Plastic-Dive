@@ -1,4 +1,4 @@
-package com.example.plastic_diver
+package  com.nomaddev.plastic_diver
 
 import io.flutter.embedding.android.FlutterActivity
 

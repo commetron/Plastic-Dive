@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:plastic_diver/ui/common/app_colors.dart';
 import 'package:plastic_diver/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
 
   @override
   Widget builder(
@@ -26,56 +25,27 @@ class HomeView extends StackedView<HomeViewModel> {
                 verticalSpaceLarge,
                 Column(
                   children: [
-                    const Text(
-                      'Hello, STACKED!',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
+                    OutlinedButton(onPressed: viewModel.navigateToGame, child: const Text("Play!")),
                     verticalSpaceMedium,
-                    MaterialButton(
-                      color: Colors.black,
-                      onPressed: viewModel.incrementCounter,
-                      child: Text(
-                        viewModel.counterLabel,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
+                    OutlinedButton(onPressed: viewModel.navigateToPlastidex, child: const Text("Plastidex")),
+                    verticalSpaceMedium,
+                    OutlinedButton(onPressed: viewModel.navigateToLeaderboard, child: const Text("Leaderboard")),
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      onPressed: viewModel.navigateToGame,
-                      child: const Text(
-                        'Play!',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
+                    IconButton(
+                      onPressed: viewModel.switchSound,
+                      icon: const Icon(Icons.volume_off),
                     ),
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      onPressed: viewModel.showDialog,
-                      child: const Text(
-                        'Show Dialog',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
+                    IconButton(
+                      onPressed: viewModel.navigateToSettings,
+                      icon: const Icon(Icons.settings),
                     ),
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      onPressed: viewModel.showBottomSheet,
-                      child: const Text(
-                        'Show Bottom Sheet',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
+                    IconButton(
+                      onPressed: viewModel.navigateToAbout,
+                      icon: const Icon(Icons.info_outline),
                     ),
                   ],
                 )
