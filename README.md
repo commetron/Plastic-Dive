@@ -1,3 +1,3 @@
-# plastic_diver
+# plasticdiver
 
 A new Flutter project.

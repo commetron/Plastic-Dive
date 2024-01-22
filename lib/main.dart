@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
-import 'package:plastic_diver/app/app.bottomsheets.dart';
-import 'package:plastic_diver/app/app.dialogs.dart';
-import 'package:plastic_diver/app/app.locator.dart';
-import 'package:plastic_diver/app/app.router.dart';
-import 'package:plastic_diver/firebase_options.dart';
+import 'package:plasticdiver/app/app.bottomsheets.dart';
+import 'package:plasticdiver/app/app.dialogs.dart';
+import 'package:plasticdiver/app/app.locator.dart';
+import 'package:plasticdiver/app/app.router.dart';
+import 'package:plasticdiver/firebase_options.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 Future<void> main() async {

@@ -1,5 +1,5 @@
-import 'package:plastic_diver/app/app.locator.dart';
-import 'package:plastic_diver/app/app.router.dart';
+import 'package:plasticdiver/app/app.locator.dart';
+import 'package:plasticdiver/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

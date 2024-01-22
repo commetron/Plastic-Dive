@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
-import 'package:plastic_diver/constants.dart';
-import 'package:plastic_diver/game/components/components.dart';
-import 'package:plastic_diver/game/dive_game.dart';
+import 'package:plasticdiver/constants.dart';
+import 'package:plasticdiver/game/components/components.dart';
+import 'package:plasticdiver/game/dive_game.dart';
 
 class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetection {
   late Diver diver;
@@ -22,7 +22,13 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
   Future<void> onLoad() async {
     add(Surface(position: groundLevel, size: Vector2(Constants.worldWidth, 10)));
     add(Floor(position: floorLevel, size: Vector2(Constants.worldWidth, 10)));
-    add(diver = Diver(joystick: game.joystick));
+    add(diver = Diver(
+      joystick: game.joystick,
+      onGarbageCollisionStart: (garbage) => game.enableCollectButton(garbage),
+      onGarbageCollisionEnd: (garbage) => game.disableCollectButton(garbage),
+      remainingCollectTime: game.remainingCollectTime,
+      onStartCollecting: (garbage) => game.startCollecting(garbage),
+    ));
     add(diverTrail = DiverTrail(diver: diver));
 
     add(

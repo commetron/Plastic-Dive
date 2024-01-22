@@ -1,4 +1,4 @@
-name: plastic_diver
+name: plasticdiver
 description: A new Flutter project.
 publish_to: 'none'
 version: 0.1.0
@@ -45,6 +45,7 @@ flutter:
     - assets/audio/
     - assets/images/
     - assets/images/parallax/
+    - assets/images/ui/
     - assets/images/players/
     - assets/images/garbages/
 

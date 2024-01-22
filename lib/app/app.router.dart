@@ -7,13 +7,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i9;
 import 'package:flutter/material.dart';
-import 'package:plastic_diver/ui/views/about/about_view.dart' as _i7;
-import 'package:plastic_diver/ui/views/game/game_view.dart' as _i4;
-import 'package:plastic_diver/ui/views/home/home_view.dart' as _i2;
-import 'package:plastic_diver/ui/views/leaderboard/leaderboard_view.dart' as _i5;
-import 'package:plastic_diver/ui/views/plastidex/plastidex_view.dart' as _i8;
-import 'package:plastic_diver/ui/views/settings/settings_view.dart' as _i6;
-import 'package:plastic_diver/ui/views/startup/startup_view.dart' as _i3;
+import 'package:plasticdiver/ui/views/about/about_view.dart' as _i7;
+import 'package:plasticdiver/ui/views/game/game_view.dart' as _i4;
+import 'package:plasticdiver/ui/views/home/home_view.dart' as _i2;
+import 'package:plasticdiver/ui/views/leaderboard/leaderboard_view.dart' as _i5;
+import 'package:plasticdiver/ui/views/plastidex/plastidex_view.dart' as _i8;
+import 'package:plasticdiver/ui/views/settings/settings_view.dart' as _i6;
+import 'package:plasticdiver/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i10;
 
@@ -83,8 +83,11 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i3.StartupView: (data) {
+      final args = data.getArgs<StartupViewArguments>(
+        orElse: () => const StartupViewArguments(),
+      );
       return _i9.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i3.StartupView(),
+        builder: (context) => _i3.StartupView(key: args.key),
         settings: data,
       );
     },
@@ -127,6 +130,28 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
+class StartupViewArguments {
+  const StartupViewArguments({this.key});
+
+  final dynamic key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant StartupViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
 extension NavigatorStateExtension on _i10.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
@@ -137,14 +162,19 @@ extension NavigatorStateExtension on _i10.NavigationService {
     return navigateTo<dynamic>(Routes.homeView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> navigateToStartupView([
+  Future<dynamic> navigateToStartupView({
+    dynamic key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.startupView,
-        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+        arguments: StartupViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
   Future<dynamic> navigateToGameView([
@@ -204,14 +234,19 @@ extension NavigatorStateExtension on _i10.NavigationService {
     return replaceWith<dynamic>(Routes.homeView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> replaceWithStartupView([
+  Future<dynamic> replaceWithStartupView({
+    dynamic key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.startupView,
-        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+        arguments: StartupViewArguments(key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
   Future<dynamic> replaceWithGameView([

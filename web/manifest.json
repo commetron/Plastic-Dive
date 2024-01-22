@@ -1,6 +1,6 @@
 {
-    "name": "plastic_diver",
-    "short_name": "plastic_diver",
+    "name": "plasticdiver",
+    "short_name": "plasticdiver",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FFF",

@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:plastic_diver/app/app.bottomsheets.dart';
-import 'package:plastic_diver/app/app.locator.dart';
-import 'package:plastic_diver/ui/common/app_strings.dart';
-import 'package:plastic_diver/ui/views/home/home_viewmodel.dart';
+import 'package:plasticdiver/app/app.bottomsheets.dart';
+import 'package:plasticdiver/app/app.locator.dart';
+import 'package:plasticdiver/ui/common/app_strings.dart';
+import 'package:plasticdiver/ui/views/home/home_viewmodel.dart';
 
 import '../helpers/test_helpers.dart';
 

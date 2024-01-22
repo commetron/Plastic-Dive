@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
-import 'package:plastic_diver/constants.dart';
+import 'package:plasticdiver/constants.dart';
 
 class Joystick extends JoystickComponent {
   static const double radius = 75;

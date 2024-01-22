@@ -1,6 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:plastic_diver/game/dive_game.dart';
+import 'package:plasticdiver/game/dive_game.dart';
 import 'package:stacked/stacked.dart';
 
 import 'game_viewmodel.dart';

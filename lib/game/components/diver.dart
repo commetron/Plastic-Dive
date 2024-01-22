@@ -4,9 +4,9 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:plastic_diver/game/components/components.dart';
-import 'package:plastic_diver/game/dive_game.dart';
-import 'package:plastic_diver/constants.dart';
+import 'package:plasticdiver/constants.dart';
+import 'package:plasticdiver/game/components/components.dart';
+import 'package:plasticdiver/game/dive_game.dart';
 
 class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, CollisionCallbacks, KeyboardHandler {
   final spriteSize = Vector2(101.1, 40.0);
@@ -17,16 +17,33 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
 
   bool isGoingRight = true;
 
+  bool isCollecting = false;
+
   final JoystickComponent joystick;
+
+  Function(Garbage garbage) onGarbageCollisionStart;
+
+  Function(Garbage garbage) onGarbageCollisionEnd;
+
+  Function(Garbage garbage) onStartCollecting;
 
   double get divingDepth => (position.y / 250);
 
-  Diver({required this.joystick})
+  Diver(
+      {required this.joystick,
+      required this.onGarbageCollisionStart,
+      required this.onGarbageCollisionEnd,
+      required ValueNotifier<double> remainingCollectTime,
+      required this.onStartCollecting})
       : super(
           position: Vector2.zero(),
           size: Vector2(101.1, 40.0),
           anchor: Anchor.center,
-        );
+        ) {
+    remainingCollectTime.addListener(() {
+      isCollecting = remainingCollectTime.value > 0;
+    });
+  }
 
   @override
   FutureOr<void> onLoad() async {
@@ -46,12 +63,18 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
   void update(double dt) {
     super.update(dt);
 
+    if (isCollecting) {
+      velocity = Vector2.zero();
+      // No movement while collecting
+      return;
+    }
+
     // 1st compute the velocity
     if (!keyboardDelta.isZero()) {
       velocity = keyboardDelta * maxSpeed * dt;
     }
     // TODO see if activeCollisions.isEmpty is needed
-    else if (!joystick.delta.isZero() && activeCollisions.isEmpty) {
+    else if (!joystick.delta.isZero()) {
       velocity = joystick.relativeDelta * maxSpeed * dt;
       // angle = joystick.relativeDelta.screenAngle();
     } else {
@@ -130,11 +153,13 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
       }
     }
 
-    return false;
+    return true;
   }
 
   // Actions
   void collectGarbage(Garbage garbage) {
+    print("Collecting garbage: $garbage");
+    onStartCollecting(garbage);
     if (garbage.isRemoved || garbage.isRemoving) return;
     garbage.removeFromParent();
     // TODO Pass addScore method to Diver constructor
@@ -149,11 +174,13 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
     super.onCollisionStart(intersectionPoints, other);
     // TODO enable button
     if (other is Garbage) {
-      collectGarbage(other);
+      print("Collision with Garbage -> enable button");
+      onGarbageCollisionStart(other);
+      // collectGarbage(other);
     }
 
     if (other is Surface) {
-      print("OK");
+      print("Collision with Surface -> End of the game");
     }
   }
 
@@ -162,10 +189,13 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
     super.onCollisionEnd(other);
     // TODO disable button
     if (other is Garbage) {
-      collectGarbage(other);
+      print("Collision with Garbage -> disable button");
+      onGarbageCollisionEnd(other);
+      // collectGarbage(other);
     }
     if (other is Surface) {
-      print("OK");
+      // TODO enable the button / automatic collision to end the game
+      print("Collision with Surface -> End of the game");
     }
   }
 }

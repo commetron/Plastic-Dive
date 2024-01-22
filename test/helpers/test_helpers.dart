@@ -1,8 +1,9 @@
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:plastic_diver/app/app.locator.dart';
+import 'package:plasticdiver/app/app.locator.dart';
+import 'package:plasticdiver/services/leaderboard_service.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:plastic_diver/services/leaderboard_service.dart';
+
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
