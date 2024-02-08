@@ -15,7 +15,15 @@ class GameView extends StackedView<GameViewModel> {
     Widget? child,
   ) {
     return GameWidget(
-      game: DiveGame(onGameOver: viewModel.onGameOver),
+      game: DiveGame(
+        onGameOver: viewModel.onGameOver,
+        airTankLevel: viewModel.airTankLevel,
+        collectingSpeedLevel: viewModel.collectingSpeedLevel,
+        diveDepthLevel: viewModel.diveDepthLevel,
+        swimmingSpeedLevel: viewModel.swimmingSpeedLevel,
+        highScore: viewModel.highScore,
+        isSoundEnabled: viewModel.isSoundEnabled,
+      ),
       autofocus: true,
     );
   }

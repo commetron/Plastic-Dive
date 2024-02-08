@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:plasticdiver/constants.dart';
@@ -10,7 +11,7 @@ import 'package:plasticdiver/game/dive_game.dart';
 
 class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, CollisionCallbacks, KeyboardHandler {
   final spriteSize = Vector2(101.1, 40.0);
-  static int numberFrames = 10;
+  static int numberSpriteFrames = 10;
 
   Vector2 velocity = Vector2.zero();
   static const double maxSpeed = 300;
@@ -27,10 +28,14 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
 
   Function(Garbage garbage) onStartCollecting;
 
+  final double worldDeepness;
+
   double get divingDepth => (position.y / 250);
+  TextComponent remainingCollectTimeInSeconds = TextComponent(text: '0');
 
   Diver(
-      {required this.joystick,
+      {required this.worldDeepness,
+      required this.joystick,
       required this.onGarbageCollisionStart,
       required this.onGarbageCollisionEnd,
       required ValueNotifier<double> remainingCollectTime,
@@ -42,6 +47,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
         ) {
     remainingCollectTime.addListener(() {
       isCollecting = remainingCollectTime.value > 0;
+      remainingCollectTimeInSeconds.text = remainingCollectTime.value.toString();
     });
   }
 
@@ -51,17 +57,23 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
       'players/diver.png',
       SpriteAnimationData.sequenced(
         textureSize: spriteSize,
-        amount: numberFrames,
+        amount: numberSpriteFrames,
         stepTime: 0.2,
       ),
     );
 
+    add(remainingCollectTimeInSeconds);
     add(RectangleHitbox());
   }
 
   @override
   void update(double dt) {
     super.update(dt);
+
+    // Update the remaining time
+    if (remainingCollectTimeInSeconds.text != '0') {
+      remainingCollectTimeInSeconds.update(dt);
+    }
 
     if (isCollecting) {
       velocity = Vector2.zero();
@@ -88,7 +100,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
     if (position.x + velocity.x < -Constants.worldWidth / 2) {
       velocity.x = 0;
     }
-    if (position.y + velocity.y > Constants.worldDeepness) {
+    if (position.y + velocity.y > worldDeepness) {
       velocity.y = 0;
     }
     if (position.y + velocity.y < 0) {
@@ -127,6 +139,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
     LogicalKeyboardKey.arrowRight,
     LogicalKeyboardKey.space,
   };
+
   @override
   bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     keyboardDelta.setZero();
@@ -159,9 +172,12 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
   // Actions
   void collectGarbage(Garbage garbage) {
     print("Collecting garbage: $garbage");
-    onStartCollecting(garbage);
     if (garbage.isRemoved || garbage.isRemoving) return;
+    onStartCollecting(garbage);
+
+    // Move that when the garbage is collected after the timeout
     garbage.removeFromParent();
+    FlameAudio.play('sfx/collected.mp3');
     // TODO Pass addScore method to Diver constructor
     game.score.value += garbage.points;
     debugPrint("Score: ${game.score}");

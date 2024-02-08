@@ -1,6 +1,6 @@
 class Constants {
   // App constants
-
+  static const pointsNeededToUpgradeSkills = [0, 200, 800, 1500, 3000, 8000];
   // @end App constants
 
   // Game constants

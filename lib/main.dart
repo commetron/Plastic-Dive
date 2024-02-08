@@ -6,6 +6,7 @@ import 'package:plasticdiver/app/app.dialogs.dart';
 import 'package:plasticdiver/app/app.locator.dart';
 import 'package:plasticdiver/app/app.router.dart';
 import 'package:plasticdiver/firebase_options.dart';
+import 'package:plasticdiver/ui/common/app_theme.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 Future<void> main() async {
@@ -35,6 +36,10 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // AppTheme
+      theme: appTheme,
+
+      // Routing
       initialRoute: Routes.startupView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,

@@ -4,6 +4,7 @@ import 'package:plasticdiver/app/app.locator.dart';
 import 'package:plasticdiver/services/leaderboard_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import 'package:plasticdiver/services/shared_preferences_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -13,6 +14,8 @@ import 'test_helpers.mocks.dart';
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<LeaderboardService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<SharedPreferencesService>(
+      onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -20,6 +23,7 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterLeaderboardService();
+  getAndRegisterSharedPreferencesService();
 // @stacked-mock-register
 }
 
@@ -59,7 +63,8 @@ MockBottomSheetService getAndRegisterBottomSheetService<T>({
     customData: anyNamed('customData'),
     data: anyNamed('data'),
     description: anyNamed('description'),
-  )).thenAnswer((realInvocation) => Future.value(showCustomSheetResponse ?? SheetResponse<T>()));
+  )).thenAnswer((realInvocation) =>
+      Future.value(showCustomSheetResponse ?? SheetResponse<T>()));
 
   locator.registerSingleton<BottomSheetService>(service);
   return service;
@@ -76,6 +81,13 @@ MockLeaderboardService getAndRegisterLeaderboardService() {
   _removeRegistrationIfExists<LeaderboardService>();
   final service = MockLeaderboardService();
   locator.registerSingleton<LeaderboardService>(service);
+  return service;
+}
+
+MockSharedPreferencesService getAndRegisterSharedPreferencesService() {
+  _removeRegistrationIfExists<SharedPreferencesService>();
+  final service = MockSharedPreferencesService();
+  locator.registerSingleton<SharedPreferencesService>(service);
   return service;
 }
 // @stacked-mock-create

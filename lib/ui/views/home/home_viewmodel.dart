@@ -1,5 +1,6 @@
 import 'package:plasticdiver/app/app.locator.dart';
 import 'package:plasticdiver/app/app.router.dart';
+import 'package:plasticdiver/services/shared_preferences_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -7,8 +8,14 @@ class HomeViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _dialogService = locator<DialogService>();
   final _bottomSheetService = locator<BottomSheetService>();
+  final _sharedPreferencesService = locator<SharedPreferencesService>();
 
-  Future switchSound() async {}
+  bool get isSoundEnabled => _sharedPreferencesService.isSoundEnabled;
+
+  Future switchSound() async {
+    await _sharedPreferencesService.toggleSoundEnabled();
+    rebuildUi();
+  }
 
   Future navigateToGame() async {
     return await _navigationService.navigateToGameView();

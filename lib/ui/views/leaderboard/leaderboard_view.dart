@@ -15,7 +15,7 @@ class LeaderboardView extends StackedView<LeaderboardViewModel> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: const Text('Leaderboard'),
+        title: const Text('🏆 Leaderboard 🏆'),
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 25.0, right: 25.0),

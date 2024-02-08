@@ -7,7 +7,10 @@ class Hud extends PositionComponent {
   late TextComponent<TextRenderer> diveDepthTextComponent;
   late TextComponent<TextRenderer> countdownTextComponent;
 
-  Hud({required ValueNotifier<int> scoreNotifier, required ValueNotifier<double> diveDepthNotifier, required ValueNotifier<double> remainingTime})
+  Hud(
+      {required ValueNotifier<int> scoreNotifier,
+      required ValueNotifier<double> diveDepthNotifier,
+      required ValueNotifier<double> remainingTime})
       : super(size: Vector2(100, 100)) {
     // Add callback to update score text
     scoreNotifier.addListener(() {
@@ -15,18 +18,24 @@ class Hud extends PositionComponent {
     });
 
     diveDepthNotifier.addListener(() {
-      diveDepthTextComponent.text = 'Dive depth: ${diveDepthNotifier.value.toStringAsFixed(2)}m';
+      diveDepthTextComponent.text =
+          'Dive depth: ${diveDepthNotifier.value.toStringAsFixed(2)}m';
     });
 
     remainingTime.addListener(() {
-      countdownTextComponent.text = 'Time: ${remainingTime.value.toStringAsFixed(2)}s';
+      countdownTextComponent.text =
+          'Time: ${remainingTime.value < 0 ? "0.00s" : remainingTime.value.toStringAsFixed(2)}s';
     });
   }
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    add(scoreTextComponent = TextComponent(text: 'Score: 0', position: Vector2(0, 0)));
-    add(diveDepthTextComponent = TextComponent(text: 'Dive depth: 0.00m', position: Vector2(0, 20)));
-    add(countdownTextComponent = TextComponent(text: 'Time: TODOs', position: Vector2(0, 40)));
+    add(scoreTextComponent =
+        TextComponent(text: 'Score: 0', position: Vector2(0, 0)));
+    add(diveDepthTextComponent =
+        TextComponent(text: 'Dive depth: 0.00m', position: Vector2(0, 20)));
+    add(countdownTextComponent =
+        TextComponent(text: 'Time: TODOs', position: Vector2(0, 40)));
   }
 }

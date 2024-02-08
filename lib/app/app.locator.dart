@@ -12,6 +12,7 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/leaderboard_service.dart';
+import '../services/shared_preferences_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -20,9 +21,14 @@ Future<void> setupLocator({
   EnvironmentFilter? environmentFilter,
 }) async {
 // Register environments
-  locator.registerEnvironment(environment: environment, environmentFilter: environmentFilter);
+  locator.registerEnvironment(
+      environment: environment, environmentFilter: environmentFilter);
 
 // Register dependencies
+  final sharedPreferencesService = SharedPreferencesService();
+  await sharedPreferencesService.init();
+  locator.registerSingleton(sharedPreferencesService);
+
   locator.registerLazySingleton(() => BottomSheetService());
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => NavigationService());

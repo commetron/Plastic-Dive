@@ -5,17 +5,20 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i9;
+import 'package:flutter/material.dart' as _i11;
 import 'package:flutter/material.dart';
 import 'package:plasticdiver/ui/views/about/about_view.dart' as _i7;
+import 'package:plasticdiver/ui/views/after_game/after_game_view.dart' as _i9;
 import 'package:plasticdiver/ui/views/game/game_view.dart' as _i4;
 import 'package:plasticdiver/ui/views/home/home_view.dart' as _i2;
 import 'package:plasticdiver/ui/views/leaderboard/leaderboard_view.dart' as _i5;
+import 'package:plasticdiver/ui/views/level_up_diver/level_up_diver_view.dart'
+    as _i10;
 import 'package:plasticdiver/ui/views/plastidex/plastidex_view.dart' as _i8;
 import 'package:plasticdiver/ui/views/settings/settings_view.dart' as _i6;
 import 'package:plasticdiver/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i10;
+import 'package:stacked_services/stacked_services.dart' as _i12;
 
 class Routes {
   static const homeView = '/home-view';
@@ -32,6 +35,10 @@ class Routes {
 
   static const plastidexView = '/plastidex-view';
 
+  static const afterGameView = '/after-game-view';
+
+  static const levelUpDiverView = '/level-up-diver-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -40,6 +47,8 @@ class Routes {
     settingsView,
     aboutView,
     plastidexView,
+    afterGameView,
+    levelUpDiverView,
   };
 }
 
@@ -73,51 +82,70 @@ class StackedRouter extends _i1.RouterBase {
       Routes.plastidexView,
       page: _i8.PlastidexView,
     ),
+    _i1.RouteDef(
+      Routes.afterGameView,
+      page: _i9.AfterGameView,
+    ),
+    _i1.RouteDef(
+      Routes.levelUpDiverView,
+      page: _i10.LevelUpDiverView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      final args = data.getArgs<StartupViewArguments>(
-        orElse: () => const StartupViewArguments(),
-      );
-      return _i9.MaterialPageRoute<dynamic>(
-        builder: (context) => _i3.StartupView(key: args.key),
+      return _i11.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.GameView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.GameView(),
         settings: data,
       );
     },
     _i5.LeaderboardView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.LeaderboardView(),
         settings: data,
       );
     },
     _i6.SettingsView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.SettingsView(),
         settings: data,
       );
     },
     _i7.AboutView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.AboutView(),
         settings: data,
       );
     },
     _i8.PlastidexView: (data) {
-      return _i9.MaterialPageRoute<dynamic>(
+      return _i11.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.PlastidexView(),
+        settings: data,
+      );
+    },
+    _i9.AfterGameView: (data) {
+      final args = data.getArgs<AfterGameViewArguments>(nullOk: false);
+      return _i11.MaterialPageRoute<dynamic>(
+        builder: (context) => _i9.AfterGameView(
+            isWon: args.isWon, score: args.score, key: args.key),
+        settings: data,
+      );
+    },
+    _i10.LevelUpDiverView: (data) {
+      return _i11.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i10.LevelUpDiverView(),
         settings: data,
       );
     },
@@ -130,47 +158,59 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-class StartupViewArguments {
-  const StartupViewArguments({this.key});
+class AfterGameViewArguments {
+  const AfterGameViewArguments({
+    required this.isWon,
+    this.score,
+    this.key,
+  });
 
-  final dynamic key;
+  final bool isWon;
+
+  final int? score;
+
+  final _i11.Key? key;
 
   @override
   String toString() {
-    return '{"key": "$key"}';
+    return '{"isWon": "$isWon", "score": "$score", "key": "$key"}';
   }
 
   @override
-  bool operator ==(covariant StartupViewArguments other) {
+  bool operator ==(covariant AfterGameViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key;
+    return other.isWon == isWon && other.score == score && other.key == key;
   }
 
   @override
   int get hashCode {
-    return key.hashCode;
+    return isWon.hashCode ^ score.hashCode ^ key.hashCode;
   }
 }
 
-extension NavigatorStateExtension on _i10.NavigationService {
+extension NavigatorStateExtension on _i12.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.homeView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+    return navigateTo<dynamic>(Routes.homeView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
-  Future<dynamic> navigateToStartupView({
-    dynamic key,
+  Future<dynamic> navigateToStartupView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
-  }) async {
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
     return navigateTo<dynamic>(Routes.startupView,
-        arguments: StartupViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -181,68 +221,126 @@ extension NavigatorStateExtension on _i10.NavigationService {
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.gameView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+    return navigateTo<dynamic>(Routes.gameView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
   Future<dynamic> navigateToLeaderboardView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
   ]) async {
     return navigateTo<dynamic>(Routes.leaderboardView,
-        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
   Future<dynamic> navigateToSettingsView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
   ]) async {
     return navigateTo<dynamic>(Routes.settingsView,
-        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
   Future<dynamic> navigateToAboutView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.aboutView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+    return navigateTo<dynamic>(Routes.aboutView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
   Future<dynamic> navigateToPlastidexView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
   ]) async {
     return navigateTo<dynamic>(Routes.plastidexView,
-        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAfterGameView({
+    required bool isWon,
+    int? score,
+    _i11.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.afterGameView,
+        arguments: AfterGameViewArguments(isWon: isWon, score: score, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToLevelUpDiverView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.levelUpDiverView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
   Future<dynamic> replaceWithHomeView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
   ]) async {
-    return replaceWith<dynamic>(Routes.homeView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+    return replaceWith<dynamic>(Routes.homeView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
-  Future<dynamic> replaceWithStartupView({
-    dynamic key,
+  Future<dynamic> replaceWithStartupView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
-  }) async {
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
     return replaceWith<dynamic>(Routes.startupView,
-        arguments: StartupViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -253,47 +351,101 @@ extension NavigatorStateExtension on _i10.NavigationService {
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
   ]) async {
-    return replaceWith<dynamic>(Routes.gameView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+    return replaceWith<dynamic>(Routes.gameView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
   Future<dynamic> replaceWithLeaderboardView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
   ]) async {
     return replaceWith<dynamic>(Routes.leaderboardView,
-        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
   Future<dynamic> replaceWithSettingsView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
   ]) async {
     return replaceWith<dynamic>(Routes.settingsView,
-        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
   Future<dynamic> replaceWithAboutView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
   ]) async {
-    return replaceWith<dynamic>(Routes.aboutView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+    return replaceWith<dynamic>(Routes.aboutView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
   Future<dynamic> replaceWithPlastidexView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
   ]) async {
     return replaceWith<dynamic>(Routes.plastidexView,
-        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAfterGameView({
+    required bool isWon,
+    int? score,
+    _i11.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.afterGameView,
+        arguments: AfterGameViewArguments(isWon: isWon, score: score, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithLevelUpDiverView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.levelUpDiverView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 }
