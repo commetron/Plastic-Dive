@@ -6,7 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'level_up_diver_viewmodel.dart';
 
 class LevelUpDiverView extends StackedView<LevelUpDiverViewModel> {
-  const LevelUpDiverView({Key? key}) : super(key: key);
+  const LevelUpDiverView({super.key});
 
   @override
   Widget builder(
@@ -26,7 +26,7 @@ class LevelUpDiverView extends StackedView<LevelUpDiverViewModel> {
             children: [
               Text(
                 'Total points: ${viewModel.points}',
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
               verticalSpaceLarge,
               LevelBar(

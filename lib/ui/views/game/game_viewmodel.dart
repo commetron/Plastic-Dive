@@ -18,8 +18,7 @@ class GameViewModel extends BaseViewModel {
 
   int get swimmingSpeedLevel => _sharedPreferencesService.swimmingSpeedLevel;
 
-  int get collectingSpeedLevel =>
-      _sharedPreferencesService.collectingSpeedLevel;
+  int get collectingSpeedLevel => _sharedPreferencesService.collectingSpeedLevel;
 
   int get diveDepthLevel => _sharedPreferencesService.diveDepthLevel;
 
@@ -28,10 +27,8 @@ class GameViewModel extends BaseViewModel {
   Future onGameOver(bool isWon, int? score) async {
     if (isWon && score != null) {
       await _sharedPreferencesService.addPoints(score);
-      await _leaderboardService.addScore(LeaderboardEntry(
-          pseudo: _sharedPreferencesService.username, score: score));
+      await _leaderboardService.addScore(LeaderboardEntry(pseudo: _sharedPreferencesService.username, score: score));
     }
-    await _navigationService.replaceWithAfterGameView(
-        isWon: isWon, score: score);
+    await _navigationService.replaceWithAfterGameView(isWon: isWon, score: score);
   }
 }

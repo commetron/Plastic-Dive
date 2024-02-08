@@ -19,7 +19,7 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   final score = ValueNotifier(0);
   final diveDepth = ValueNotifier(0.0);
   bool hasDived = false;
-  final ValueNotifier<double> remainingTime = ValueNotifier(20.0);
+  final ValueNotifier<double> remainingTime = ValueNotifier(100.0);
 
   // Timer
   final countdownTimer = Timer(0.1, autoStart: true, repeat: true);
@@ -50,7 +50,10 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     required this.highScore,
     required this.isSoundEnabled,
   }) : super(
-          world: DiveWorld(worldDeepness: Constants.worldDeepness * (pow(diveDepthLevel, 2))),
+          world: DiveWorld(
+            worldDeepness: Constants.worldDeepness * (pow(diveDepthLevel, 2)),
+            swimmingSpeedLevel: swimmingSpeedLevel,
+          ),
           camera: CameraComponent.withFixedResolution(width: Constants.gameWidth, height: Constants.gameHeight),
         );
 
@@ -65,30 +68,23 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     // Camera + viewport
     await camera.backdrop.add(background = Background());
     await camera.viewport.add(FpsTextComponent(position: Vector2(Constants.gameWidth - 20, 20), anchor: Anchor.topRight));
-    await camera.viewport.add(Hud(scoreNotifier: score, diveDepthNotifier: diveDepth, remainingTime: remainingTime));
+    await camera.viewport.add(Hud(scoreNotifier: score, diveDepthNotifier: diveDepth, remainingTime: remainingTime, previousHighScore: highScore));
     await camera.viewport.add(joystick = Joystick());
     await camera.viewport.add(collectButton = CollectButton());
 
     // Darken the world as we go deeper
-    await camera.viewport.add(
-        darkenEffect = RectangleComponent(size: Vector2(Constants.gameWidth, Constants.gameHeight), paint: Paint()..color = const Color(0x00000000)));
+    await camera.viewport.add(darkenEffect = RectangleComponent(
+      size: Vector2(Constants.gameWidth, Constants.gameHeight),
+      paint: Paint()..color = const Color(0x00000000),
+      priority: -100,
+    ));
 
     // Add callback to update score text
     countdownTimer.onTick = () {
       remainingTime.value -= countdownTimer.limit;
       if (remainingTime.value <= 0) {
-        pauseEngine();
-
-        if (isSoundEnabled) {
-          FlameAudio.bgm.stop();
-          // TODO ? FlameAudio.bgm.dispose();
-          // TODO, know if the player has won or not
-          FlameAudio.play('sfx/game-over.mp3');
-        }
-
-        // TODO FlameAudio.play('sfx/game-win.mp3');
         // Time is over -> player lost
-        onGameOver(false, score.value);
+        endTheGame(false, score.value);
       }
     };
 
@@ -106,7 +102,7 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
       }
 
       if (hasDived && diveDepth.value <= 0.2) {
-        onGameOver(true, score.value);
+        endTheGame(true, score.value);
       }
 
       // Update the darken effect
@@ -136,6 +132,20 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     // TODO change the sprite of the button
     collectButton.disable();
     collectButton.onPressed = null;
+  }
+
+  void endTheGame(bool hasWon, int score) {
+    pauseEngine();
+
+    countdownTimer.stop();
+    remainingCollectTimeTimer.stop();
+
+    if (isSoundEnabled) {
+      FlameAudio.bgm.stop();
+      FlameAudio.play(hasWon ? 'sfx/game-win.mp3' : 'sfx/game-over.mp3');
+    }
+
+    onGameOver(hasWon, score);
   }
 
   startCollecting(Garbage garbage) {

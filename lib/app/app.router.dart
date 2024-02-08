@@ -12,8 +12,7 @@ import 'package:plasticdiver/ui/views/after_game/after_game_view.dart' as _i9;
 import 'package:plasticdiver/ui/views/game/game_view.dart' as _i4;
 import 'package:plasticdiver/ui/views/home/home_view.dart' as _i2;
 import 'package:plasticdiver/ui/views/leaderboard/leaderboard_view.dart' as _i5;
-import 'package:plasticdiver/ui/views/level_up_diver/level_up_diver_view.dart'
-    as _i10;
+import 'package:plasticdiver/ui/views/level_up_diver/level_up_diver_view.dart' as _i10;
 import 'package:plasticdiver/ui/views/plastidex/plastidex_view.dart' as _i8;
 import 'package:plasticdiver/ui/views/settings/settings_view.dart' as _i6;
 import 'package:plasticdiver/ui/views/startup/startup_view.dart' as _i3;
@@ -138,8 +137,7 @@ class StackedRouter extends _i1.RouterBase {
     _i9.AfterGameView: (data) {
       final args = data.getArgs<AfterGameViewArguments>(nullOk: false);
       return _i11.MaterialPageRoute<dynamic>(
-        builder: (context) => _i9.AfterGameView(
-            isWon: args.isWon, score: args.score, key: args.key),
+        builder: (context) => _i9.AfterGameView(isWon: args.isWon, score: args.score, key: args.key),
         settings: data,
       );
     },
@@ -193,98 +191,67 @@ extension NavigatorStateExtension on _i12.NavigationService {
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.homeView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+    return navigateTo<dynamic>(Routes.homeView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> navigateToStartupView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
     return navigateTo<dynamic>(Routes.startupView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> navigateToGameView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.gameView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+    return navigateTo<dynamic>(Routes.gameView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> navigateToLeaderboardView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
     return navigateTo<dynamic>(Routes.leaderboardView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> navigateToSettingsView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
     return navigateTo<dynamic>(Routes.settingsView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> navigateToAboutView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.aboutView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+    return navigateTo<dynamic>(Routes.aboutView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> navigateToPlastidexView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
     return navigateTo<dynamic>(Routes.plastidexView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> navigateToAfterGameView({
@@ -294,8 +261,7 @@ extension NavigatorStateExtension on _i12.NavigationService {
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   }) async {
     return navigateTo<dynamic>(Routes.afterGameView,
         arguments: AfterGameViewArguments(isWon: isWon, score: score, key: key),
@@ -309,112 +275,77 @@ extension NavigatorStateExtension on _i12.NavigationService {
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
     return navigateTo<dynamic>(Routes.levelUpDiverView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> replaceWithHomeView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
-    return replaceWith<dynamic>(Routes.homeView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+    return replaceWith<dynamic>(Routes.homeView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> replaceWithStartupView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
     return replaceWith<dynamic>(Routes.startupView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> replaceWithGameView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
-    return replaceWith<dynamic>(Routes.gameView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+    return replaceWith<dynamic>(Routes.gameView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> replaceWithLeaderboardView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
     return replaceWith<dynamic>(Routes.leaderboardView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> replaceWithSettingsView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
     return replaceWith<dynamic>(Routes.settingsView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> replaceWithAboutView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
-    return replaceWith<dynamic>(Routes.aboutView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+    return replaceWith<dynamic>(Routes.aboutView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> replaceWithPlastidexView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
     return replaceWith<dynamic>(Routes.plastidexView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> replaceWithAfterGameView({
@@ -424,8 +355,7 @@ extension NavigatorStateExtension on _i12.NavigationService {
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   }) async {
     return replaceWith<dynamic>(Routes.afterGameView,
         arguments: AfterGameViewArguments(isWon: isWon, score: score, key: key),
@@ -439,13 +369,9 @@ extension NavigatorStateExtension on _i12.NavigationService {
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
     return replaceWith<dynamic>(Routes.levelUpDiverView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 }

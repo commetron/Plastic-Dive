@@ -12,16 +12,7 @@ import 'package:plasticdiver/game/components/animals/jelly_fish.dart';
 import 'package:plasticdiver/game/components/animals/tuna_fish.dart';
 import 'package:plasticdiver/game/dive_game.dart';
 
-enum AnimalType {
-  clownFish,
-  coral1,
-  coral2,
-  coral3,
-  exoticFish,
-  globeFish,
-  jellyfish,
-  tunaFish
-}
+enum AnimalType { clownFish, coral1, coral2, coral3, exoticFish, globeFish, jellyfish, tunaFish }
 
 abstract class Animal extends SpriteComponent with HasGameReference<DiveGame> {
   abstract final String image;
@@ -55,10 +46,7 @@ abstract class Animal extends SpriteComponent with HasGameReference<DiveGame> {
     // Make them swim
     position.add(floatingVelocity * dt);
 
-    if (position.x < -Constants.worldWidth / 2 ||
-        position.x > Constants.worldWidth / 2 ||
-        position.y < 0 ||
-        position.y > Constants.worldDeepness) {
+    if (position.x < -Constants.worldWidth / 2 || position.x > Constants.worldWidth / 2 || position.y < 0 || position.y > Constants.worldDeepness) {
       removeFromParent();
     }
   }

@@ -35,26 +35,15 @@ class HomeView extends StackedView<HomeViewModel> {
                     verticalSpaceLarge,
                     Column(
                       children: [
-                        Image.asset(
-                            "assets/images/icons/logo-no-background.png",
-                            height: thirdScreenHeight(context)),
+                        Image.asset("assets/images/icons/logo-no-background.png", height: thirdScreenHeight(context)),
                         verticalSpaceLarge,
-                        GameButton(
-                            onPressed: viewModel.navigateToGame,
-                            size: 50,
-                            child: const Text("PLAY", style: buttonTextStyle)),
+                        GameButton(onPressed: viewModel.navigateToGame, size: 50, child: const Text("PLAY", style: buttonTextStyle)),
                         verticalSpaceMedium,
-                        GameButton(
-                            onPressed: viewModel.navigateToPlastidex,
-                            size: 50,
-                            child: const Text("PLASTIDEX",
-                                style: buttonTextStyle)),
+                        GameButton(onPressed: viewModel.navigateToPlastidex, size: 50, child: const Text("PLASTIDEX", style: buttonTextStyle)),
                         verticalSpaceMedium,
-                        GameButton(
-                            onPressed: viewModel.navigateToLeaderboard,
-                            size: 50,
-                            child: const Text("LEADERBOARD",
-                                style: buttonTextStyle)),
+                        GameButton(onPressed: viewModel.navigateToLevelUpDiver, size: 50, child: const Text("DIVER", style: buttonTextStyle)),
+                        verticalSpaceMedium,
+                        GameButton(onPressed: viewModel.navigateToLeaderboard, size: 50, child: const Text("LEADERBOARD", style: buttonTextStyle)),
                       ],
                     ),
                     Row(
@@ -62,9 +51,7 @@ class HomeView extends StackedView<HomeViewModel> {
                       children: [
                         IconButton(
                           onPressed: viewModel.switchSound,
-                          icon: viewModel.isSoundEnabled
-                              ? const Icon(Icons.volume_up)
-                              : const Icon(Icons.volume_off),
+                          icon: viewModel.isSoundEnabled ? const Icon(Icons.volume_up) : const Icon(Icons.volume_off),
                         ),
                         IconButton(
                           onPressed: viewModel.navigateToSettings,

@@ -8,14 +8,8 @@ import 'package:plasticdiver/constants.dart';
 class CollectButton extends SpriteButtonComponent {
   CollectButton()
       : super(
-          children: [
-            TextComponent(
-                text: 'Collect',
-                textRenderer: TextPaint(
-                    style: const TextStyle(fontFamily: 'PressStart2P')))
-          ],
-          position:
-              Vector2(Constants.gameWidth - 20, Constants.gameHeight - 20),
+          children: [TextComponent(text: 'Collect', textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PressStart2P')))],
+          position: Vector2(Constants.gameWidth - 20, Constants.gameHeight - 20),
           anchor: Anchor.bottomRight,
         );
 

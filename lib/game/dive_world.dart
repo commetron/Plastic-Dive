@@ -16,9 +16,14 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
 
   final double worldDeepness;
 
+  final int swimmingSpeedLevel;
+
   Vector2 get size => (parent as FlameGame).size;
 
-  DiveWorld({required this.worldDeepness});
+  DiveWorld({
+    required this.worldDeepness,
+    required this.swimmingSpeedLevel,
+  });
 
   @override
   Future<void> onLoad() async {
@@ -28,6 +33,7 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
     add(Surface(position: groundLevel, size: Vector2(Constants.worldWidth, 300))); // TODO
     add(Floor(position: floorLevel, size: Vector2(Constants.worldWidth, 200))); // TODO
     add(diver = Diver(
+      swimmingSpeedLevel: swimmingSpeedLevel,
       worldDeepness: worldDeepness,
       joystick: game.joystick,
       onGarbageCollisionStart: (garbage) => game.enableCollectButton(garbage),

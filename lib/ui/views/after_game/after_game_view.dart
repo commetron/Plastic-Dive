@@ -27,21 +27,21 @@ class AfterGameView extends StackedView<AfterGameViewModel> {
             children: [
               Text(
                 isWon ? 'You won!' : 'You lost!',
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               if (isWon) ...[
                 Text(
                   'New score: $score',
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ],
               Text(
                 'High score: ${viewModel.highScore}',
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
               Text(
                 'Total points: ${viewModel.points}',
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
               verticalSpaceMedium,
               GameButton(

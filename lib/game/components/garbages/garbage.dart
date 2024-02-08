@@ -14,18 +14,9 @@ import 'package:plasticdiver/game/components/garbages/soda_can.dart';
 import 'package:plasticdiver/game/components/garbages/straw.dart';
 import 'package:plasticdiver/game/dive_game.dart';
 
-enum GarbageType {
-  bottle,
-  sodaCan,
-  householdCleanerBottle,
-  shampooBottle,
-  plasticBag,
-  straw,
-  microplasticCloud
-}
+enum GarbageType { bottle, sodaCan, householdCleanerBottle, shampooBottle, plasticBag, straw, microplasticCloud }
 
-abstract class Garbage extends SpriteComponent
-    with HasGameReference<DiveGame>, CollisionCallbacks {
+abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame>, CollisionCallbacks {
   abstract final int points;
   abstract final int collectionTimeInSeconds;
 
@@ -59,10 +50,7 @@ abstract class Garbage extends SpriteComponent
     double next = (min + random.nextInt(max - min)) * random.nextDouble();
     position.add(floatingVelocity * dt * next);
 
-    if (position.x < -Constants.worldWidth / 2 ||
-        position.x > Constants.worldWidth / 2 ||
-        position.y < 0 ||
-        position.y > Constants.worldDeepness) {
+    if (position.x < -Constants.worldWidth / 2 || position.x > Constants.worldWidth / 2 || position.y < 0 || position.y > Constants.worldDeepness) {
       removeFromParent();
     }
   }

@@ -23,10 +23,8 @@ class Floor extends ParallaxComponent<DiveGame> {
       [
         ParallaxImageData('parallax/floor.png'),
       ],
-      baseVelocity: Vector2
-          .zero(), // If the player doesn't move, the background doesn't move
-      velocityMultiplierDelta:
-          Vector2(1.1, 1.1), // Speed between parallax layers
+      baseVelocity: Vector2.zero(), // If the player doesn't move, the background doesn't move
+      velocityMultiplierDelta: Vector2(1.1, 1.1), // Speed between parallax layers
       repeat: ImageRepeat.repeat, // Repeat the background image for X and Y
     );
 

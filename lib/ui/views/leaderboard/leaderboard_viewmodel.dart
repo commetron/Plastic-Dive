@@ -6,6 +6,5 @@ class LeaderboardViewModel extends FutureViewModel<List<LeaderboardEntry>> {
   final _leaderboardService = locator<LeaderboardService>();
 
   @override
-  Future<List<LeaderboardEntry>> futureToRun() =>
-      _leaderboardService.getLeaderboard();
+  Future<List<LeaderboardEntry>> futureToRun() => _leaderboardService.getLeaderboard();
 }

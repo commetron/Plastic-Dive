@@ -14,7 +14,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
   static int numberSpriteFrames = 10;
 
   Vector2 velocity = Vector2.zero();
-  static const double maxSpeed = 300;
+  double maxSpeed = 300;
 
   bool isGoingRight = true;
 
@@ -33,18 +33,21 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
   double get divingDepth => (position.y / 250);
   TextComponent remainingCollectTimeInSeconds = TextComponent(text: '0');
 
-  Diver(
-      {required this.worldDeepness,
-      required this.joystick,
-      required this.onGarbageCollisionStart,
-      required this.onGarbageCollisionEnd,
-      required ValueNotifier<double> remainingCollectTime,
-      required this.onStartCollecting})
-      : super(
+  Diver({
+    required this.worldDeepness,
+    required swimmingSpeedLevel,
+    required this.joystick,
+    required this.onGarbageCollisionStart,
+    required this.onGarbageCollisionEnd,
+    required ValueNotifier<double> remainingCollectTime,
+    required this.onStartCollecting,
+  }) : super(
           position: Vector2.zero(),
           size: Vector2(101.1, 40.0),
           anchor: Anchor.center,
         ) {
+    maxSpeed *= swimmingSpeedLevel / 3;
+
     remainingCollectTime.addListener(() {
       isCollecting = remainingCollectTime.value > 0;
       remainingCollectTimeInSeconds.text = remainingCollectTime.value.toString();
@@ -93,7 +96,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
       velocity = Vector2.zero();
     }
 
-    // 2. Add velocity to not pass the bounds
+    // 2. Modify velocity to not pass the bounds
     if (position.x + velocity.x > Constants.worldWidth / 2) {
       velocity.x = 0;
     }

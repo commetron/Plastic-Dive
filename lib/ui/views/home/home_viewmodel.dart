@@ -54,4 +54,8 @@ class HomeViewModel extends BaseViewModel {
     //   description: ksHomeBottomSheetDescription,
     // );
   }
+
+  Future navigateToLevelUpDiver() async {
+    await _navigationService.navigateToLevelUpDiverView();
+  }
 }

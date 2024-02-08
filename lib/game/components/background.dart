@@ -21,10 +21,8 @@ class Background extends ParallaxComponent<DiveGame> {
         ParallaxImageData('parallax/background.png'),
         ParallaxImageData('parallax/midground.png'),
       ],
-      baseVelocity: Vector2
-          .zero(), // If the player doesn't move, the background doesn't move
-      velocityMultiplierDelta:
-          Vector2(1.1, 1.1), // Speed between parallax layers
+      baseVelocity: Vector2.zero(), // If the player doesn't move, the background doesn't move
+      velocityMultiplierDelta: Vector2(1.1, 1.1), // Speed between parallax layers
       repeat: ImageRepeat.repeat, // Repeat the background image for X and Y
     );
   }
@@ -33,7 +31,6 @@ class Background extends ParallaxComponent<DiveGame> {
   @override
   void update(double dt) {
     super.update(dt);
-    parallax?.baseVelocity =
-        game.world.diver.velocity * Constants.backgroundVelocityMultiplier;
+    parallax?.baseVelocity = game.world.diver.velocity * Constants.backgroundVelocityMultiplier;
   }
 }

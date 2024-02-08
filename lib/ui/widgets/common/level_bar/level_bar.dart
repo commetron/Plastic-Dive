@@ -24,7 +24,7 @@ class LevelBar extends StatelessWidget {
       children: [
         Text(
           skillName,
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         horizontalSpaceMedium,
         Expanded(child: LinearProgressIndicator(value: level / maxLevel, borderRadius: BorderRadius.circular(10))),
