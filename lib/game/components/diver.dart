@@ -6,6 +6,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:plasticdiver/constants.dart';
+import 'package:plasticdiver/game/components/collect_loader.dart';
 import 'package:plasticdiver/game/components/components.dart';
 import 'package:plasticdiver/game/dive_game.dart';
 
@@ -30,6 +31,8 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
 
   final double worldDeepness;
 
+  late CollectLoader collectLoader;
+
   double get divingDepth => (position.y / 250);
   TextComponent remainingCollectTimeInSeconds = TextComponent(text: '0');
 
@@ -46,7 +49,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
           size: Vector2(101.1, 40.0),
           anchor: Anchor.center,
         ) {
-    maxSpeed *= swimmingSpeedLevel / 3;
+    maxSpeed += (swimmingSpeedLevel * 50);
 
     remainingCollectTime.addListener(() {
       isCollecting = remainingCollectTime.value > 0;
@@ -65,7 +68,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
       ),
     );
 
-    add(remainingCollectTimeInSeconds);
+    add(collectLoader = CollectLoader());
     add(RectangleHitbox());
   }
 
@@ -177,6 +180,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
     print("Collecting garbage: $garbage");
     if (garbage.isRemoved || garbage.isRemoving) return;
     onStartCollecting(garbage);
+    collectLoader.start(collectingTime: garbage.collectionTimeInSeconds);
 
     // Move that when the garbage is collected after the timeout
     garbage.removeFromParent();
