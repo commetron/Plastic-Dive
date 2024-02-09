@@ -24,7 +24,10 @@ abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame>, 
 
   Vector2 floatingVelocity = Vector2(10, 10);
 
+  final double maxDeepness;
+
   Garbage({
+    required this.maxDeepness,
     super.position,
     super.size,
     Anchor super.anchor = Anchor.center,
@@ -50,30 +53,30 @@ abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame>, 
     double next = (min + random.nextInt(max - min)) * random.nextDouble();
     position.add(floatingVelocity * dt * next);
 
-    if (position.x < -Constants.worldWidth / 2 || position.x > Constants.worldWidth / 2 || position.y < 0 || position.y > Constants.worldDeepness) {
+    if (position.x < -Constants.worldWidth / 2 || position.x > Constants.worldWidth / 2 || position.y < 0 || position.y > maxDeepness) {
       removeFromParent();
     }
   }
 
-  factory Garbage.random({Vector2? position, Random? random}) {
+  factory Garbage.random({required double maxDeepness, Vector2? position, Random? random}) {
     final obstacleType = GarbageType.values.random(random);
     switch (obstacleType) {
       case GarbageType.sodaCan:
-        return SodaCan(position: position);
+        return SodaCan(position: position, maxDeepness: maxDeepness);
       case GarbageType.householdCleanerBottle:
-        return HouseholdCleanerBottle(position: position);
+        return HouseholdCleanerBottle(position: position, maxDeepness: maxDeepness);
       case GarbageType.shampooBottle:
-        return ShampooBottle(position: position);
+        return ShampooBottle(position: position, maxDeepness: maxDeepness);
       case GarbageType.plasticBag:
-        return PlasticBag(position: position);
+        return PlasticBag(position: position, maxDeepness: maxDeepness);
       case GarbageType.straw:
-        return Straw(position: position);
+        return Straw(position: position, maxDeepness: maxDeepness);
       case GarbageType.microplasticCloud:
-        return MicroplasticCloud(position: position);
+        return MicroplasticCloud(position: position, maxDeepness: maxDeepness);
       case GarbageType.bottle:
       default:
         // TODO not good that the abstraction knows the implementations
-        return Bottle(position: position);
+        return Bottle(position: position, maxDeepness: maxDeepness);
     }
   }
 }

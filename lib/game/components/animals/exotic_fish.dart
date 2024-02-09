@@ -3,7 +3,8 @@ import 'package:plasticdiver/game/components/animals/animal.dart';
 
 class ExoticFish extends Animal {
   ExoticFish({
-    super.isGoingRight,
+    required super.isGoingRight,
+    required super.maxDeepness,
     super.position,
     super.size,
     super.anchor,

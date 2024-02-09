@@ -4,7 +4,8 @@ import 'package:plasticdiver/game/components/animals/animal.dart';
 class Coral extends Animal {
   final int number;
   Coral({
-    super.isGoingRight,
+    required super.isGoingRight,
+    required super.maxDeepness,
     super.position,
     required this.number,
     super.size,
@@ -15,5 +16,5 @@ class Coral extends Animal {
   String get image => 'coral-$number.png';
 
   @override
-  Vector2 get floatingVelocity => Vector2(0, 0);
+  Vector2 get floatingVelocity => Vector2.zero();
 }

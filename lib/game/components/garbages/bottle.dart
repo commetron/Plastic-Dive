@@ -2,6 +2,7 @@ import 'package:plasticdiver/game/components/components.dart';
 
 class Bottle extends Garbage {
   Bottle({
+    required super.maxDeepness,
     super.position,
     super.size,
     super.anchor,

@@ -46,6 +46,7 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
     add(
       SpawnComponent.periodRange(
         factory: (_) => Garbage.random(
+          maxDeepness: worldDeepness,
           random: _random,
         ),
         minPeriod: 0.5,
@@ -62,6 +63,7 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
     add(
       SpawnComponent.periodRange(
         factory: (_) => Animal.random(
+          maxDeepness: worldDeepness,
           random: _random,
         ),
         minPeriod: 1,

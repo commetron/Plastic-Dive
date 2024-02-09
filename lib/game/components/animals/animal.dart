@@ -16,12 +16,15 @@ enum AnimalType { clownFish, coral1, coral2, coral3, exoticFish, globeFish, jell
 
 abstract class Animal extends SpriteComponent with HasGameReference<DiveGame> {
   abstract final String image;
-  bool isGoingRight = true;
+  final bool isGoingRight;
+
+  final double maxDeepness;
 
   Vector2 floatingVelocity = Vector2(10, 10);
 
   Animal({
-    this.isGoingRight = true,
+    required this.isGoingRight,
+    required this.maxDeepness,
     super.position,
     super.size,
     Anchor super.anchor = Anchor.center,
@@ -34,7 +37,6 @@ abstract class Animal extends SpriteComponent with HasGameReference<DiveGame> {
     size = Vector2(35 * ratio, 35);
 
     if (!isGoingRight) {
-      floatingVelocity = Vector2(-floatingVelocity.x, floatingVelocity.y);
       flipHorizontallyAroundCenter();
     }
   }
@@ -44,35 +46,35 @@ abstract class Animal extends SpriteComponent with HasGameReference<DiveGame> {
     super.update(dt);
 
     // Make them swim
-    position.add(floatingVelocity * dt);
+    position.add((isGoingRight ? floatingVelocity : -floatingVelocity) * dt);
 
-    if (position.x < -Constants.worldWidth / 2 || position.x > Constants.worldWidth / 2 || position.y < 0 || position.y > Constants.worldDeepness) {
+    if (position.x < -Constants.worldWidth / 2 || position.x > Constants.worldWidth / 2 || position.y < 0 || position.y > maxDeepness) {
       removeFromParent();
     }
   }
 
-  factory Animal.random({Vector2? position, Random? random}) {
+  factory Animal.random({required double maxDeepness, Vector2? position, Random? random}) {
     final obstacleType = AnimalType.values.random(random);
     final isGoingRight = random!.nextBool();
     switch (obstacleType) {
       case AnimalType.clownFish:
-        return ClownFish(position: position, isGoingRight: isGoingRight);
+        return ClownFish(position: position, isGoingRight: isGoingRight, maxDeepness: maxDeepness);
       case AnimalType.coral1:
-        return Coral(position: position, number: 1, isGoingRight: isGoingRight);
+        return Coral(position: position, number: 1, isGoingRight: isGoingRight, maxDeepness: maxDeepness);
       case AnimalType.coral2:
-        return Coral(position: position, number: 2, isGoingRight: isGoingRight);
+        return Coral(position: position, number: 2, isGoingRight: isGoingRight, maxDeepness: maxDeepness);
       case AnimalType.coral3:
-        return Coral(position: position, number: 3, isGoingRight: isGoingRight);
+        return Coral(position: position, number: 3, isGoingRight: isGoingRight, maxDeepness: maxDeepness);
       case AnimalType.exoticFish:
-        return ExoticFish(position: position, isGoingRight: isGoingRight);
+        return ExoticFish(position: position, isGoingRight: isGoingRight, maxDeepness: maxDeepness);
       case AnimalType.globeFish:
-        return GlobeFish(position: position, isGoingRight: isGoingRight);
+        return GlobeFish(position: position, isGoingRight: isGoingRight, maxDeepness: maxDeepness);
       case AnimalType.jellyfish:
-        return JellyFish(position: position, isGoingRight: isGoingRight);
+        return JellyFish(position: position, isGoingRight: isGoingRight, maxDeepness: maxDeepness);
       case AnimalType.tunaFish:
       default:
         // TODO not good that the abstraction knows the implementations
-        return TunaFish(position: position);
+        return TunaFish(position: position, isGoingRight: isGoingRight, maxDeepness: maxDeepness);
     }
   }
 }

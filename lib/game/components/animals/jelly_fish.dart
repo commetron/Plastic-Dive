@@ -3,7 +3,8 @@ import 'package:plasticdiver/game/components/animals/animal.dart';
 
 class JellyFish extends Animal {
   JellyFish({
-    super.isGoingRight,
+    required super.isGoingRight,
+    required super.maxDeepness,
     super.position,
     super.size,
     super.anchor,

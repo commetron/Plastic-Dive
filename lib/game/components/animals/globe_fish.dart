@@ -3,7 +3,8 @@ import 'package:plasticdiver/game/components/animals/animal.dart';
 
 class GlobeFish extends Animal {
   GlobeFish({
-    super.isGoingRight,
+    required super.isGoingRight,
+    required super.maxDeepness,
     super.position,
     super.size,
     super.anchor,
@@ -13,5 +14,5 @@ class GlobeFish extends Animal {
   String get image => 'globe-fish.png';
 
   @override
-  Vector2 get floatingVelocity => Vector2(20, 30);
+  Vector2 get floatingVelocity => Vector2(20, 0);
 }

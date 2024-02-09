@@ -2,6 +2,7 @@ import 'package:plasticdiver/game/components/components.dart';
 
 class SodaCan extends Garbage {
   SodaCan({
+    required super.maxDeepness,
     super.position,
     super.size,
     super.anchor,

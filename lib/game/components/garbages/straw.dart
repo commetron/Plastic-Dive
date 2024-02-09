@@ -2,6 +2,7 @@ import 'package:plasticdiver/game/components/components.dart';
 
 class Straw extends Garbage {
   Straw({
+    required super.maxDeepness,
     super.position,
     super.size,
     super.anchor,
