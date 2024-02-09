@@ -123,7 +123,7 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     print('enableCollectButton');
 
     // Add keyboard press event
-    collectButton.enable();
+    collectButton.enable(collectionTimeInSeconds: garbage.collectionTimeInSeconds);
     collectButton.onPressed = () => world.diver.collectGarbage(garbage);
   }
 
