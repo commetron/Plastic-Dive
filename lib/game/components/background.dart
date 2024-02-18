@@ -7,19 +7,19 @@ import 'package:plasticdiver/constants.dart';
 import 'package:plasticdiver/game/dive_game.dart';
 
 class Background extends ParallaxComponent<DiveGame> {
-  Background()
+  Background({required Vector2 size})
       : super(
-          anchor: Anchor.center,
-          size: Vector2(Constants.gameWidth, Constants.gameHeight),
-          position: Vector2(Constants.gameWidth / 2, Constants.gameHeight / 2),
+          anchor: Anchor.topCenter,
+          size: size,
+          position: Vector2.zero(),
         );
 
   @override
   Future<void> onLoad() async {
     parallax = await game.loadParallax(
       [
-        ParallaxImageData('parallax/background.png'),
-        ParallaxImageData('parallax/midground.png'),
+        ParallaxImageData('parallax/background-1.png'),
+        ParallaxImageData('parallax/ocean-light.png'),
       ],
       baseVelocity: Vector2.zero(), // If the player doesn't move, the background doesn't move
       velocityMultiplierDelta: Vector2(1.1, 1.1), // Speed between parallax layers

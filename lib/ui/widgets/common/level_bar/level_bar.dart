@@ -4,17 +4,21 @@ import 'package:plasticdiver/ui/common/ui_helpers.dart';
 import 'package:plasticdiver/ui/widgets/common/game_button/game_button.dart';
 
 class LevelBar extends StatelessWidget {
-  static const int maxLevel = 5;
+  final int maxLevel;
   final String skillName;
   final int level;
   final VoidCallback? onUpgrade;
   final bool isUpgradeAllowed;
 
+  final int? requiredPointsToUpgrade;
+
   const LevelBar({
     required this.skillName,
     required this.level,
+    required this.maxLevel,
     this.onUpgrade,
     required this.isUpgradeAllowed,
+    required this.requiredPointsToUpgrade,
     super.key,
   });
 
@@ -27,12 +31,26 @@ class LevelBar extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         horizontalSpaceMedium,
-        Expanded(child: LinearProgressIndicator(value: level / maxLevel, borderRadius: BorderRadius.circular(10))),
+        // Display the level as a number of rounded rectangles
+        for (var i = 0; i < maxLevel; i++)
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                  color: i < level ? Colors.green : Colors.grey,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
+            ),
+          ),
         horizontalSpaceMedium,
         GameButton(
           onPressed: isUpgradeAllowed && level < maxLevel ? onUpgrade : null,
           size: 30,
-          child: Text('Upgrade', style: smallButtonTextStyle),
+          child: Text((level < maxLevel) ? 'Upgrade (${requiredPointsToUpgrade})' : 'MAX', style: smallButtonTextStyle),
         ),
       ],
     );

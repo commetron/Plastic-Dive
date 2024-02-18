@@ -5,7 +5,8 @@ import 'package:flame/components.dart';
 
 class CollectLoader extends PositionComponent with HasVisibility {
   double sweepAngle = 0;
-  int loadingTime = 0;
+  double loadingTime = 0;
+  bool isFlipped = false;
 
   double get increment => 2 * pi / loadingTime;
 
@@ -15,10 +16,11 @@ class CollectLoader extends PositionComponent with HasVisibility {
           anchor: Anchor.center,
         );
 
-  void start({required int collectingTime}) {
+  void start({required double collectingTime, required bool isFlipped}) {
     sweepAngle = 0.5;
     loadingTime = collectingTime;
     isVisible = true;
+    isFlipped = isFlipped;
   }
 
   @override
@@ -39,6 +41,7 @@ class CollectLoader extends PositionComponent with HasVisibility {
   @override
   void update(double dt) {
     super.update(dt);
+
     if (sweepAngle < pi * 2) {
       sweepAngle += increment * dt;
     } else if (isVisible) {

@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:flame/extensions.dart';
 import 'package:plasticdiver/constants.dart';
 import 'package:plasticdiver/game/components/garbages/bottle.dart';
@@ -16,15 +17,20 @@ import 'package:plasticdiver/game/dive_game.dart';
 
 enum GarbageType { bottle, sodaCan, householdCleanerBottle, shampooBottle, plasticBag, straw, microplasticCloud }
 
-abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame>, CollisionCallbacks {
+abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame> {
   abstract final int points;
   abstract final int collectionTimeInSeconds;
+
+  double get collectionTimeWithSpeedFactor => collectionTimeInSeconds / Constants.collectSpeedFactor[game.collectingSpeedLevel];
 
   abstract final String image;
 
   Vector2 floatingVelocity = Vector2(10, 10);
 
   final double maxDeepness;
+
+  bool isHighlighted = false;
+  bool isBeingCollected = false;
 
   Garbage({
     required this.maxDeepness,
@@ -33,6 +39,9 @@ abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame>, 
     Anchor super.anchor = Anchor.center,
   });
 
+  // @override
+  // Decorator get decorator => PaintDecorator.tint(const Color(0xAAFF0000));
+
   @override
   FutureOr<void> onLoad() async {
     sprite = await game.loadSprite('garbages/$image');
@@ -40,6 +49,22 @@ abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame>, 
     size = Vector2(35 * ratio, 35);
 
     add(RectangleHitbox());
+  }
+
+  startCollecting() {
+    isBeingCollected = true;
+    add(
+      SequenceEffect([
+        ScaleEffect.by(
+          Vector2.all(1.5),
+          EffectController(duration: collectionTimeWithSpeedFactor / 4, alternate: true),
+        ),
+        ScaleEffect.by(
+          Vector2.zero(),
+          EffectController(duration: collectionTimeWithSpeedFactor / 4 * 3, alternate: true),
+        ),
+      ]),
+    );
   }
 
   @override
@@ -53,7 +78,10 @@ abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame>, 
     double next = (min + random.nextInt(max - min)) * random.nextDouble();
     position.add(floatingVelocity * dt * next);
 
-    if (position.x < -Constants.worldWidth / 2 || position.x > Constants.worldWidth / 2 || position.y < 0 || position.y > maxDeepness) {
+    if (position.x < -Constants.worldWidthWithOffset / 2 ||
+        position.x > Constants.worldWidthWithOffset / 2 ||
+        position.y < 0 ||
+        position.y > maxDeepness) {
       removeFromParent();
     }
   }

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
@@ -8,6 +7,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:plasticdiver/constants.dart';
 import 'package:plasticdiver/game/components/components.dart';
+import 'package:plasticdiver/game/components/pause_button.dart';
 import 'package:plasticdiver/game/dive_world.dart';
 
 class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
@@ -19,7 +19,7 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   final score = ValueNotifier(0);
   final diveDepth = ValueNotifier(0.0);
   bool hasDived = false;
-  final ValueNotifier<double> remainingTime = ValueNotifier(100.0);
+  ValueNotifier<double> remainingTime;
 
   // Timer
   final countdownTimer = Timer(0.1, autoStart: true, repeat: true);
@@ -32,9 +32,8 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   int swimmingSpeedLevel;
   int collectingSpeedLevel;
   int diveDepthLevel;
-  int highScore; // TODO highlight score when it's a new high score
+  int previousHighScore;
   bool isSoundEnabled;
-
   late Joystick joystick;
   late CollectButton collectButton;
   late Background background;
@@ -47,11 +46,12 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     required this.swimmingSpeedLevel,
     required this.collectingSpeedLevel,
     required this.diveDepthLevel,
-    required this.highScore,
+    required this.previousHighScore,
     required this.isSoundEnabled,
-  }) : super(
+  })  : remainingTime = ValueNotifier(Constants.airTankCapacityInSeconds[airTankLevel]),
+        super(
           world: DiveWorld(
-            worldDeepness: Constants.worldDeepness * (pow(diveDepthLevel, 2)),
+            worldDeepness: Constants.worldDeepness[diveDepthLevel],
             swimmingSpeedLevel: swimmingSpeedLevel,
           ),
           camera: CameraComponent.withFixedResolution(width: Constants.gameWidth, height: Constants.gameHeight),
@@ -66,11 +66,14 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     }
 
     // Camera + viewport
-    await camera.backdrop.add(background = Background());
+    await camera.backdrop.add(background = Background(size: Vector2(Constants.worldWidthWithOffset, Constants.worldDeepness[diveDepthLevel])));
     await camera.viewport.add(FpsTextComponent(position: Vector2(Constants.gameWidth - 20, 20), anchor: Anchor.topRight));
-    await camera.viewport.add(Hud(scoreNotifier: score, diveDepthNotifier: diveDepth, remainingTime: remainingTime, previousHighScore: highScore));
+    await camera.viewport
+        .add(Hud(scoreNotifier: score, diveDepthNotifier: diveDepth, remainingTime: remainingTime, previousHighScore: previousHighScore));
     await camera.viewport.add(joystick = Joystick());
     await camera.viewport.add(collectButton = CollectButton());
+
+    await camera.viewport.add(PauseButton());
 
     // Darken the world as we go deeper
     await camera.viewport.add(darkenEffect = RectangleComponent(
@@ -123,15 +126,14 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     print('enableCollectButton');
 
     // Add keyboard press event
-    collectButton.enable(collectionTimeInSeconds: garbage.collectionTimeInSeconds);
-    collectButton.onPressed = () => world.diver.collectGarbage(garbage);
+    collectButton.enable(
+      collectionTimeInSeconds: garbage.collectionTimeWithSpeedFactor,
+      onPressed: () => world.diver.collectGarbage(garbage),
+    );
   }
 
   void disableCollectButton(Garbage garbage) {
-    print('disableCollectButton');
-    // TODO change the sprite of the button
     collectButton.disable();
-    collectButton.onPressed = null;
   }
 
   void endTheGame(bool hasWon, int score) {
@@ -149,10 +151,21 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   }
 
   startCollecting(Garbage garbage) {
-    print('startCollecting: ${garbage.runtimeType} : ${garbage.collectionTimeInSeconds}');
-    remainingCollectTime.value = garbage.collectionTimeInSeconds.toDouble();
+    print('startCollecting: ${garbage.runtimeType} : ${garbage.collectionTimeWithSpeedFactor}');
+    remainingCollectTime.value = garbage.collectionTimeWithSpeedFactor;
     print('remainingCollectTime: ${remainingCollectTime.value}');
     remainingCollectTimeTimer.reset();
     remainingCollectTimeTimer.start();
+  }
+
+  void resumeGame() {
+    FlameAudio.bgm.resume();
+    overlays.clear();
+    // overlays.remove('PauseMenu');
+    resumeEngine();
+  }
+
+  void exitGame() {
+    endTheGame(false, score.value);
   }
 }

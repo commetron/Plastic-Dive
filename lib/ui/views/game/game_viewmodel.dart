@@ -1,5 +1,6 @@
 import 'package:plasticdiver/app/app.locator.dart';
 import 'package:plasticdiver/app/app.router.dart';
+import 'package:plasticdiver/game/dive_game.dart';
 import 'package:plasticdiver/services/leaderboard_service.dart';
 import 'package:plasticdiver/services/shared_preferences_service.dart';
 import 'package:stacked/stacked.dart';
@@ -28,7 +29,19 @@ class GameViewModel extends BaseViewModel {
     if (isWon && score != null) {
       await _sharedPreferencesService.addPoints(score);
       await _leaderboardService.addScore(LeaderboardEntry(pseudo: _sharedPreferencesService.username, score: score));
+
+      if (score > highScore) {
+        await _sharedPreferencesService.setHighScore(score);
+      }
     }
     await _navigationService.replaceWithAfterGameView(isWon: isWon, score: score);
+  }
+
+  void resumeGame(DiveGame game) {
+    game.resumeGame();
+  }
+
+  void exitGame(DiveGame game) {
+    game.exitGame();
   }
 }

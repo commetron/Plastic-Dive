@@ -15,6 +15,8 @@ class GameButton extends StatefulWidget {
 
   final Widget child;
   final Color color;
+  final Color disabledColor = Colors.grey;
+  Color get currentColor => onPressed == null ? disabledColor : color;
   final Duration duration;
   final VoidCallback? onPressed;
   final double size;
@@ -87,7 +89,7 @@ class GameButtonState extends State<GameButton> with TickerProviderStateMixin {
     final verticalPadding = widget.size * 0.25;
     final horizontalPadding = widget.size * 0.50;
     final radius = BorderRadius.circular(horizontalPadding * 0.5);
-    Color outlineColor = Colors.white;
+    Color outlineColor = Colors.white.withOpacity(0.2);
     Color shadowColor = _isHovered ? Colors.white : Colors.transparent;
 
     return FocusableActionDetector(
@@ -105,8 +107,8 @@ class GameButtonState extends State<GameButton> with TickerProviderStateMixin {
           ],
         ),
         child: GestureDetector(
-          onTapDown: _onTapDown,
-          onTapUp: _onTapUp,
+          onTapDown: widget.onPressed == null ? null : _onTapDown,
+          onTapUp: widget.onPressed == null ? null : _onTapUp,
           onTapCancel: _onTapCancel,
           child: IntrinsicWidth(
             child: IntrinsicHeight(
@@ -168,7 +170,7 @@ class GameButtonState extends State<GameButton> with TickerProviderStateMixin {
   }
 
   Color _hslRelativeColor({double h = 0.0, s = 0.0, l = 0.0}) {
-    final hslColor = HSLColor.fromColor(widget.color);
+    final hslColor = HSLColor.fromColor(widget.currentColor);
     h = (hslColor.hue + h).clamp(0.0, 360.0);
     s = (hslColor.saturation + s).clamp(0.0, 1.0);
     l = (hslColor.lightness + l).clamp(0.0, 1.0);

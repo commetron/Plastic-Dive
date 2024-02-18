@@ -54,6 +54,7 @@ flutter:
     - assets/images/icons/
     - assets/images/screens-backgrounds/
     - assets/images/parallax/
+    - assets/images/parallax/surface/
     - assets/images/ui/
     - assets/images/players/
     - assets/images/garbages/

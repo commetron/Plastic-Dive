@@ -16,4 +16,7 @@ final appTheme = ThemeData(
     backgroundColor: Colors.transparent,
     elevation: 0,
   ),
+  progressIndicatorTheme: const ProgressIndicatorThemeData(
+    color: Colors.white,
+  ),
 );

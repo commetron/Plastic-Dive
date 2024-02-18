@@ -16,34 +16,50 @@ class LevelUpDiverViewModel extends BaseViewModel {
 
   int get points => _sharedPreferencesService.points;
 
-  get isAirTankUpgradeAllowed => points >= Constants.pointsNeededToUpgradeSkills[airTankLevel];
+  bool get isAirTankUpgradeAllowed => points >= requiredPointsForAirTankUpgrade;
 
-  get isSwimmingSpeedUpgradeAllowed => points >= Constants.pointsNeededToUpgradeSkills[swimmingSpeedLevel];
+  bool get isSwimmingSpeedUpgradeAllowed => points >= requiredPointsForSwimmingSpeedUpgrade;
 
-  get isCollectingSpeedUpgradeAllowed => points >= Constants.pointsNeededToUpgradeSkills[collectingSpeedLevel];
+  bool get isCollectingSpeedUpgradeAllowed => points >= requiredPointsForCollectingSpeedUpgrade;
 
-  get isDiveDepthUpgradeAllowed => points >= Constants.pointsNeededToUpgradeSkills[diveDepthLevel];
+  bool get isDiveDepthUpgradeAllowed => points >= requiredPointsForDiveDepthUpgrade;
+
+  int get requiredPointsForAirTankUpgrade => Constants.requiredPointsToUpgradeSkills[airTankLevel];
+
+  int get requiredPointsForSwimmingSpeedUpgrade => Constants.requiredPointsToUpgradeSkills[swimmingSpeedLevel];
+
+  int get requiredPointsForCollectingSpeedUpgrade => Constants.requiredPointsToUpgradeSkills[collectingSpeedLevel];
+
+  int get requiredPointsForDiveDepthUpgrade => Constants.requiredPointsToUpgradeSkills[diveDepthLevel];
+
+  int get airTankLevelMax => Constants.requiredPointsToUpgradeSkills.length - 1;
+
+  int get swimmingSpeedLevelMax => Constants.requiredPointsToUpgradeSkills.length - 1;
+
+  int get collectingSpeedLevelMax => Constants.requiredPointsToUpgradeSkills.length - 1;
+
+  int get diveDepthLevelMax => Constants.requiredPointsToUpgradeSkills.length - 1;
 
   Future upgradeAirTank() async {
-    await _sharedPreferencesService.addPoints(-Constants.pointsNeededToUpgradeSkills[airTankLevel]);
+    await _sharedPreferencesService.addPoints(-Constants.requiredPointsToUpgradeSkills[airTankLevel]);
     await _sharedPreferencesService.upgradeAirTank();
     rebuildUi();
   }
 
   Future upgradeSwimmingSpeed() async {
-    await _sharedPreferencesService.addPoints(-Constants.pointsNeededToUpgradeSkills[swimmingSpeedLevel]);
+    await _sharedPreferencesService.addPoints(-Constants.requiredPointsToUpgradeSkills[swimmingSpeedLevel]);
     _sharedPreferencesService.upgradeSwimmingSpeed();
     rebuildUi();
   }
 
   Future upgradeCollectingSpeed() async {
-    await _sharedPreferencesService.addPoints(-Constants.pointsNeededToUpgradeSkills[collectingSpeedLevel]);
+    await _sharedPreferencesService.addPoints(-Constants.requiredPointsToUpgradeSkills[collectingSpeedLevel]);
     _sharedPreferencesService.upgradeCollectingSpeed();
     rebuildUi();
   }
 
   Future upgradeDiveDepth() async {
-    await _sharedPreferencesService.addPoints(-Constants.pointsNeededToUpgradeSkills[diveDepthLevel]);
+    await _sharedPreferencesService.addPoints(-Constants.requiredPointsToUpgradeSkills[diveDepthLevel]);
     _sharedPreferencesService.upgradeDiveDepth();
     rebuildUi();
   }

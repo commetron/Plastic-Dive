@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import 'plastidex_viewmodel.dart';
+import 'infocean_viewmodel.dart';
 
-class PlastidexView extends StackedView<PlastidexViewModel> {
-  const PlastidexView({super.key});
+class InfoceanView extends StackedView<InfoceanViewModel> {
+  const InfoceanView({super.key});
 
   @override
   Widget builder(
     BuildContext context,
-    PlastidexViewModel viewModel,
+    InfoceanViewModel viewModel,
     Widget? child,
   ) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: const Text('Plastidex'),
+        title: const Text('Infocean'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -34,12 +34,12 @@ class PlastidexView extends StackedView<PlastidexViewModel> {
   }
 
   @override
-  PlastidexViewModel viewModelBuilder(
+  InfoceanViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      PlastidexViewModel();
+      InfoceanViewModel();
 
-  _buildCard(BuildContext context, PlastidexViewModel viewModel, int index) {
+  _buildCard(BuildContext context, InfoceanViewModel viewModel, int index) {
     return Card(
       child: Column(
         children: [

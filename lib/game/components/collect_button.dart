@@ -33,14 +33,16 @@ class CollectButton extends SpriteButtonComponent {
   }
 
   FutureOr<void> disable() async {
+    onPressed = null;
     button = await Sprite.load('ui/button-disabled.png');
     buttonDown = await Sprite.load('ui/button-disabled.png');
     timeText.text = "Collect";
   }
 
-  FutureOr<void> enable({required int collectionTimeInSeconds}) async {
+  FutureOr<void> enable({required double collectionTimeInSeconds, required void Function()? onPressed}) async {
+    this.onPressed = onPressed;
     button = await Sprite.load('ui/button-up.png');
     buttonDown = await Sprite.load('ui/button-down.png');
-    timeText.text = "Collect ${collectionTimeInSeconds}s";
+    timeText.text = "Collect ${collectionTimeInSeconds.toStringAsFixed(2)}s";
   }
 }

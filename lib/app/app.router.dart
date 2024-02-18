@@ -11,9 +11,9 @@ import 'package:plasticdiver/ui/views/about/about_view.dart' as _i7;
 import 'package:plasticdiver/ui/views/after_game/after_game_view.dart' as _i9;
 import 'package:plasticdiver/ui/views/game/game_view.dart' as _i4;
 import 'package:plasticdiver/ui/views/home/home_view.dart' as _i2;
+import 'package:plasticdiver/ui/views/infocean/infocean_view.dart' as _i8;
 import 'package:plasticdiver/ui/views/leaderboard/leaderboard_view.dart' as _i5;
 import 'package:plasticdiver/ui/views/level_up_diver/level_up_diver_view.dart' as _i10;
-import 'package:plasticdiver/ui/views/plastidex/plastidex_view.dart' as _i8;
 import 'package:plasticdiver/ui/views/settings/settings_view.dart' as _i6;
 import 'package:plasticdiver/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
@@ -32,7 +32,7 @@ class Routes {
 
   static const aboutView = '/about-view';
 
-  static const plastidexView = '/plastidex-view';
+  static const infoceanView = '/infocean-view';
 
   static const afterGameView = '/after-game-view';
 
@@ -45,7 +45,7 @@ class Routes {
     leaderboardView,
     settingsView,
     aboutView,
-    plastidexView,
+    infoceanView,
     afterGameView,
     levelUpDiverView,
   };
@@ -78,8 +78,8 @@ class StackedRouter extends _i1.RouterBase {
       page: _i7.AboutView,
     ),
     _i1.RouteDef(
-      Routes.plastidexView,
-      page: _i8.PlastidexView,
+      Routes.infoceanView,
+      page: _i8.InfoceanView,
     ),
     _i1.RouteDef(
       Routes.afterGameView,
@@ -128,9 +128,9 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i8.PlastidexView: (data) {
+    _i8.InfoceanView: (data) {
       return _i11.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i8.PlastidexView(),
+        builder: (context) => const _i8.InfoceanView(),
         settings: data,
       );
     },
@@ -244,13 +244,13 @@ extension NavigatorStateExtension on _i12.NavigationService {
     return navigateTo<dynamic>(Routes.aboutView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> navigateToPlastidexView([
+  Future<dynamic> navigateToInfoceanView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.plastidexView,
+    return navigateTo<dynamic>(Routes.infoceanView,
         id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
@@ -338,13 +338,13 @@ extension NavigatorStateExtension on _i12.NavigationService {
     return replaceWith<dynamic>(Routes.aboutView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> replaceWithPlastidexView([
+  Future<dynamic> replaceWithInfoceanView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   ]) async {
-    return replaceWith<dynamic>(Routes.plastidexView,
+    return replaceWith<dynamic>(Routes.infoceanView,
         id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 

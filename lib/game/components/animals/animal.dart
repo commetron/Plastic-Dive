@@ -48,7 +48,10 @@ abstract class Animal extends SpriteComponent with HasGameReference<DiveGame> {
     // Make them swim
     position.add((isGoingRight ? floatingVelocity : -floatingVelocity) * dt);
 
-    if (position.x < -Constants.worldWidth / 2 || position.x > Constants.worldWidth / 2 || position.y < 0 || position.y > maxDeepness) {
+    if (position.x < -Constants.worldWidthWithOffset / 2 ||
+        position.x > Constants.worldWidthWithOffset / 2 ||
+        position.y < 0 ||
+        position.y > maxDeepness) {
       removeFromParent();
     }
   }

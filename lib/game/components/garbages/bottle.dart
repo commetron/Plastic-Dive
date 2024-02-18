@@ -12,7 +12,7 @@ class Bottle extends Garbage {
   String get image => 'bottle.png';
 
   @override
-  int get points => 10;
+  int get points => 100000;
 
   @override
   int get collectionTimeInSeconds => 2;

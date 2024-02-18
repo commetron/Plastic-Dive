@@ -15,7 +15,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
   static int numberSpriteFrames = 10;
 
   Vector2 velocity = Vector2.zero();
-  double maxSpeed = 300;
+  double maxSpeed;
 
   bool isGoingRight = true;
 
@@ -44,13 +44,12 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
     required this.onGarbageCollisionEnd,
     required ValueNotifier<double> remainingCollectTime,
     required this.onStartCollecting,
-  }) : super(
+  })  : maxSpeed = Constants.maxDiverSpeed[swimmingSpeedLevel],
+        super(
           position: Vector2.zero(),
           size: Vector2(101.1, 40.0),
           anchor: Anchor.center,
         ) {
-    maxSpeed += (swimmingSpeedLevel * 50);
-
     remainingCollectTime.addListener(() {
       isCollecting = remainingCollectTime.value > 0;
       remainingCollectTimeInSeconds.text = remainingCollectTime.value.toString();
@@ -154,8 +153,8 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
 
     if (event is RawKeyDownEvent) {
       if (event.logicalKey == LogicalKeyboardKey.space) {
-        // TODO Do collect garbage if there is one
-        print("Space pressed");
+        // Press the button to collect the garbage if any
+        game.collectButton.onPressed?.call();
       }
 
       if (keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
@@ -177,17 +176,23 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
 
   // Actions
   void collectGarbage(Garbage garbage) {
-    print("Collecting garbage: $garbage");
-    if (garbage.isRemoved || garbage.isRemoving) return;
+    if (garbage.isRemoved || garbage.isRemoving || isCollecting) return;
+
+    var collectingTime = garbage.collectionTimeWithSpeedFactor;
+    isCollecting = true;
+    garbage.startCollecting();
+    collectLoader.start(collectingTime: collectingTime, isFlipped: !isGoingRight);
     onStartCollecting(garbage);
-    collectLoader.start(collectingTime: garbage.collectionTimeInSeconds);
 
     // Move that when the garbage is collected after the timeout
-    garbage.removeFromParent();
-    FlameAudio.play('sfx/collected.mp3');
-    // TODO Pass addScore method to Diver constructor
-    game.score.value += garbage.points;
-    debugPrint("Score: ${game.score}");
+    // TODO take collecting time milliseconds into account
+    Future.delayed(Duration(seconds: collectingTime.ceil()), () {
+      garbage.removeFromParent();
+      isCollecting = false;
+      FlameAudio.play('sfx/collected.mp3');
+      // TODO Pass addScore method to Diver constructor
+      game.score.value += garbage.points;
+    });
   }
 
   // Collision callbacks
@@ -195,30 +200,16 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
   @override
   void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollisionStart(intersectionPoints, other);
-    // TODO enable button
     if (other is Garbage) {
-      print("Collision with Garbage -> enable button");
       onGarbageCollisionStart(other);
-      // collectGarbage(other);
-    }
-
-    if (other is Surface) {
-      print("Collision with Surface -> End of the game");
     }
   }
 
   @override
   void onCollisionEnd(PositionComponent other) {
     super.onCollisionEnd(other);
-    // TODO disable button
     if (other is Garbage) {
-      print("Collision with Garbage -> disable button");
       onGarbageCollisionEnd(other);
-      // collectGarbage(other);
-    }
-    if (other is Surface) {
-      // TODO enable the button / automatic collision to end the game
-      print("Collision with Surface -> End of the game");
     }
   }
 }

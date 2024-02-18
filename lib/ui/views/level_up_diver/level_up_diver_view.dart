@@ -19,7 +19,8 @@ class LevelUpDiverView extends StackedView<LevelUpDiverViewModel> {
       appBar: AppBar(
         title: const Text('Level up diver'),
       ),
-      body: Card(
+      body: Padding(
+        padding: const EdgeInsets.all(10),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -34,6 +35,8 @@ class LevelUpDiverView extends StackedView<LevelUpDiverViewModel> {
                 level: viewModel.airTankLevel,
                 isUpgradeAllowed: viewModel.isAirTankUpgradeAllowed,
                 onUpgrade: viewModel.upgradeAirTank,
+                requiredPointsToUpgrade: viewModel.requiredPointsForAirTankUpgrade,
+                maxLevel: viewModel.airTankLevelMax,
               ),
               verticalSpaceMedium,
               LevelBar(
@@ -41,6 +44,8 @@ class LevelUpDiverView extends StackedView<LevelUpDiverViewModel> {
                 level: viewModel.swimmingSpeedLevel,
                 isUpgradeAllowed: viewModel.isSwimmingSpeedUpgradeAllowed,
                 onUpgrade: viewModel.upgradeSwimmingSpeed,
+                requiredPointsToUpgrade: viewModel.requiredPointsForSwimmingSpeedUpgrade,
+                maxLevel: viewModel.swimmingSpeedLevelMax,
               ),
               verticalSpaceMedium,
               LevelBar(
@@ -48,6 +53,8 @@ class LevelUpDiverView extends StackedView<LevelUpDiverViewModel> {
                 level: viewModel.collectingSpeedLevel,
                 isUpgradeAllowed: viewModel.isCollectingSpeedUpgradeAllowed,
                 onUpgrade: viewModel.upgradeCollectingSpeed,
+                requiredPointsToUpgrade: viewModel.requiredPointsForCollectingSpeedUpgrade,
+                maxLevel: viewModel.collectingSpeedLevelMax,
               ),
               verticalSpaceMedium,
               LevelBar(
@@ -55,6 +62,8 @@ class LevelUpDiverView extends StackedView<LevelUpDiverViewModel> {
                 level: viewModel.diveDepthLevel,
                 isUpgradeAllowed: viewModel.isDiveDepthUpgradeAllowed,
                 onUpgrade: viewModel.upgradeDiveDepth,
+                requiredPointsToUpgrade: viewModel.requiredPointsForDiveDepthUpgrade,
+                maxLevel: viewModel.diveDepthLevelMax,
               ),
             ],
           ),

@@ -30,44 +30,46 @@ class HomeView extends StackedView<HomeViewModel> {
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Image.asset("assets/images/icons/logo-no-background.png", height: thirdScreenHeight(context)),
                     verticalSpaceLarge,
-                    Column(
-                      children: [
-                        Image.asset("assets/images/icons/logo-no-background.png", height: thirdScreenHeight(context)),
-                        verticalSpaceLarge,
-                        GameButton(onPressed: viewModel.navigateToGame, size: 50, child: const Text("PLAY", style: buttonTextStyle)),
-                        verticalSpaceMedium,
-                        GameButton(onPressed: viewModel.navigateToPlastidex, size: 50, child: const Text("PLASTIDEX", style: buttonTextStyle)),
-                        verticalSpaceMedium,
-                        GameButton(onPressed: viewModel.navigateToLevelUpDiver, size: 50, child: const Text("DIVER", style: buttonTextStyle)),
-                        verticalSpaceMedium,
-                        GameButton(onPressed: viewModel.navigateToLeaderboard, size: 50, child: const Text("LEADERBOARD", style: buttonTextStyle)),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                          onPressed: viewModel.switchSound,
-                          icon: viewModel.isSoundEnabled ? const Icon(Icons.volume_up) : const Icon(Icons.volume_off),
-                        ),
-                        IconButton(
-                          onPressed: viewModel.navigateToSettings,
-                          icon: const Icon(Icons.settings),
-                        ),
-                        IconButton(
-                          onPressed: viewModel.navigateToAbout,
-                          icon: const Icon(Icons.info_outline),
-                        ),
-                      ],
-                    )
+                    GameButton(onPressed: viewModel.navigateToGame, size: 50, child: const Text("PLAY", style: buttonTextStyle)),
+                    verticalSpaceMedium,
+                    GameButton(onPressed: viewModel.navigateToInfocean, size: 50, child: const Text("INFOCEAN", style: buttonTextStyle)),
+                    verticalSpaceMedium,
+                    GameButton(onPressed: viewModel.navigateToLevelUpDiver, size: 50, child: const Text("UPGRADE DIVER", style: buttonTextStyle)),
                   ],
                 ),
               ),
             ),
           ),
+          persistentFooterAlignment: AlignmentDirectional.center,
+          persistentFooterButtons: [
+            GameButton(
+              onPressed: viewModel.switchSound,
+              size: 50,
+              child: viewModel.isSoundEnabled ? const Icon(Icons.volume_up, color: Colors.white) : const Icon(Icons.volume_off, color: Colors.white),
+            ),
+            horizontalSpaceMedium,
+            GameButton(
+              onPressed: viewModel.navigateToLeaderboard,
+              size: 50,
+              child: const Icon(Icons.leaderboard, color: Colors.white),
+            ),
+            horizontalSpaceMedium,
+            GameButton(
+              onPressed: viewModel.navigateToSettings,
+              size: 50,
+              child: const Icon(Icons.settings, color: Colors.white),
+            ),
+            horizontalSpaceMedium,
+            GameButton(
+              onPressed: viewModel.navigateToAbout,
+              size: 50,
+              child: const Icon(Icons.info_outline, color: Colors.white),
+            ),
+          ],
         ),
       ],
     );

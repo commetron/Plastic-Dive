@@ -1,6 +1,6 @@
 import 'package:stacked/stacked.dart';
 
-class PlastidexViewModel extends BaseViewModel {
+class InfoceanViewModel extends BaseViewModel {
   final plasticGarbage = [
     {'Bottle', 'bottle.png'},
     {'Household Cleaner', 'household_cleaner_bottle.png'},

@@ -8,6 +8,8 @@ import 'package:plasticdiver/game/components/animals/animal.dart';
 import 'package:plasticdiver/game/components/components.dart';
 import 'package:plasticdiver/game/dive_game.dart';
 
+import 'components/side-cliff.dart';
+
 class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetection {
   late Diver diver;
   late DiverTrail diverTrail;
@@ -20,18 +22,15 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
 
   Vector2 get size => (parent as FlameGame).size;
 
-  DiveWorld({
-    required this.worldDeepness,
-    required this.swimmingSpeedLevel,
-  });
+  DiveWorld({required this.worldDeepness, required this.swimmingSpeedLevel});
 
   @override
   Future<void> onLoad() async {
-    final Vector2 groundLevel = Vector2(-Constants.gameWidth, 0);
-    final Vector2 floorLevel = Vector2(-Constants.gameWidth, worldDeepness);
+    final Vector2 surfaceLevel = Vector2(0, 0);
+    final Vector2 floorLevel = Vector2(0, worldDeepness);
+    final Vector2 leftCliffPosition = Vector2(-Constants.worldWidth / 2, 0);
+    final Vector2 rightCliffPosition = Vector2(Constants.worldWidth / 2, 0);
 
-    add(Surface(position: groundLevel, size: Vector2(Constants.worldWidth, 300))); // TODO
-    add(Floor(position: floorLevel, size: Vector2(Constants.worldWidth, 200))); // TODO
     add(diver = Diver(
       swimmingSpeedLevel: swimmingSpeedLevel,
       worldDeepness: worldDeepness,
@@ -53,7 +52,7 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
         maxPeriod: 3,
         // selfPositioning: true, // Use only to self position the component ourselves
         area: Rectangle.fromPoints(
-          Vector2(-Constants.worldWidth / 2, groundLevel.y + 10),
+          Vector2(-Constants.worldWidth / 2, surfaceLevel.y + 10),
           Vector2(Constants.worldWidth / 2, worldDeepness),
         ),
         random: _random,
@@ -70,12 +69,17 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
         maxPeriod: 3,
         // selfPositioning: true, // Use only to self position the component ourselves
         area: Rectangle.fromPoints(
-          Vector2(-Constants.worldWidth / 2, groundLevel.y + 10),
+          Vector2(-Constants.worldWidth / 2, surfaceLevel.y + 10),
           Vector2(Constants.worldWidth / 2, worldDeepness),
         ),
         random: _random,
       ),
     );
+
+    add(Surface(position: surfaceLevel)); // TODO
+    add(Floor(position: floorLevel)); // TODO
+    add(Cliff(position: leftCliffPosition, isLeft: true, worldDeepness: worldDeepness));
+    add(Cliff(position: rightCliffPosition, isLeft: false, worldDeepness: worldDeepness));
 
     game.camera.follow(diver);
   }

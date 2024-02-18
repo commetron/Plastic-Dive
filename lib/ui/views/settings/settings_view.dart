@@ -31,7 +31,7 @@ class SettingsView extends StackedView<SettingsViewModel> with $SettingsView {
             verticalSpaceLarge,
             Text(
               'Username',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             verticalSpaceSmall,
             TextFormField(

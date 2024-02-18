@@ -29,8 +29,8 @@ class HomeViewModel extends BaseViewModel {
     return await _navigationService.navigateToAboutView();
   }
 
-  Future navigateToPlastidex() async {
-    return await _navigationService.navigateToPlastidexView();
+  Future navigateToInfocean() async {
+    return await _navigationService.navigateToInfoceanView();
   }
 
   Future navigateToLeaderboard() async {

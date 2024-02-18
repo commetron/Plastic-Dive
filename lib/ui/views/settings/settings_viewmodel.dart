@@ -8,10 +8,10 @@ class SettingsViewModel extends FormViewModel with $SettingsView {
 
   SettingsViewModel() {
     // Initial value for the username field
-    usernameController.text = _sharedPreferencesService.username ?? '';
+    usernameController.text = username;
   }
 
-  String? get username => _sharedPreferencesService.username;
+  String get username => _sharedPreferencesService.username ?? '';
 
   Future updateUsername() async {
     _sharedPreferencesService.setUsername(usernameValue);
@@ -20,6 +20,7 @@ class SettingsViewModel extends FormViewModel with $SettingsView {
 
   Future clearSettings() async {
     await _sharedPreferencesService.clearPreferences();
+    usernameController.text = username;
     rebuildUi();
   }
 }
