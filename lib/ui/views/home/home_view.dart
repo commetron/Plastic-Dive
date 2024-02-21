@@ -26,15 +26,17 @@ class HomeView extends StackedView<HomeViewModel> {
         Scaffold(
           body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              padding: getResponsivePadding(context),
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("assets/images/icons/logo-no-background.png", height: thirdScreenHeight(context)),
+                    Image.asset("assets/images/icons/logo-no-background.png", height: quarterScreenHeight(context)),
                     verticalSpaceLarge,
-                    GameButton(onPressed: viewModel.navigateToGame, size: 50, child: const Text("PLAY", style: buttonTextStyle)),
+                    GameButton(onPressed: viewModel.navigateToGame, size: 75, child: const Text("PLAY", style: buttonTextStyle)),
+                    verticalSpaceMedium,
+                    GameButton(onPressed: viewModel.navigateToHowToPlay, size: 50, child: const Text("HOW-TO PLAY", style: buttonTextStyle)),
                     verticalSpaceMedium,
                     GameButton(onPressed: viewModel.navigateToInfocean, size: 50, child: const Text("INFOCEAN", style: buttonTextStyle)),
                     verticalSpaceMedium,

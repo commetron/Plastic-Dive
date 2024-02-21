@@ -11,10 +11,17 @@ class SettingsViewModel extends FormViewModel with $SettingsView {
     usernameController.text = username;
   }
 
-  String get username => _sharedPreferencesService.username ?? '';
+  String get username => _sharedPreferencesService.username;
+
+  get isSoundEnabled => _sharedPreferencesService.isSoundEnabled;
 
   Future updateUsername() async {
     _sharedPreferencesService.setUsername(usernameValue);
+    rebuildUi();
+  }
+
+  void toggleSound(bool _) {
+    _sharedPreferencesService.toggleSoundEnabled();
     rebuildUi();
   }
 

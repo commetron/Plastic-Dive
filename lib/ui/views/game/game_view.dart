@@ -1,6 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:plasticdiver/game/dive_game.dart';
+import 'package:plasticdiver/ui/common/app_theme.dart';
 import 'package:plasticdiver/ui/common/ui_helpers.dart';
 import 'package:plasticdiver/ui/widgets/common/game_button/game_button.dart';
 import 'package:stacked/stacked.dart';
@@ -47,13 +48,14 @@ class GameView extends StackedView<GameViewModel> {
                   GameButton(
                     onPressed: () => viewModel.resumeGame(game),
                     size: 50,
-                    child: const Text('Resume'),
+                    child: const Text('Resume', style: buttonTextStyle),
                   ),
                   verticalSpaceMedium,
                   GameButton(
                     onPressed: () => viewModel.exitGame(game),
                     size: 50,
-                    child: const Text('Exit'),
+                    color: Colors.redAccent,
+                    child: const Text('Exit', style: buttonTextStyle),
                   ),
                 ],
               ),
@@ -61,7 +63,6 @@ class GameView extends StackedView<GameViewModel> {
           );
         }
       },
-      initialActiveOverlays: const ['PauseMenu'],
     );
   }
 

@@ -1,7 +1,7 @@
 PODS:
   - audioplayers_darwin (0.0.1):
     - FlutterMacOS
-  - cloud_firestore (4.15.4):
+  - cloud_firestore (4.15.5):
     - Firebase/CoreOnly (~> 10.20.0)
     - Firebase/Firestore (~> 10.20.0)
     - firebase_core
@@ -116,7 +116,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   audioplayers_darwin: dcad41de4fbd0099cb3749f7ab3b0cb8f70b810c
-  cloud_firestore: e92d176e8b72d33527fbae9c6e47ec00d6d5f29a
+  cloud_firestore: 686113653b333c799c17e592dcc2d0feb465015d
   Firebase: 10c8cb12fb7ad2ae0c09ffc86cd9c1ab392a0031
   firebase_core: 2e1a33fd13fb581f0dc809c18be25cdc1a2e10db
   FirebaseCore: 28045c1560a2600d284b9c45a904fe322dc890b6

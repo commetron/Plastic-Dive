@@ -24,6 +24,7 @@ class AfterGameView extends StackedView<AfterGameViewModel> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 isWon ? 'You won!' : 'You lost!',
@@ -57,16 +58,21 @@ class AfterGameView extends StackedView<AfterGameViewModel> {
                 child: const Text('Level up diver', style: buttonTextStyle),
               ),
               verticalSpaceMedium,
-              GameButton(
-                onPressed: viewModel.navigateToLeaderboard,
-                size: 50,
-                child: const Text('Leaderboard', style: buttonTextStyle),
-              ),
-              verticalSpaceMedium,
-              GameButton(
-                onPressed: viewModel.navigateToHome,
-                size: 50,
-                child: const Text('Back to home', style: buttonTextStyle),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GameButton(
+                    onPressed: viewModel.navigateToLeaderboard,
+                    size: 50,
+                    child: const Icon(Icons.leaderboard, color: Colors.white),
+                  ),
+                  horizontalSpaceMedium,
+                  GameButton(
+                    onPressed: viewModel.navigateToHome,
+                    size: 50,
+                    child: const Icon(Icons.home, color: Colors.white),
+                  ),
+                ],
               ),
             ],
           ),

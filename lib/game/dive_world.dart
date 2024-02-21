@@ -4,15 +4,12 @@ import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:plasticdiver/constants.dart';
-import 'package:plasticdiver/game/components/animals/animal.dart';
 import 'package:plasticdiver/game/components/components.dart';
 import 'package:plasticdiver/game/dive_game.dart';
 
-import 'components/side-cliff.dart';
-
 class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetection {
   late Diver diver;
-  late DiverTrail diverTrail;
+  // late DiverTrail diverTrail;
 
   final _random = Random();
 
@@ -40,7 +37,7 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
       remainingCollectTime: game.remainingCollectTime,
       onStartCollecting: (garbage) => game.startCollecting(garbage),
     ));
-    add(diverTrail = DiverTrail(diver: diver));
+    // add(diverTrail = DiverTrail(diver: diver));
 
     add(
       SpawnComponent.periodRange(
@@ -67,6 +64,7 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
         ),
         minPeriod: 1,
         maxPeriod: 3,
+        // TODO selfPositioning: true, to self position the animals depending on the world deepness
         // selfPositioning: true, // Use only to self position the component ourselves
         area: Rectangle.fromPoints(
           Vector2(-Constants.worldWidth / 2, surfaceLevel.y + 10),

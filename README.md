@@ -4,19 +4,19 @@ A new Flutter project.
 
 
 # TODO
-- [ ] Display the remaining air in a bottle (with a gauge turning red when the air is low)
-- [ ] Fix the button to start the garbage collection
-- [ ] Add a loader when the collecting is in progress
-- [ ] Lose when the air is empty
-- [ ] Win when the dive goes up to the surface
+- [x] Display the remaining air in a bottle (with a gauge turning red when the air is low)
+- [x] Fix the button to start the garbage collection
+- [x] Add a loader when the collecting is in progress
+- [x] Lose when the air is empty
+- [x] Win when the dive goes up to the surface
 - [ ] Add a game over screen
 - [ ] Add a win screen
-- [ ] Add possibility to make your diver better + impact on the world
+- [x] Add possibility to make your diver better + impact on the world
 - [ ] Design the score
-- [ ] Add the mute button + store the state
+- [x] Add the mute button + store the state
 - [ ] Add the settings screen
 - [ ] Add the about screen
-- [ ] Add the plastidex screen
+- [x] Add the infocean screen
 - [ ] Design the leaderboard
 - [ ] Design the main screen
 - [ ] Add haptic feedback (https://www.dhiwise.com/post/creating-haptic-feedback-in-flutter-application)

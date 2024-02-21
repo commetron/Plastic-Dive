@@ -6,7 +6,6 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:plasticdiver/constants.dart';
-import 'package:plasticdiver/game/components/collect_loader.dart';
 import 'package:plasticdiver/game/components/components.dart';
 import 'package:plasticdiver/game/dive_game.dart';
 

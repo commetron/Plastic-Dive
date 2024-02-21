@@ -1,10 +1,21 @@
 // TODO add all exports + clean imports in other files
-export 'background.dart';
-export 'collect_button.dart';
+// Animals
+export 'animals/animal.dart';
+// Diver
 export 'diver.dart';
 export 'diver_trail.dart';
-export 'floor.dart';
+// Environment
+export 'environment/background.dart';
+export 'environment/floor.dart';
+export 'environment/side_cliff.dart';
+export 'environment/surface.dart';
+// Garbages
 export 'garbages/garbage.dart';
-export 'hud.dart';
-export 'joystick.dart';
-export 'surface.dart';
+export 'hud/air_tank.dart';
+// HUD
+export 'hud/collect_button.dart';
+export 'hud/collect_loader.dart';
+export 'hud/joystick.dart';
+export 'hud/nanometer.dart';
+export 'hud/pause_button.dart';
+export 'hud/score.dart';

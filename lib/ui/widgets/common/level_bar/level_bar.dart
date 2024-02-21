@@ -50,7 +50,7 @@ class LevelBar extends StatelessWidget {
         GameButton(
           onPressed: isUpgradeAllowed && level < maxLevel ? onUpgrade : null,
           size: 30,
-          child: Text((level < maxLevel) ? 'Upgrade (${requiredPointsToUpgrade})' : 'MAX', style: smallButtonTextStyle),
+          child: Text((level < maxLevel) ? 'Upgrade ($requiredPointsToUpgrade)' : 'MAX', style: smallButtonTextStyle),
         ),
       ],
     );

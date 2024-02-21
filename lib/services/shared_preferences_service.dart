@@ -9,6 +9,12 @@ class SharedPreferencesService extends InitializableDependency {
     _preferences = await SharedPreferences.getInstance();
   }
 
+  static const _hasSeenHowToPlayKey = 'hasSeenHowToPlay';
+
+  bool get hasSeenHowToPlay => _getFromDisk(_hasSeenHowToPlayKey) ?? false;
+
+  setHasSeenHowToPlay(bool value) async => await _saveToDisk(_hasSeenHowToPlayKey, value);
+
   static const _usernameKey = 'username';
 
   String get username => _getFromDisk(_usernameKey) ?? 'Diver';

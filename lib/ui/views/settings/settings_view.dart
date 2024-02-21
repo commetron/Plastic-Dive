@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plasticdiver/ui/common/app_theme.dart';
 import 'package:plasticdiver/ui/common/ui_helpers.dart';
 import 'package:plasticdiver/ui/validators/form_validators.dart';
+import 'package:plasticdiver/ui/widgets/common/game_button/game_button.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -19,41 +21,64 @@ class SettingsView extends StackedView<SettingsViewModel> with $SettingsView {
     SettingsViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: AppBar(
-        title: const Text('Settings'),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-        child: Column(
-          children: [
-            verticalSpaceLarge,
-            Text(
-              'Username',
-              style: Theme.of(context).textTheme.titleLarge,
+    return Stack(
+      children: [
+        Image.asset(
+          "assets/images/screens-backgrounds/home.jpg",
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          fit: BoxFit.cover,
+        ),
+        Scaffold(
+          appBar: AppBar(
+            title: const Text('Settings'),
+          ),
+          body: SingleChildScrollView(
+            padding: getResponsivePadding(context),
+            child: Column(
+              children: [
+                Text(
+                  'Username',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                verticalSpaceSmall,
+                TextFormField(
+                  controller: usernameController,
+                  focusNode: usernameFocusNode,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter your username',
+                  ),
+                ),
+                verticalSpaceMedium,
+                Text(
+                  'Sound',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                verticalSpaceSmall,
+                Switch(
+                  value: viewModel.isSoundEnabled,
+                  onChanged: viewModel.toggleSound,
+                ),
+                verticalSpaceMassive,
+                GameButton(
+                  onPressed: viewModel.clearSettings,
+                  size: 50,
+                  child: const Text('UPDATE', style: buttonTextStyle),
+                ),
+              ],
             ),
-            verticalSpaceSmall,
-            TextFormField(
-              controller: usernameController,
-              focusNode: usernameFocusNode,
-              decoration: const InputDecoration(
-                hintText: 'Enter your username',
-              ),
-            ),
-            verticalSpaceMedium,
-            ElevatedButton(
-              onPressed: () => viewModel.updateUsername(),
-              child: const Text('Update'),
-            ),
-            verticalSpaceMedium,
-            ElevatedButton(
-              onPressed: () => viewModel.clearSettings(),
-              child: const Text('Clear settings'),
+          ),
+          persistentFooterAlignment: AlignmentDirectional.center,
+          persistentFooterButtons: [
+            GameButton(
+              onPressed: viewModel.clearSettings,
+              size: 50,
+              color: Colors.redAccent,
+              child: const Text('CLEAR SETTINGS', style: buttonTextStyle),
             ),
           ],
         ),
-      ),
+      ],
     );
   }
 

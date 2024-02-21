@@ -18,7 +18,8 @@ class Surface extends ParallaxComponent<DiveGame> {
   FutureOr<void> onLoad() async {
     parallax = await game.loadParallax(
       [
-        ParallaxImageData('parallax/surface/1.png'),
+        ParallaxImageData('parallax/surface/1.jpg'),
+        // TODO export to JPG
         ParallaxImageData('parallax/surface/2.png'),
         ParallaxImageData('parallax/surface/3.png'),
         ParallaxImageData('parallax/surface/4.png'),

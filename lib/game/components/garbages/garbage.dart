@@ -7,6 +7,7 @@ import 'package:flame/effects.dart';
 import 'package:flame/extensions.dart';
 import 'package:plasticdiver/constants.dart';
 import 'package:plasticdiver/game/components/garbages/bottle.dart';
+import 'package:plasticdiver/game/components/garbages/cotton_rod.dart';
 import 'package:plasticdiver/game/components/garbages/household_cleaner_bottle.dart';
 import 'package:plasticdiver/game/components/garbages/microplastic_cloud.dart';
 import 'package:plasticdiver/game/components/garbages/plastic_bag.dart';
@@ -15,7 +16,7 @@ import 'package:plasticdiver/game/components/garbages/soda_can.dart';
 import 'package:plasticdiver/game/components/garbages/straw.dart';
 import 'package:plasticdiver/game/dive_game.dart';
 
-enum GarbageType { bottle, sodaCan, householdCleanerBottle, shampooBottle, plasticBag, straw, microplasticCloud }
+enum GarbageType { bottle, sodaCan, householdCleanerBottle, shampooBottle, plasticBag, straw, microplasticCloud, cottonRod }
 
 abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame> {
   abstract final int points;
@@ -101,6 +102,8 @@ abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame> {
         return Straw(position: position, maxDeepness: maxDeepness);
       case GarbageType.microplasticCloud:
         return MicroplasticCloud(position: position, maxDeepness: maxDeepness);
+      case GarbageType.cottonRod:
+        return CottonRod(position: position, maxDeepness: maxDeepness);
       case GarbageType.bottle:
       default:
         // TODO not good that the abstraction knows the implementations

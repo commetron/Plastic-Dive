@@ -5,9 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
-  final _navigationService = locator<NavigationService>();
-  final _dialogService = locator<DialogService>();
-  final _bottomSheetService = locator<BottomSheetService>();
+  final _routerService = locator<RouterService>();
   final _sharedPreferencesService = locator<SharedPreferencesService>();
 
   bool get isSoundEnabled => _sharedPreferencesService.isSoundEnabled;
@@ -18,44 +16,35 @@ class HomeViewModel extends BaseViewModel {
   }
 
   Future navigateToGame() async {
-    return await _navigationService.navigateToGameView();
+    if (!_sharedPreferencesService.hasSeenHowToPlay) {
+      return await _routerService.navigateToHowToPlayView(goToGameOnComplete: true);
+    }
+
+    return await _routerService.navigateToGameView();
+  }
+
+  Future navigateToHowToPlay() async {
+    return await _routerService.navigateToHowToPlayView(goToGameOnComplete: false);
   }
 
   Future navigateToSettings() async {
-    return await _navigationService.navigateToSettingsView();
+    await _routerService.navigateToSettingsView();
+    rebuildUi(); // Make sure the sound icon is updated
   }
 
   Future navigateToAbout() async {
-    return await _navigationService.navigateToAboutView();
+    return await _routerService.navigateToAboutView();
   }
 
   Future navigateToInfocean() async {
-    return await _navigationService.navigateToInfoceanView();
+    return await _routerService.navigateToInfoceanView();
   }
 
   Future navigateToLeaderboard() async {
-    return await _navigationService.navigateToLeaderboardView();
-  }
-
-  // TODO remove
-  void showDialog() {
-    // _dialogService.showCustomDialog(
-    //   variant: DialogType.infoAlert,
-    //   title: 'Stacked Rocks!',
-    //   description: 'Give stacked $_counter stars on Github',
-    // );
-  }
-
-  // TODO remove
-  void showBottomSheet() {
-    // _bottomSheetService.showCustomSheet(
-    //   variant: BottomSheetType.notice,
-    //   title: ksHomeBottomSheetTitle,
-    //   description: ksHomeBottomSheetDescription,
-    // );
+    return await _routerService.navigateToLeaderboardView();
   }
 
   Future navigateToLevelUpDiver() async {
-    await _navigationService.navigateToLevelUpDiverView();
+    await _routerService.navigateToLevelUpDiverView();
   }
 }

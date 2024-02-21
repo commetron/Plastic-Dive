@@ -18,12 +18,16 @@ class Background extends ParallaxComponent<DiveGame> {
   Future<void> onLoad() async {
     parallax = await game.loadParallax(
       [
-        ParallaxImageData('parallax/background-1.png'),
+        ParallaxImageData('parallax/background-far.png'),
+        ParallaxImageData('parallax/background.png'),
         ParallaxImageData('parallax/ocean-light.png'),
       ],
       baseVelocity: Vector2.zero(), // If the player doesn't move, the background doesn't move
       velocityMultiplierDelta: Vector2(1.1, 1.1), // Speed between parallax layers
       repeat: ImageRepeat.repeat, // Repeat the background image for X and Y
+      alignment: Alignment.center,
+      fill: LayerFill.width,
+      filterQuality: FilterQuality.high,
     );
   }
 

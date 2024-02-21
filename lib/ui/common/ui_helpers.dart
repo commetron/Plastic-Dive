@@ -68,3 +68,5 @@ double getResponsiveFontSize(BuildContext context, {double? fontSize, double? ma
 
   return responsiveSize;
 }
+
+EdgeInsets getResponsivePadding(BuildContext context) => EdgeInsets.symmetric(horizontal: screenWidthFraction(context, dividedBy: 10), vertical: 20);

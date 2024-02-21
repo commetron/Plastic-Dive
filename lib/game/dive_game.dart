@@ -7,7 +7,6 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:plasticdiver/constants.dart';
 import 'package:plasticdiver/game/components/components.dart';
-import 'package:plasticdiver/game/components/pause_button.dart';
 import 'package:plasticdiver/game/dive_world.dart';
 
 class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
@@ -68,8 +67,9 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     // Camera + viewport
     await camera.backdrop.add(background = Background(size: Vector2(Constants.worldWidthWithOffset, Constants.worldDeepness[diveDepthLevel])));
     await camera.viewport.add(FpsTextComponent(position: Vector2(Constants.gameWidth - 20, 20), anchor: Anchor.topRight));
-    await camera.viewport
-        .add(Hud(scoreNotifier: score, diveDepthNotifier: diveDepth, remainingTime: remainingTime, previousHighScore: previousHighScore));
+    await camera.viewport.add(Score(scoreNotifier: score, previousHighScore: previousHighScore));
+    await camera.viewport.add(AirTank(remainingTimeNotifier: remainingTime, initialTimeInSeconds: Constants.airTankCapacityInSeconds[airTankLevel]));
+    await camera.viewport.add(Nanometer(diveDepthNotifier: diveDepth, maxDepth: Constants.worldDeepness.last));
     await camera.viewport.add(joystick = Joystick());
     await camera.viewport.add(collectButton = CollectButton());
 
@@ -100,11 +100,11 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     };
 
     diveDepth.addListener(() {
-      if (!hasDived && diveDepth.value > 0.3) {
+      if (!hasDived && diveDepth.value > 0.2) {
         hasDived = true;
       }
 
-      if (hasDived && diveDepth.value <= 0.2) {
+      if (hasDived && diveDepth.value <= 0.1) {
         endTheGame(true, score.value);
       }
 

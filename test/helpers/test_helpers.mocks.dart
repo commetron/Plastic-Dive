@@ -694,6 +694,13 @@ class MockLeaderboardService extends _i1.Mock implements _i7.LeaderboardService 
 /// See the documentation for Mockito's code generation for more information.
 class MockSharedPreferencesService extends _i1.Mock implements _i8.SharedPreferencesService {
   @override
+  bool get hasSeenHowToPlay => (super.noSuchMethod(
+        Invocation.getter(#hasSeenHowToPlay),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
   String get username => (super.noSuchMethod(
         Invocation.getter(#username),
         returnValue: _i3.dummyValue<String>(
@@ -764,6 +771,15 @@ class MockSharedPreferencesService extends _i1.Mock implements _i8.SharedPrefere
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
+
+  @override
+  dynamic setHasSeenHowToPlay(bool? value) => super.noSuchMethod(
+        Invocation.method(
+          #setHasSeenHowToPlay,
+          [value],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   dynamic addPoints(int? value) => super.noSuchMethod(

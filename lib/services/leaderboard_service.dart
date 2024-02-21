@@ -4,10 +4,18 @@ class LeaderboardEntry {
   final String pseudo;
   final int score;
   final Timestamp createdAt;
+  final int collectingSpeedLevel;
+  final int diveDepthLevel;
+  final int swimmingSpeedLevel;
+  final int airTankLevel;
 
   LeaderboardEntry({
     required this.pseudo,
     required this.score,
+    required this.collectingSpeedLevel,
+    required this.diveDepthLevel,
+    required this.swimmingSpeedLevel,
+    required this.airTankLevel,
     Timestamp? createdAt,
   }) : createdAt = createdAt ?? Timestamp.now();
 
@@ -16,6 +24,10 @@ class LeaderboardEntry {
       pseudo: data['pseudo'] as String,
       score: data['score'] as int,
       createdAt: data['createdAt'] as Timestamp,
+      collectingSpeedLevel: data['collectingSpeedLevel'] as int,
+      diveDepthLevel: data['diveDepthLevel'] as int,
+      swimmingSpeedLevel: data['swimmingSpeedLevel'] as int,
+      airTankLevel: data['airTankLevel'] as int,
     );
   }
 
@@ -24,6 +36,10 @@ class LeaderboardEntry {
       'pseudo': pseudo,
       'score': score,
       'createdAt': createdAt,
+      'collectingSpeedLevel': collectingSpeedLevel,
+      'diveDepthLevel': diveDepthLevel,
+      'swimmingSpeedLevel': swimmingSpeedLevel,
+      'airTankLevel': airTankLevel,
     };
   }
 }

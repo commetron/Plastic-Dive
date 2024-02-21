@@ -7,7 +7,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class GameViewModel extends BaseViewModel {
-  final _navigationService = locator<NavigationService>();
+  final _routerService = locator<RouterService>();
   final _leaderboardService = locator<LeaderboardService>();
   final _sharedPreferencesService = locator<SharedPreferencesService>();
 
@@ -28,13 +28,20 @@ class GameViewModel extends BaseViewModel {
   Future onGameOver(bool isWon, int? score) async {
     if (isWon && score != null) {
       await _sharedPreferencesService.addPoints(score);
-      await _leaderboardService.addScore(LeaderboardEntry(pseudo: _sharedPreferencesService.username, score: score));
+      await _leaderboardService.addScore(LeaderboardEntry(
+        pseudo: _sharedPreferencesService.username,
+        score: score,
+        airTankLevel: airTankLevel,
+        collectingSpeedLevel: collectingSpeedLevel,
+        diveDepthLevel: diveDepthLevel,
+        swimmingSpeedLevel: swimmingSpeedLevel,
+      ));
 
       if (score > highScore) {
         await _sharedPreferencesService.setHighScore(score);
       }
     }
-    await _navigationService.replaceWithAfterGameView(isWon: isWon, score: score);
+    await _routerService.replaceWithAfterGameView(isWon: isWon, score: score);
   }
 
   void resumeGame(DiveGame game) {

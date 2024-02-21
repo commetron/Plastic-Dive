@@ -24,9 +24,11 @@ class Cliff extends ParallaxComponent<DiveGame> {
       [
         ParallaxImageData(isLeft ? 'parallax/left-side-cliff.png' : 'parallax/right-side-cliff.png'),
       ],
+      size: size,
+      alignment: isLeft ? Alignment.topRight : Alignment.topLeft,
       baseVelocity: Vector2.zero(), // If the player doesn't move, the background doesn't move
       velocityMultiplierDelta: Vector2(1.1, 1.1), // Speed between parallax layers
-      repeat: ImageRepeat.repeat, // Repeat the background image for X and Y
+      repeat: ImageRepeat.repeatY, // Repeat the background image for X and Y
     );
   }
 }
