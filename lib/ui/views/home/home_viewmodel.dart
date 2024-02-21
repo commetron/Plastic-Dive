@@ -10,6 +10,8 @@ class HomeViewModel extends BaseViewModel {
 
   bool get isSoundEnabled => _sharedPreferencesService.isSoundEnabled;
 
+  int get points => _sharedPreferencesService.points;
+
   Future switchSound() async {
     await _sharedPreferencesService.toggleSoundEnabled();
     rebuildUi();

@@ -64,32 +64,31 @@ class HowToPlayView extends StackedView<HowToPlayViewModel> {
     );
   }
 
+  PageDecoration getDecoration(BuildContext context) => PageDecoration(
+        bodyTextStyle: Theme.of(context).textTheme.bodyLarge!,
+        titleTextStyle: Theme.of(context).textTheme.titleLarge!,
+      );
+
   List<PageViewModel> listPagesViewModel(BuildContext context) => [
         PageViewModel(
           title: "Welcome, little diver!",
           body: "You're about to discover the wonders of the oceans, but beware, some might surprise you!",
           image: Image.asset("assets/images/how-to-play/howtoplay1.png", height: quarterScreenWidth(context)),
-          decoration: const PageDecoration(
-              // pageColor: Colors.white,
-              ),
+          decoration: getDecoration(context),
         ),
         PageViewModel(
           title: "Your mission",
           body:
               "Collect as much trash as possible before resurfacing. Keep an eye on your oxygen! The more trash you collect, the more points you get... and help the earth! With the points, you can upgrade your diver!",
           image: Image.asset("assets/images/how-to-play/howtoplay2.png", height: quarterScreenWidth(context)),
-          decoration: const PageDecoration(
-              // pageColor: Colors.white,
-              ),
+          decoration: getDecoration(context),
         ),
         PageViewModel(
           title: "How to dive?",
           body:
               "To navigate, use the joystick or the arrow keys on your keyboard. To collect trash, use the button or the space bar. Be careful, the larger the trash, the more time it will take you.",
           image: Image.asset("assets/images/how-to-play/howtoplay3.png", height: quarterScreenWidth(context)),
-          decoration: const PageDecoration(
-              // pageColor: Colors.white,
-              ),
+          decoration: getDecoration(context),
         ),
       ];
 

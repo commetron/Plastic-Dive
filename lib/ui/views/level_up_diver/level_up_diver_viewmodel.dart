@@ -24,13 +24,15 @@ class LevelUpDiverViewModel extends BaseViewModel {
 
   bool get isDiveDepthUpgradeAllowed => points >= requiredPointsForDiveDepthUpgrade;
 
-  int get requiredPointsForAirTankUpgrade => Constants.requiredPointsToUpgradeSkills[airTankLevel];
+  int get requiredPointsForAirTankUpgrade => airTankLevel < airTankLevelMax ? Constants.requiredPointsToUpgradeSkills[airTankLevel + 1] : 0;
 
-  int get requiredPointsForSwimmingSpeedUpgrade => Constants.requiredPointsToUpgradeSkills[swimmingSpeedLevel];
+  int get requiredPointsForSwimmingSpeedUpgrade =>
+      swimmingSpeedLevel < swimmingSpeedLevelMax ? Constants.requiredPointsToUpgradeSkills[swimmingSpeedLevel + 1] : 0;
 
-  int get requiredPointsForCollectingSpeedUpgrade => Constants.requiredPointsToUpgradeSkills[collectingSpeedLevel];
+  int get requiredPointsForCollectingSpeedUpgrade =>
+      collectingSpeedLevel < collectingSpeedLevelMax ? Constants.requiredPointsToUpgradeSkills[collectingSpeedLevel + 1] : 0;
 
-  int get requiredPointsForDiveDepthUpgrade => Constants.requiredPointsToUpgradeSkills[diveDepthLevel];
+  int get requiredPointsForDiveDepthUpgrade => diveDepthLevel < diveDepthLevelMax ? Constants.requiredPointsToUpgradeSkills[diveDepthLevel + 1] : 0;
 
   int get airTankLevelMax => Constants.requiredPointsToUpgradeSkills.length - 1;
 

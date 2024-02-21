@@ -9,6 +9,7 @@ import 'package:plasticdiver/game/dive_game.dart';
 
 class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetection {
   late Diver diver;
+
   // late DiverTrail diverTrail;
 
   final _random = Random();
@@ -16,10 +17,11 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
   final double worldDeepness;
 
   final int swimmingSpeedLevel;
+  final int diveDepthLevel;
 
   Vector2 get size => (parent as FlameGame).size;
 
-  DiveWorld({required this.worldDeepness, required this.swimmingSpeedLevel});
+  DiveWorld({required this.worldDeepness, required this.diveDepthLevel, required this.swimmingSpeedLevel});
 
   @override
   Future<void> onLoad() async {
@@ -47,7 +49,6 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
         ),
         minPeriod: 0.5,
         maxPeriod: 3,
-        // selfPositioning: true, // Use only to self position the component ourselves
         area: Rectangle.fromPoints(
           Vector2(-Constants.worldWidth / 2, surfaceLevel.y + 10),
           Vector2(Constants.worldWidth / 2, worldDeepness),
@@ -59,17 +60,13 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
     add(
       SpawnComponent.periodRange(
         factory: (_) => Animal.random(
-          maxDeepness: worldDeepness,
+          diveDepthLevel: diveDepthLevel,
+          maxWorldDeepness: worldDeepness,
           random: _random,
         ),
         minPeriod: 1,
         maxPeriod: 3,
-        // TODO selfPositioning: true, to self position the animals depending on the world deepness
-        // selfPositioning: true, // Use only to self position the component ourselves
-        area: Rectangle.fromPoints(
-          Vector2(-Constants.worldWidth / 2, surfaceLevel.y + 10),
-          Vector2(Constants.worldWidth / 2, worldDeepness),
-        ),
+        selfPositioning: true,
         random: _random,
       ),
     );

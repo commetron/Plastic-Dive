@@ -1,8 +1,8 @@
 import 'package:flame/game.dart';
 import 'package:plasticdiver/game/components/animals/animal.dart';
 
-class TunaFish extends Animal {
-  TunaFish({
+class Shark extends Animal {
+  Shark({
     required super.isGoingRight,
     required super.maxWorldDeepness,
     super.position,
@@ -10,15 +10,15 @@ class TunaFish extends Animal {
     super.anchor,
   });
 
-  static const double minDepth = 10;
-  static const double maxDepth = 2000;
+  static const double minDepth = 3000;
+  static const double maxDepth = 6000;
 
   @override
-  double get animalWidth => 75;
+  String get image => 'shark.png';
 
   @override
-  String get image => 'tuna-fish.png';
+  double get animalWidth => 150;
 
   @override
-  Vector2 get floatingVelocity => Vector2(200, 0);
+  Vector2 get floatingVelocity => Vector2(20, 0);
 }

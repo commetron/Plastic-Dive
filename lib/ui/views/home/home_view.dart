@@ -25,25 +25,37 @@ class HomeView extends StackedView<HomeViewModel> {
         ),
         Scaffold(
           body: SafeArea(
-            child: Padding(
-              padding: getResponsivePadding(context),
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset("assets/images/icons/logo-no-background.png", height: quarterScreenHeight(context)),
-                    verticalSpaceLarge,
-                    GameButton(onPressed: viewModel.navigateToGame, size: 75, child: const Text("PLAY", style: buttonTextStyle)),
-                    verticalSpaceMedium,
-                    GameButton(onPressed: viewModel.navigateToHowToPlay, size: 50, child: const Text("HOW-TO PLAY", style: buttonTextStyle)),
-                    verticalSpaceMedium,
-                    GameButton(onPressed: viewModel.navigateToInfocean, size: 50, child: const Text("INFOCEAN", style: buttonTextStyle)),
-                    verticalSpaceMedium,
-                    GameButton(onPressed: viewModel.navigateToLevelUpDiver, size: 50, child: const Text("UPGRADE DIVER", style: buttonTextStyle)),
-                  ],
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 40,
+                  right: 40,
+                  child: Row(
+                    children: [
+                      Chip(label: Text("Score: ${viewModel.points}")),
+                      GameButton(onPressed: viewModel.navigateToLevelUpDiver, size: 30, child: Text("UPGRADE DIVER", style: smallButtonTextStyle)),
+                    ],
+                  ),
                 ),
-              ),
+                Padding(
+                  padding: getResponsivePadding(context),
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset("assets/images/icons/logo-no-background.png", height: quarterScreenHeight(context)),
+                        verticalSpaceLarge,
+                        GameButton(onPressed: viewModel.navigateToGame, size: 75, child: const Text("PLAY", style: buttonTextStyle)),
+                        verticalSpaceMedium,
+                        GameButton(onPressed: viewModel.navigateToHowToPlay, size: 50, child: const Text("HOW-TO PLAY", style: buttonTextStyle)),
+                        verticalSpaceMedium,
+                        GameButton(onPressed: viewModel.navigateToInfocean, size: 50, child: const Text("INFOCEAN", style: buttonTextStyle)),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           persistentFooterAlignment: AlignmentDirectional.center,

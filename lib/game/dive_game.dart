@@ -51,6 +51,7 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
         super(
           world: DiveWorld(
             worldDeepness: Constants.worldDeepness[diveDepthLevel],
+            diveDepthLevel: diveDepthLevel,
             swimmingSpeedLevel: swimmingSpeedLevel,
           ),
           camera: CameraComponent.withFixedResolution(width: Constants.gameWidth, height: Constants.gameHeight),

@@ -4,11 +4,17 @@ import 'package:plasticdiver/game/components/animals/animal.dart';
 class GlobeFish extends Animal {
   GlobeFish({
     required super.isGoingRight,
-    required super.maxDeepness,
+    required super.maxWorldDeepness,
     super.position,
     super.size,
     super.anchor,
   });
+
+  static const double minDepth = 10;
+  static const double maxDepth = 2000;
+
+  @override
+  double get animalWidth => 50;
 
   @override
   String get image => 'globe-fish.png';

@@ -11,6 +11,8 @@ class InfoceanViewModel extends IndexTrackingViewModel {
     InfoceanGarbage('Shampoo bottle', 'shampoo_bottle.png', '450 years'),
     InfoceanGarbage('Soda can', 'soda_can.png', '200-500 years'),
     InfoceanGarbage('Straw', 'straw.png', '200 years'),
+    InfoceanGarbage('Cotton rod', 'cotton_rod.png', '200 years'),
+    // TODO InfoceanGarbage('Toothbrush', 'toothbrush.png', '450 years'),
   ];
 
   final animals = [
@@ -19,12 +21,13 @@ class InfoceanViewModel extends IndexTrackingViewModel {
     InfoceanAnimal('Exotic fish', 'exotic-fish.png', '5-10 years'),
     InfoceanAnimal('Tuna fish', 'tuna-fish.png', '5-10 years'),
     InfoceanAnimal('Globe fish', 'globe-fish.png', '5-10 years'),
-    // InfoceanInfo('Dolphin', 'dolphin.png', '20-25 years'),
-    // InfoceanInfo('Jellyfish', 'jellyfish.png', '1 year'),
-    // InfoceanInfo('Octopus', 'octopus.png', '1-2 years'),
-    // InfoceanInfo('Sea turtle', 'sea_turtle.png', '50-100 years'),
-    // InfoceanInfo('Shark', 'shark.png', '20-30 years'),
-    // InfoceanInfo('Whale', 'whale.png', '40-90 years'),
+    // InfoceanAnimal('Dolphin', 'dolphin.png', '20-25 years'),
+    // InfoceanAnimal('Jellyfish', 'jellyfish.png', '1 year'),
+    // InfoceanAnimal('Octopus', 'octopus.png', '1-2 years'),
+    // InfoceanAnimal('Sea turtle', 'sea_turtle.png', '50-100 years'),
+    InfoceanAnimal('Shark', 'shark.png', '20-30 years'),
+    InfoceanAnimal('Whale', 'whale.png', '40-90 years'),
+    InfoceanAnimal('Angler fish', 'anglerfish.png', '5-10 years'),
   ];
 }
 

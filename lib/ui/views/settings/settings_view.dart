@@ -55,13 +55,18 @@ class SettingsView extends StackedView<SettingsViewModel> with $SettingsView {
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 verticalSpaceSmall,
-                Switch(
-                  value: viewModel.isSoundEnabled,
-                  onChanged: viewModel.toggleSound,
+                Transform.scale(
+                  scale: 1.5,
+                  child: Switch(
+                    value: viewModel.isSoundEnabled,
+                    onChanged: viewModel.toggleSound,
+                    thumbIcon: MaterialStateProperty.resolveWith(
+                        (states) => states.contains(MaterialState.selected) ? const Icon(Icons.volume_up) : const Icon(Icons.volume_off)),
+                  ),
                 ),
                 verticalSpaceMassive,
                 GameButton(
-                  onPressed: viewModel.clearSettings,
+                  onPressed: viewModel.updateUsername,
                   size: 50,
                   child: const Text('UPDATE', style: buttonTextStyle),
                 ),

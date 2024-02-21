@@ -38,25 +38,25 @@ class SharedPreferencesService extends InitializableDependency {
 
   static const _airTankLevelKey = 'airTankLevel';
 
-  int get airTankLevel => _getFromDisk(_airTankLevelKey) ?? 1;
+  int get airTankLevel => _getFromDisk(_airTankLevelKey) ?? 0;
 
   setAirTankLevel(int value) async => await _saveToDisk(_airTankLevelKey, value);
 
   static const _swimmingSpeedLevelKey = 'swimmingSpeedLevel';
 
-  int get swimmingSpeedLevel => _getFromDisk(_swimmingSpeedLevelKey) ?? 1;
+  int get swimmingSpeedLevel => _getFromDisk(_swimmingSpeedLevelKey) ?? 0;
 
   setSwimmingSpeedLevel(int value) async => await _saveToDisk(_swimmingSpeedLevelKey, value);
 
   static const _collectingSpeedLevelKey = 'collectingSpeedLevel';
 
-  int get collectingSpeedLevel => _getFromDisk(_collectingSpeedLevelKey) ?? 1;
+  int get collectingSpeedLevel => _getFromDisk(_collectingSpeedLevelKey) ?? 0;
 
   setCollectingSpeedLevel(int value) async => await _saveToDisk(_collectingSpeedLevelKey, value);
 
   static const _diveDepthLevelKey = 'diveDepthLevel';
 
-  int get diveDepthLevel => _getFromDisk(_diveDepthLevelKey) ?? 1;
+  int get diveDepthLevel => _getFromDisk(_diveDepthLevelKey) ?? 0;
 
   setDiveDepthLevel(int value) async => await _saveToDisk(_diveDepthLevelKey, value);
 

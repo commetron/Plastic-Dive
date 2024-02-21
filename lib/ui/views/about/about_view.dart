@@ -37,12 +37,13 @@ class AboutView extends StackedView<AboutViewModel> {
                 verticalSpaceSmall,
                 Text(
                   'Version: 1.0.0',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 verticalSpaceSmall,
                 Text(
                   'Developed by Marie & Chris with ❤️',
                   style: Theme.of(context).textTheme.titleLarge,
+                  textAlign: TextAlign.center,
                 ),
                 verticalSpaceMedium,
                 Image.asset(
@@ -51,25 +52,30 @@ class AboutView extends StackedView<AboutViewModel> {
                   width: 200,
                   fit: BoxFit.cover,
                 ),
-                verticalSpaceMedium,
+                verticalSpaceLarge,
                 Text(
                   'We are proud to present our very first game. We hope you enjoy it! We know it\'s not perfect, but we are working hard to improve it.',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                verticalSpaceLarge,
+                Text(
+                  'Special thanks to:',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 verticalSpaceSmall,
                 Text(
                   'Our earth for being so beautiful and inspiring us to create this game. Let\'s not forget to protect it!',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 verticalSpaceSmall,
                 Text(
-                  'Our friends testing the game and giving us feedback.',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  'Our friends testing the game and giving us feedback. (You know who you are! Even if you didn\'t test it, you are still our friend!)',
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 verticalSpaceSmall,
                 Text(
                   'Flutter, Flame, Stacked for their frameworks helping us to shape our crazy ideas into a game. Global Citizen for their challenge idea and inspiration.',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 verticalSpaceSmall,
                 Text(
