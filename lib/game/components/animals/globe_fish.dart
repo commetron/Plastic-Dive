@@ -17,7 +17,7 @@ class GlobeFish extends Animal {
   double get animalWidth => 50;
 
   @override
-  String get image => 'globe-fish.png';
+  String get image => 'globe_fish.png';
 
   @override
   Vector2 get floatingVelocity => Vector2(20, 0);

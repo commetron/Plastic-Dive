@@ -17,7 +17,7 @@ class JellyFish extends Animal {
   double get animalWidth => 35;
 
   @override
-  String get image => 'jelly-fish.png';
+  String get image => 'jelly_fish.png';
 
   @override
   Vector2 get floatingVelocity => Vector2(0, 40);

@@ -79,6 +79,15 @@ class AboutView extends StackedView<AboutViewModel> {
                 ),
                 verticalSpaceSmall,
                 Text(
+                  'Freepik and DALL-E for the amazing icons and images we used in our game. (We are still working on our own art skills! 😅)',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                verticalSpaceSmall,
+                Text(
+                  'And last but not least, you for playing our game!',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                Text(
                   '© 2024',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),

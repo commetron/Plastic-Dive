@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plasticdiver/ui/common/app_colors.dart';
 
 const buttonTextStyle = TextStyle(
+  fontFamily: 'PixeloidSans',
   fontSize: 20,
   color: Colors.white,
   fontWeight: FontWeight.w700,
@@ -30,6 +32,13 @@ final appTheme = ThemeData(
     foregroundColor: Colors.white,
   ),
 
+  // Navigation Bar
+  navigationBarTheme: NavigationBarThemeData(
+    backgroundColor: Colors.white.withOpacity(0.3),
+    elevation: 3,
+    indicatorColor: Colors.white.withOpacity(0.7),
+  ),
+
   // Divider + Line on persistentbuttons
   dividerColor: Colors.transparent,
   dividerTheme: const DividerThemeData(
@@ -52,6 +61,17 @@ final appTheme = ThemeData(
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: const BorderSide(color: Colors.white),
+    ),
+  ),
+
+  chipTheme: ChipThemeData(
+    backgroundColor: kcPrimaryColor.withOpacity(0.7),
+    labelStyle: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
+    padding: const EdgeInsets.all(10),
+    labelPadding: const EdgeInsets.all(5),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+      side: const BorderSide(color: Colors.white),
     ),
   ),
 

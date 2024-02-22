@@ -17,7 +17,7 @@ class TunaFish extends Animal {
   double get animalWidth => 75;
 
   @override
-  String get image => 'tuna-fish.png';
+  String get image => 'tuna_fish.png';
 
   @override
   Vector2 get floatingVelocity => Vector2(200, 0);

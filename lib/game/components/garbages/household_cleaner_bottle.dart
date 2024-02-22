@@ -2,7 +2,7 @@ import 'package:plasticdiver/game/components/components.dart';
 
 class HouseholdCleanerBottle extends Garbage {
   HouseholdCleanerBottle({
-    required super.maxDeepness,
+    required super.maxWorldDeepness,
     super.position,
     super.size,
     super.anchor,
@@ -16,4 +16,7 @@ class HouseholdCleanerBottle extends Garbage {
 
   @override
   int get collectionTimeInSeconds => 2;
+
+  @override
+  double get garbageWidth => 45;
 }

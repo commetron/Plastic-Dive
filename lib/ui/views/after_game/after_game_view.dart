@@ -57,11 +57,10 @@ class AfterGameView extends StackedView<AfterGameViewModel> {
                   child: const Text('Replay', style: buttonTextStyle),
                 ),
                 verticalSpaceMedium,
-                // TODO display only when the diver can level up
                 GameButton(
-                  onPressed: viewModel.navigateToLevelUpDiver,
+                  onPressed: viewModel.isDiverUpgradable ? viewModel.navigateToLevelUpDiver : null,
                   size: 50,
-                  child: const Text('Level up diver', style: buttonTextStyle),
+                  child: Text(viewModel.isDiverUpgradable ? 'Level up diver' : 'No level up possible yet', style: buttonTextStyle),
                 ),
                 verticalSpaceMedium,
                 Row(

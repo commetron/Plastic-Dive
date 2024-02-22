@@ -16,7 +16,7 @@ class Coral extends Animal {
   static const double maxDepth = 100;
 
   @override
-  String get image => 'coral-$number.png';
+  String get image => 'coral_$number.png';
 
   @override
   double get animalWidth => 50;

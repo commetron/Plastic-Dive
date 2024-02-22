@@ -67,7 +67,11 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
 
     // Camera + viewport
     await camera.backdrop.add(background = Background(size: Vector2(Constants.worldWidthWithOffset, Constants.worldDeepness[diveDepthLevel])));
-    await camera.viewport.add(FpsTextComponent(position: Vector2(Constants.gameWidth - 20, 20), anchor: Anchor.topRight));
+
+    if (debugMode) {
+      await camera.viewport.add(FpsTextComponent(position: Vector2(Constants.gameWidth - 20, 20), anchor: Anchor.topRight));
+    }
+
     await camera.viewport.add(Score(scoreNotifier: score, previousHighScore: previousHighScore));
     await camera.viewport.add(AirTank(remainingTimeNotifier: remainingTime, initialTimeInSeconds: Constants.airTankCapacityInSeconds[airTankLevel]));
     await camera.viewport.add(Nanometer(diveDepthNotifier: diveDepth, maxDepth: Constants.worldDeepness.last));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plasticdiver/services/leaderboard_service.dart';
 import 'package:plasticdiver/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
@@ -34,19 +35,20 @@ class LeaderboardView extends StackedView<LeaderboardViewModel> {
                 : ListView.builder(
                     itemCount: viewModel.data!.length,
                     itemBuilder: (context, index) {
-                      final entry = viewModel.data![index];
+                      final LeaderboardEntry entry = viewModel.data![index];
                       return ListTile(
                         leading: Text(
                           '#${index + 1}',
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: index < 3 ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
                         ),
                         title: Text(
                           entry.pseudo,
-                          style: Theme.of(context).textTheme.titleLarge,
+                          // TODO display skills "${entry.pseudo} (${entry.diveDepthLevel}/${entry.collectingSpeedLevel}/${entry.airTankLevel}/${entry.swimmingSpeedLevel})",
+                          style: index < 3 ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
                         ),
                         trailing: Text(
                           '${entry.score}',
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: index < 3 ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
                         ),
                       );
                     },

@@ -5,6 +5,7 @@ import 'package:plasticdiver/services/leaderboard_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'package:plasticdiver/services/shared_preferences_service.dart';
+import 'package:plasticdiver/services/diver_upgrade_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -15,6 +16,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<LeaderboardService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<SharedPreferencesService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<DiverUpgradeService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -23,6 +25,7 @@ void registerServices() {
   getAndRegisterDialogService();
   getAndRegisterLeaderboardService();
   getAndRegisterSharedPreferencesService();
+  getAndRegisterDiverUpgradeService();
 // @stacked-mock-register
 }
 
@@ -86,6 +89,13 @@ MockSharedPreferencesService getAndRegisterSharedPreferencesService() {
   _removeRegistrationIfExists<SharedPreferencesService>();
   final service = MockSharedPreferencesService();
   locator.registerSingleton<SharedPreferencesService>(service);
+  return service;
+}
+
+MockDiverUpgradeService getAndRegisterDiverUpgradeService() {
+  _removeRegistrationIfExists<DiverUpgradeService>();
+  final service = MockDiverUpgradeService();
+  locator.registerSingleton<DiverUpgradeService>(service);
   return service;
 }
 // @stacked-mock-create

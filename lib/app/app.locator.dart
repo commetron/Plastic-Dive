@@ -11,6 +11,7 @@ import 'package:stacked_services/src/dialog/dialog_service.dart';
 import 'package:stacked_services/src/navigation/router_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
+import '../services/diver_upgrade_service.dart';
 import '../services/leaderboard_service.dart';
 import '../services/shared_preferences_service.dart';
 import 'app.router.dart';
@@ -34,6 +35,7 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => RouterService());
   locator.registerLazySingleton(() => LeaderboardService());
+  locator.registerLazySingleton(() => DiverUpgradeService());
   if (stackedRouter == null) {
     throw Exception(
         'Stacked is building to use the Router (Navigator 2.0) navigation but no stackedRouter is supplied. Pass the stackedRouter to the setupLocator function in main.dart');

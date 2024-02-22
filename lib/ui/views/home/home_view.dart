@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plasticdiver/ui/common/app_colors.dart';
 import 'package:plasticdiver/ui/common/app_theme.dart';
 import 'package:plasticdiver/ui/common/ui_helpers.dart';
 import 'package:plasticdiver/ui/widgets/common/game_button/game_button.dart';
@@ -32,8 +33,24 @@ class HomeView extends StackedView<HomeViewModel> {
                   right: 40,
                   child: Row(
                     children: [
-                      Chip(label: Text("Score: ${viewModel.points}")),
-                      GameButton(onPressed: viewModel.navigateToLevelUpDiver, size: 30, child: Text("UPGRADE DIVER", style: smallButtonTextStyle)),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: kcPrimaryColor.withOpacity(0.7),
+                          border: Border.all(color: Colors.white.withOpacity(0.7), width: 2),
+                        ),
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            Text("Points: ${viewModel.points}", style: smallButtonTextStyle),
+                            if (viewModel.isDiverUpgradable) ...[
+                              horizontalSpaceMedium,
+                              GameButton(
+                                  onPressed: viewModel.navigateToLevelUpDiver, size: 30, child: Text("UPGRADE DIVER", style: smallButtonTextStyle)),
+                            ]
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

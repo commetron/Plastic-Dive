@@ -2,7 +2,7 @@ import 'package:plasticdiver/game/components/components.dart';
 
 class MicroplasticCloud extends Garbage {
   MicroplasticCloud({
-    required super.maxDeepness,
+    required super.maxWorldDeepness,
     super.position,
     super.size,
     super.anchor,
@@ -16,4 +16,7 @@ class MicroplasticCloud extends Garbage {
 
   @override
   int get collectionTimeInSeconds => 10;
+
+  @override
+  double get garbageWidth => 75;
 }

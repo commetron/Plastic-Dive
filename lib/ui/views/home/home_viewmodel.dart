@@ -1,5 +1,6 @@
 import 'package:plasticdiver/app/app.locator.dart';
 import 'package:plasticdiver/app/app.router.dart';
+import 'package:plasticdiver/services/diver_upgrade_service.dart';
 import 'package:plasticdiver/services/shared_preferences_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -7,6 +8,9 @@ import 'package:stacked_services/stacked_services.dart';
 class HomeViewModel extends BaseViewModel {
   final _routerService = locator<RouterService>();
   final _sharedPreferencesService = locator<SharedPreferencesService>();
+  final _diverUpgradeService = locator<DiverUpgradeService>();
+
+  bool get isDiverUpgradable => _diverUpgradeService.isDiverUpgradable;
 
   bool get isSoundEnabled => _sharedPreferencesService.isSoundEnabled;
 

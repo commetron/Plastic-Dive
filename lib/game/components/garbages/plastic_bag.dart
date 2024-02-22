@@ -2,7 +2,7 @@ import 'package:plasticdiver/game/components/components.dart';
 
 class PlasticBag extends Garbage {
   PlasticBag({
-    required super.maxDeepness,
+    required super.maxWorldDeepness,
     super.position,
     super.size,
     super.anchor,
@@ -16,4 +16,7 @@ class PlasticBag extends Garbage {
 
   @override
   int get collectionTimeInSeconds => 1;
+
+  @override
+  double get garbageWidth => 50;
 }

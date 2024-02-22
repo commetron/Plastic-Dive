@@ -27,7 +27,7 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
           bottomNavigationBar: NavigationBar(
             destinations: [
               NavigationDestination(label: 'Garbage', icon: Image.asset('assets/images/garbages/soda_can.png', height: 35)),
-              NavigationDestination(label: 'Animals', icon: Image.asset('assets/images/animals/clown-fish.png', height: 35)),
+              NavigationDestination(label: 'Animals', icon: Image.asset('assets/images/animals/clown_fish.png', height: 35)),
             ],
             selectedIndex: viewModel.currentIndex,
             onDestinationSelected: viewModel.setIndex,
@@ -36,6 +36,7 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
             title: const Text('Infocean'),
           ),
           body: GridView.count(
+            primary: true,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             crossAxisCount: max(1, (quarterScreenWidth(context) * 2 ~/ 200).toInt()),
@@ -58,6 +59,7 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
 
   _buildCard(BuildContext context, InfoceanViewModel viewModel, int index) {
     return Card(
+      color: Colors.white.withOpacity(0.7),
       child: Stack(
         children: [
           _buildImage(context, viewModel, index),
@@ -67,8 +69,17 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildName(context, viewModel, index),
-                verticalSpaceMedium,
+                verticalSpaceSmall,
                 _buildLifeLong(context, viewModel, index),
+                verticalSpaceMedium,
+                Expanded(
+                  child: Text(
+                    viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? viewModel.source[index].description : "???",
+                    style: Theme.of(context).textTheme.bodyLarge,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 10,
+                  ),
+                ),
               ],
             ),
           ),
@@ -89,6 +100,8 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
             viewModel.source[index].imagePath,
             height: 100,
             width: 100,
+            color: viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? null : Colors.grey,
+            // colorBlendMode: BlendMode.saturation,
           ),
         ),
       ),
@@ -97,17 +110,14 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
 
   Widget _buildName(BuildContext context, InfoceanViewModel viewModel, int index) {
     return Text(
-      viewModel.source[index].name,
+      viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? viewModel.source[index].name : "???",
       style: Theme.of(context).textTheme.titleLarge,
     );
   }
 
   Widget _buildLifeLong(BuildContext context, InfoceanViewModel viewModel, int index) {
     return Chip(
-      label: Text(
-        viewModel.source[index].lifeLong,
-        style: Theme.of(context).textTheme.titleMedium,
-      ),
+      label: Text(viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? viewModel.source[index].lifeLong : "???"),
     );
   }
 }

@@ -15,6 +15,7 @@ import 'package:plasticdiver/ui/views/settings/settings_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_shared/stacked_shared.dart';
+import 'package:plasticdiver/services/diver_upgrade_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -36,6 +37,7 @@ import 'package:stacked_shared/stacked_shared.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: RouterService),
     LazySingleton(classType: LeaderboardService),
+    LazySingleton(classType: DiverUpgradeService),
 // @stacked-service
   ],
   bottomsheets: [

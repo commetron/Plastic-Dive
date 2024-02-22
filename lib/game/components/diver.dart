@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -34,6 +35,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
 
   double get divingDepth => (position.y / 250);
   TextComponent remainingCollectTimeInSeconds = TextComponent(text: '0');
+  TextComponent collectedPoints = TextComponent(text: '0');
 
   Diver({
     required this.worldDeepness,
@@ -187,6 +189,34 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
     // TODO take collecting time milliseconds into account
     Future.delayed(Duration(seconds: collectingTime.ceil()), () {
       garbage.removeFromParent();
+
+      // TODO add a text with the points
+      game.world.add(collectedPoints = TextComponent(
+        text: "+${garbage.points.toString()} points",
+        textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 17)),
+      ));
+      collectedPoints.anchor = Anchor.center;
+      collectedPoints.position = position.clone()..y -= 50;
+      Future.delayed(const Duration(seconds: 2), () {
+        collectedPoints.removeFromParent();
+      });
+      collectedPoints.add(SequenceEffect(
+        [
+          MoveByEffect(
+            Vector2(0, -10),
+            EffectController(duration: 0.5),
+          ),
+          MoveByEffect(
+            Vector2(0, -10),
+            EffectController(duration: 1),
+          ),
+          ScaleEffect.by(
+            Vector2.zero(),
+            EffectController(duration: 0.5),
+          )
+        ],
+      ));
+
       isCollecting = false;
       FlameAudio.play('sfx/collected.mp3');
       // TODO Pass addScore method to Diver constructor
@@ -195,7 +225,6 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
   }
 
   // Collision callbacks
-
   @override
   void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollisionStart(intersectionPoints, other);

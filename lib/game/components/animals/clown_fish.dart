@@ -14,7 +14,7 @@ class ClownFish extends Animal {
   static const double maxDepth = 1000;
 
   @override
-  String get image => 'clown-fish.png';
+  String get image => 'clown_fish.png';
 
   @override
   double get animalWidth => 35;

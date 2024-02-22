@@ -17,7 +17,7 @@ class ExoticFish extends Animal {
   double get animalWidth => 35;
 
   @override
-  String get image => 'exotic-fish.png';
+  String get image => 'exotic_fish.png';
 
   @override
   Vector2 get floatingVelocity => Vector2(50, 0);

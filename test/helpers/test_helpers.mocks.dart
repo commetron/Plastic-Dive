@@ -9,6 +9,7 @@ import 'dart:ui' as _i6;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
+import 'package:plasticdiver/services/diver_upgrade_service.dart' as _i9;
 import 'package:plasticdiver/services/leaderboard_service.dart' as _i7;
 import 'package:plasticdiver/services/shared_preferences_service.dart' as _i8;
 import 'package:stacked_services/stacked_services.dart' as _i2;
@@ -835,6 +836,177 @@ class MockSharedPreferencesService extends _i1.Mock implements _i8.SharedPrefere
         returnValue: _i5.Future<dynamic>.value(),
         returnValueForMissingStub: _i5.Future<dynamic>.value(),
       ) as _i5.Future<dynamic>);
+
+  @override
+  _i5.Future<dynamic> upgradeAirTank() => (super.noSuchMethod(
+        Invocation.method(
+          #upgradeAirTank,
+          [],
+        ),
+        returnValue: _i5.Future<dynamic>.value(),
+        returnValueForMissingStub: _i5.Future<dynamic>.value(),
+      ) as _i5.Future<dynamic>);
+
+  @override
+  _i5.Future<dynamic> upgradeSwimmingSpeed() => (super.noSuchMethod(
+        Invocation.method(
+          #upgradeSwimmingSpeed,
+          [],
+        ),
+        returnValue: _i5.Future<dynamic>.value(),
+        returnValueForMissingStub: _i5.Future<dynamic>.value(),
+      ) as _i5.Future<dynamic>);
+
+  @override
+  _i5.Future<dynamic> upgradeCollectingSpeed() => (super.noSuchMethod(
+        Invocation.method(
+          #upgradeCollectingSpeed,
+          [],
+        ),
+        returnValue: _i5.Future<dynamic>.value(),
+        returnValueForMissingStub: _i5.Future<dynamic>.value(),
+      ) as _i5.Future<dynamic>);
+
+  @override
+  _i5.Future<dynamic> upgradeDiveDepth() => (super.noSuchMethod(
+        Invocation.method(
+          #upgradeDiveDepth,
+          [],
+        ),
+        returnValue: _i5.Future<dynamic>.value(),
+        returnValueForMissingStub: _i5.Future<dynamic>.value(),
+      ) as _i5.Future<dynamic>);
+}
+
+/// A class which mocks [DiverUpgradeService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockDiverUpgradeService extends _i1.Mock implements _i9.DiverUpgradeService {
+  @override
+  int get airTankLevel => (super.noSuchMethod(
+        Invocation.getter(#airTankLevel),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int get swimmingSpeedLevel => (super.noSuchMethod(
+        Invocation.getter(#swimmingSpeedLevel),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int get collectingSpeedLevel => (super.noSuchMethod(
+        Invocation.getter(#collectingSpeedLevel),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int get diveDepthLevel => (super.noSuchMethod(
+        Invocation.getter(#diveDepthLevel),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int get points => (super.noSuchMethod(
+        Invocation.getter(#points),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  bool get isDiverUpgradable => (super.noSuchMethod(
+        Invocation.getter(#isDiverUpgradable),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  bool get isAirTankUpgradeAllowed => (super.noSuchMethod(
+        Invocation.getter(#isAirTankUpgradeAllowed),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  bool get isSwimmingSpeedUpgradeAllowed => (super.noSuchMethod(
+        Invocation.getter(#isSwimmingSpeedUpgradeAllowed),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  bool get isCollectingSpeedUpgradeAllowed => (super.noSuchMethod(
+        Invocation.getter(#isCollectingSpeedUpgradeAllowed),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  bool get isDiveDepthUpgradeAllowed => (super.noSuchMethod(
+        Invocation.getter(#isDiveDepthUpgradeAllowed),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  int get requiredPointsForAirTankUpgrade => (super.noSuchMethod(
+        Invocation.getter(#requiredPointsForAirTankUpgrade),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int get requiredPointsForSwimmingSpeedUpgrade => (super.noSuchMethod(
+        Invocation.getter(#requiredPointsForSwimmingSpeedUpgrade),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int get requiredPointsForCollectingSpeedUpgrade => (super.noSuchMethod(
+        Invocation.getter(#requiredPointsForCollectingSpeedUpgrade),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int get requiredPointsForDiveDepthUpgrade => (super.noSuchMethod(
+        Invocation.getter(#requiredPointsForDiveDepthUpgrade),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int get airTankLevelMax => (super.noSuchMethod(
+        Invocation.getter(#airTankLevelMax),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int get swimmingSpeedLevelMax => (super.noSuchMethod(
+        Invocation.getter(#swimmingSpeedLevelMax),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int get collectingSpeedLevelMax => (super.noSuchMethod(
+        Invocation.getter(#collectingSpeedLevelMax),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  int get diveDepthLevelMax => (super.noSuchMethod(
+        Invocation.getter(#diveDepthLevelMax),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
 
   @override
   _i5.Future<dynamic> upgradeAirTank() => (super.noSuchMethod(
