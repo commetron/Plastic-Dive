@@ -1,5 +1,5 @@
 name: plasticdiver
-description: A new Flutter project.
+description: Plastic Dive is a game where you dive into the ocean to collect plastic and save the marine life.
 publish_to: 'none'
 version: 0.1.0
 
@@ -30,6 +30,9 @@ dependencies:
 
   # Preferences & Storage
   shared_preferences: ^2.2.2
+
+  # Web metadata (SEO)
+  meta_seo: ^3.0.9
 
   stacked_shared: any
 dev_dependencies:

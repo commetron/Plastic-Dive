@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flame/flame.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:meta_seo/meta_seo.dart';
 import 'package:plasticdiver/app/app.bottomsheets.dart';
 import 'package:plasticdiver/app/app.dialogs.dart';
 import 'package:plasticdiver/app/app.locator.dart';
@@ -25,6 +27,11 @@ Future<void> main() async {
   setupDialogUi();
   setupBottomSheetUi();
 
+  // Flutter web SEO meta tags
+  if (kIsWeb) {
+    MetaSEO().config();
+  }
+
   // Flutter
   runApp(const MainApp());
 }
@@ -35,6 +42,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      title: 'Plastic Dive',
+
       // AppTheme
       theme: appTheme,
 

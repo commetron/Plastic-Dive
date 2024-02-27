@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:meta_seo/meta_seo.dart';
 import 'package:plasticdiver/ui/common/app_colors.dart';
 import 'package:plasticdiver/ui/common/app_theme.dart';
 import 'package:plasticdiver/ui/common/ui_helpers.dart';
@@ -16,6 +18,17 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
+    // Configure MetaSEO for web app
+    if (kIsWeb) {
+      // Define MetaSEO object
+      MetaSEO meta = MetaSEO();
+      // add meta seo data for web app as you want
+      meta.author(author: 'Marie & Chris');
+      meta.description(description: 'Plastic Dive is a game for Global Gamers Challenge about cleaning the ocean from plastic.');
+      meta.keywords(keywords: 'Flutter, Global Citizen, Global Gamers Challenge, Plastic Dive, plastic pollution, ocean pollution, game');
+      meta.ogImage(ogImage: 'https://plastic-diver.web.app/assets/assets/images/icons/logo.png');
+    }
+
     return Stack(
       children: [
         Image.asset(
