@@ -66,7 +66,7 @@ class LeaderboardService {
     // https://github.com/flutter/super_dash/blob/f3562d60167f597a21d6fd503579631b51b21aae/packages/leaderboard_repository/lib/src/leaderboard_repository.dart#L76
     try {
       await _firebaseFirestore.collection(collectionName).add(entry.toJson());
-    } catch (error, stackTrace) {
+    } catch (error) {
       print(error);
     }
   }
@@ -81,7 +81,7 @@ extension on List<QueryDocumentSnapshot> {
       if (data != null) {
         try {
           leaderboardEntries.add(LeaderboardEntry.fromJson(data));
-        } catch (error, stackTrace) {
+        } catch (error) {
           print(error);
         }
       }

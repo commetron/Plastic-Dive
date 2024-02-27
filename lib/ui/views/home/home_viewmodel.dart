@@ -26,7 +26,8 @@ class HomeViewModel extends BaseViewModel {
       return await _routerService.navigateToHowToPlayView(goToGameOnComplete: true);
     }
 
-    return await _routerService.navigateToGameView();
+    await _routerService.navigateToGameView();
+    rebuildUi();
   }
 
   Future navigateToHowToPlay() async {
@@ -52,5 +53,6 @@ class HomeViewModel extends BaseViewModel {
 
   Future navigateToLevelUpDiver() async {
     await _routerService.navigateToLevelUpDiverView();
+    rebuildUi();
   }
 }

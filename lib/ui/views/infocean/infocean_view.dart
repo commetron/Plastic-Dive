@@ -110,16 +110,14 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
 
   Widget _buildName(BuildContext context, InfoceanViewModel viewModel, int index) {
     return Text(
-      viewModel.source[index].requiredLevel != null && viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel!
-          ? viewModel.source[index].name
-          : "???",
+      viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? viewModel.source[index].name : "???",
       style: Theme.of(context).textTheme.titleMedium,
     );
   }
 
   Widget _buildLifeLong(BuildContext context, InfoceanViewModel viewModel, int index) {
     return Chip(
-      label: Text(viewModel.source[index].requiredLevel != null && viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel!
+      label: Text(viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel
           ? viewModel.source[index].lifeLong
           : "Unlock: Dive level ${viewModel.source[index].requiredLevel}"),
     );

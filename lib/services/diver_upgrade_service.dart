@@ -45,22 +45,22 @@ class DiverUpgradeService {
   int get diveDepthLevelMax => Constants.requiredPointsToUpgradeSkills.length - 1;
 
   Future upgradeAirTank() async {
-    await _sharedPreferencesService.addPoints(-Constants.requiredPointsToUpgradeSkills[airTankLevel]);
+    await _sharedPreferencesService.addPoints(-Constants.requiredPointsToUpgradeSkills[airTankLevel + 1]);
     await _sharedPreferencesService.upgradeAirTank();
   }
 
   Future upgradeSwimmingSpeed() async {
-    await _sharedPreferencesService.addPoints(-Constants.requiredPointsToUpgradeSkills[swimmingSpeedLevel]);
+    await _sharedPreferencesService.addPoints(-Constants.requiredPointsToUpgradeSkills[swimmingSpeedLevel + 1]);
     _sharedPreferencesService.upgradeSwimmingSpeed();
   }
 
   Future upgradeCollectingSpeed() async {
-    await _sharedPreferencesService.addPoints(-Constants.requiredPointsToUpgradeSkills[collectingSpeedLevel]);
+    await _sharedPreferencesService.addPoints(-Constants.requiredPointsToUpgradeSkills[collectingSpeedLevel + 1]);
     _sharedPreferencesService.upgradeCollectingSpeed();
   }
 
   Future upgradeDiveDepth() async {
-    await _sharedPreferencesService.addPoints(-Constants.requiredPointsToUpgradeSkills[diveDepthLevel]);
+    await _sharedPreferencesService.addPoints(-Constants.requiredPointsToUpgradeSkills[diveDepthLevel + 1]);
     _sharedPreferencesService.upgradeDiveDepth();
   }
 }
