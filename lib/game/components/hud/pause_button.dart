@@ -3,6 +3,7 @@ import 'package:flame/events.dart';
 import 'package:flame/input.dart';
 import 'package:flame/text.dart';
 import 'package:flame_audio/flame_audio.dart';
+import 'package:flutter/material.dart';
 import 'package:plasticdiver/constants.dart';
 import 'package:plasticdiver/game/dive_game.dart';
 
@@ -18,7 +19,7 @@ class PauseButton extends SpriteButtonComponent with HasGameRef<DiveGame> {
           children: [
             TextComponent(
               text: 'PAUSE',
-              textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 20)),
+              textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 20, color: Colors.white)),
               position: Vector2(buttonWidth / 2, buttonHeight / 2 - 7),
               anchor: Anchor.center,
             )

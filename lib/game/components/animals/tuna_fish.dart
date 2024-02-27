@@ -15,7 +15,7 @@ class TunaFish extends Animal {
   static const double maxDepth = 2000;
 
   @override
-  double get animalWidth => 75;
+  double get animalWidth => 50;
 
   @override
   String get image => 'tuna_fish.png';

@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame/text.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Score extends PositionComponent {
   int previousHighScore;
@@ -30,7 +30,7 @@ class Score extends PositionComponent {
       scoreTextComponent = TextComponent(
         text: 'Score: 0',
         position: Vector2(10, 10),
-        textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 25)),
+        textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 25, color: Colors.white)),
       ),
     );
   }

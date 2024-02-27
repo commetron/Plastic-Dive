@@ -4,7 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame_audio/flame_audio.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:plasticdiver/constants.dart';
 import 'package:plasticdiver/game/components/components.dart';
@@ -193,7 +193,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
       // TODO add a text with the points
       game.world.add(collectedPoints = TextComponent(
         text: "+${garbage.points.toString()} points",
-        textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 17)),
+        textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 17, color: Colors.white)),
       ));
       collectedPoints.anchor = Anchor.center;
       collectedPoints.position = position.clone()..y -= 50;

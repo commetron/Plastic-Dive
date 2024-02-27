@@ -37,7 +37,7 @@ final appTheme = ThemeData(
   appBarTheme: AppBarTheme(
     centerTitle: true,
     titleTextStyle: TextStyle(fontFamily: 'PixeloidSans', fontSize: 30, fontWeight: FontWeight.w700, color: Colors.white, shadows: [
-      Shadow(color: Colors.black.withOpacity(0.7), offset: Offset(2, 2), blurRadius: 3),
+      Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(2, 2), blurRadius: 3),
     ]),
     backgroundColor: Colors.white.withOpacity(0.3),
     elevation: 3,
@@ -51,10 +51,10 @@ final appTheme = ThemeData(
     indicatorColor: Colors.white.withOpacity(0.7),
     labelTextStyle: MaterialStateProperty.resolveWith((states) => states.contains(MaterialState.selected)
         ? TextStyle(fontFamily: 'PixeloidSans', fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white, shadows: [
-            Shadow(color: Colors.black.withOpacity(0.7), offset: Offset(2, 2), blurRadius: 3),
+            Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(2, 2), blurRadius: 3),
           ])
         : TextStyle(fontFamily: 'PixeloidSans', fontSize: 14, fontWeight: FontWeight.w500, color: Colors.white, shadows: [
-            Shadow(color: Colors.black.withOpacity(0.7), offset: Offset(1, 1), blurRadius: 2),
+            Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(1, 1), blurRadius: 2),
           ])),
   ),
 

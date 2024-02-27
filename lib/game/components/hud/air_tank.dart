@@ -33,7 +33,7 @@ class AirTank extends SpriteComponent with HasGameReference<DiveGame> {
     add(remainingText = TextComponent(
       text: "${(percentageRemaining * 100).toStringAsFixed(0)}%",
       position: Vector2(75, 15),
-      textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 15)),
+      textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 15, color: Colors.white)),
     ));
   }
 

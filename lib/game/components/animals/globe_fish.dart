@@ -15,7 +15,7 @@ class GlobeFish extends Animal {
   static const double maxDepth = 2000;
 
   @override
-  double get animalWidth => 50;
+  double get animalWidth => 40;
 
   @override
   String get image => 'globe_fish.png';

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
 import 'package:flame/text.dart';
+import 'package:flutter/material.dart';
 import 'package:plasticdiver/constants.dart';
 
 class CollectButton extends SpriteButtonComponent {
@@ -11,7 +12,7 @@ class CollectButton extends SpriteButtonComponent {
 
   final TextComponent timeText = TextComponent(
     text: 'Collect',
-    textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 20)),
+    textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 20, color: Colors.white)),
     position: Vector2(buttonWidth / 2, buttonHeight / 2 - 7),
     anchor: Anchor.center,
   );
