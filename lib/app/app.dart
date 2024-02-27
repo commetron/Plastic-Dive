@@ -1,4 +1,5 @@
 import 'package:plasticdiver/app/custom_route_transition.dart';
+import 'package:plasticdiver/services/diver_upgrade_service.dart';
 import 'package:plasticdiver/services/leaderboard_service.dart';
 import 'package:plasticdiver/services/shared_preferences_service.dart';
 import 'package:plasticdiver/ui/bottom_sheets/notice/notice_sheet.dart';
@@ -15,7 +16,6 @@ import 'package:plasticdiver/ui/views/settings/settings_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_shared/stacked_shared.dart';
-import 'package:plasticdiver/services/diver_upgrade_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -33,7 +33,9 @@ import 'package:plasticdiver/services/diver_upgrade_service.dart';
   ],
   dependencies: [
     InitializableSingleton(classType: SharedPreferencesService),
+    // TODO remove
     LazySingleton(classType: BottomSheetService),
+    LazySingleton(classType: SnackbarService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: RouterService),
     LazySingleton(classType: LeaderboardService),

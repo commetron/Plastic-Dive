@@ -57,17 +57,38 @@ class HomeView extends StackedView<HomeViewModel> {
                 Padding(
                   padding: getResponsivePadding(context),
                   child: Center(
-                    child: Column(
+                    child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Image.asset("assets/images/icons/logo-no-background.png", height: quarterScreenHeight(context)),
-                        verticalSpaceLarge,
-                        GameButton(onPressed: viewModel.navigateToGame, size: 75, child: const Text("PLAY", style: buttonTextStyle)),
-                        verticalSpaceMedium,
-                        GameButton(onPressed: viewModel.navigateToHowToPlay, size: 50, child: const Text("HOW-TO PLAY", style: buttonTextStyle)),
-                        verticalSpaceMedium,
-                        GameButton(onPressed: viewModel.navigateToInfocean, size: 50, child: const Text("INFOCEAN", style: buttonTextStyle)),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/images/icons/logo-no-background.png", width: quarterScreenWidth(context)),
+                            Text("A game for \nGlobal Gamers Challenge", style: Theme.of(context).textTheme.bodyLarge, textAlign: TextAlign.center),
+                          ],
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GameButton(
+                                onPressed: viewModel.navigateToGame,
+                                size: screenWidthFraction(context, dividedBy: 20),
+                                child: const Text("PLAY", style: buttonTextStyle)),
+                            verticalSpaceMedium,
+                            GameButton(
+                                onPressed: viewModel.navigateToHowToPlay,
+                                size: screenWidthFraction(context, dividedBy: 20),
+                                child: const Text("HOW-TO PLAY", style: buttonTextStyle)),
+                            verticalSpaceMedium,
+                            GameButton(
+                                onPressed: viewModel.navigateToInfocean,
+                                size: screenWidthFraction(context, dividedBy: 20),
+                                child: const Text("INFOCEAN", style: buttonTextStyle)),
+                          ],
+                        ),
                       ],
                     ),
                   ),

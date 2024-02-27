@@ -45,17 +45,17 @@ class HowToPlayView extends StackedView<HowToPlayViewModel> {
           ),
           skip: GameButton(
             onPressed: viewModel.skipToLastPage,
-            size: 50,
+            size: screenHeightFraction(context, dividedBy: 20),
             child: const Text('Skip', style: buttonTextStyle),
           ),
           next: GameButton(
             onPressed: viewModel.goToNextPage,
-            size: 50,
+            size: screenHeightFraction(context, dividedBy: 20),
             child: const Text('Next', style: buttonTextStyle),
           ),
           done: GameButton(
             onPressed: viewModel.completeHowToPlay,
-            size: 50,
+            size: screenHeightFraction(context, dividedBy: 20),
             child: const Text('Done', style: buttonTextStyle),
           ),
           onDone: viewModel.completeHowToPlay,
@@ -73,21 +73,21 @@ class HowToPlayView extends StackedView<HowToPlayViewModel> {
         PageViewModel(
           title: "Welcome, little diver!",
           body: "You're about to discover the wonders of the oceans, but beware, some might surprise you!",
-          image: Image.asset("assets/images/how-to-play/howtoplay1.png", height: quarterScreenWidth(context)),
+          image: Image.asset("assets/images/how-to-play/howtoplay1.png", height: quarterScreenHeight(context)),
           decoration: getDecoration(context),
         ),
         PageViewModel(
           title: "Your mission",
           body:
               "Collect as much trash as possible before resurfacing. Keep an eye on your oxygen! The more trash you collect, the more points you get... and help the earth! With the points, you can upgrade your diver!",
-          image: Image.asset("assets/images/how-to-play/howtoplay2.png", height: quarterScreenWidth(context)),
+          image: Image.asset("assets/images/how-to-play/howtoplay2.png", height: quarterScreenHeight(context)),
           decoration: getDecoration(context),
         ),
         PageViewModel(
           title: "How to dive?",
           body:
               "To navigate, use the joystick or the arrow keys on your keyboard. To collect trash, use the button or the space bar. Be careful, the larger the trash, the more time it will take you.",
-          image: Image.asset("assets/images/how-to-play/howtoplay3.png", height: quarterScreenWidth(context)),
+          image: Image.asset("assets/images/how-to-play/howtoplay3.png", height: quarterScreenHeight(context)),
           decoration: getDecoration(context),
         ),
       ];

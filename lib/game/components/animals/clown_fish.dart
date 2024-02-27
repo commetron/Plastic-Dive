@@ -1,4 +1,5 @@
 import 'package:flame/game.dart';
+import 'package:plasticdiver/constants.dart';
 import 'package:plasticdiver/game/components/animals/animal.dart';
 
 class ClownFish extends Animal {
@@ -20,5 +21,5 @@ class ClownFish extends Animal {
   double get animalWidth => 35;
 
   @override
-  Vector2 get floatingVelocity => Vector2(100, 0);
+  Vector2 get floatingVelocity => Vector2(0.5 * Constants.fishVelocityMultiplier, 0);
 }

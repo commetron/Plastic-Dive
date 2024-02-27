@@ -15,18 +15,30 @@ final appTheme = ThemeData(
   fontFamily: 'PixeloidSans',
   scaffoldBackgroundColor: Colors.transparent,
 
-  textTheme: const TextTheme(
-    titleLarge: TextStyle(fontFamily: 'PixeloidSans', fontSize: 30, fontWeight: FontWeight.w700, color: Colors.white),
-    titleMedium: TextStyle(fontFamily: 'PixeloidSans', fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
-    bodyLarge: TextStyle(fontFamily: 'PixeloidSans', fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white),
-    bodyMedium: TextStyle(fontFamily: 'PixeloidSans', fontSize: 16, fontWeight: FontWeight.w400, color: Colors.white),
-    bodySmall: TextStyle(fontFamily: 'PixeloidSans', fontSize: 14, fontWeight: FontWeight.w400, color: Colors.white),
+  textTheme: TextTheme(
+    titleLarge: TextStyle(fontFamily: 'PixeloidSans', fontSize: 30, fontWeight: FontWeight.w700, color: Colors.white, shadows: [
+      Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(2, 2), blurRadius: 3),
+    ]),
+    titleMedium: TextStyle(fontFamily: 'PixeloidSans', fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white, shadows: [
+      Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(2, 2), blurRadius: 3),
+    ]),
+    bodyLarge: TextStyle(fontFamily: 'PixeloidSans', fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white, shadows: [
+      Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(2, 2), blurRadius: 3),
+    ]),
+    bodyMedium: TextStyle(fontFamily: 'PixeloidSans', fontSize: 16, fontWeight: FontWeight.w400, color: Colors.white, shadows: [
+      Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(2, 2), blurRadius: 2),
+    ]),
+    bodySmall: TextStyle(fontFamily: 'PixeloidSans', fontSize: 14, fontWeight: FontWeight.w400, color: Colors.white, shadows: [
+      Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(1, 1), blurRadius: 2),
+    ]),
   ),
 
   // AppBar
   appBarTheme: AppBarTheme(
     centerTitle: true,
-    titleTextStyle: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 30, fontWeight: FontWeight.w700, color: Colors.white),
+    titleTextStyle: TextStyle(fontFamily: 'PixeloidSans', fontSize: 30, fontWeight: FontWeight.w700, color: Colors.white, shadows: [
+      Shadow(color: Colors.black.withOpacity(0.7), offset: Offset(2, 2), blurRadius: 3),
+    ]),
     backgroundColor: Colors.white.withOpacity(0.3),
     elevation: 3,
     foregroundColor: Colors.white,
@@ -37,6 +49,13 @@ final appTheme = ThemeData(
     backgroundColor: Colors.white.withOpacity(0.3),
     elevation: 3,
     indicatorColor: Colors.white.withOpacity(0.7),
+    labelTextStyle: MaterialStateProperty.resolveWith((states) => states.contains(MaterialState.selected)
+        ? TextStyle(fontFamily: 'PixeloidSans', fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white, shadows: [
+            Shadow(color: Colors.black.withOpacity(0.7), offset: Offset(2, 2), blurRadius: 3),
+          ])
+        : TextStyle(fontFamily: 'PixeloidSans', fontSize: 14, fontWeight: FontWeight.w500, color: Colors.white, shadows: [
+            Shadow(color: Colors.black.withOpacity(0.7), offset: Offset(1, 1), blurRadius: 2),
+          ])),
   ),
 
   // Divider + Line on persistentbuttons
@@ -81,5 +100,14 @@ final appTheme = ThemeData(
     trackColor: MaterialStateProperty.all(Colors.white.withOpacity(0.3)),
     trackOutlineColor:
         MaterialStateProperty.resolveWith((states) => states.contains(MaterialState.selected) ? Colors.white : Colors.white.withOpacity(0.3)),
+  ),
+
+  // SnackBar
+  // TODO not applied
+  snackBarTheme: SnackBarThemeData(
+    insetPadding: const EdgeInsets.all(10),
+    backgroundColor: Colors.white.withOpacity(0.7),
+    contentTextStyle: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 16, color: Colors.white, fontWeight: FontWeight.w400),
+    actionTextColor: Colors.white,
   ),
 );

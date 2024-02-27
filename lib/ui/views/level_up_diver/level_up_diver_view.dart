@@ -34,7 +34,7 @@ class LevelUpDiverView extends StackedView<LevelUpDiverViewModel> {
                 children: [
                   Text(
                     'Total points: ${viewModel.points}',
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   verticalSpaceLarge,
                   LevelBar(

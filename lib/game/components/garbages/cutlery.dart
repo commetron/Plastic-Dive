@@ -12,10 +12,7 @@ class Cutlery extends Garbage {
   String get image => 'fork.png';
 
   @override
-  int get points => 10;
-
-  @override
-  int get collectionTimeInSeconds => 2;
+  int get points => 20;
 
   @override
   double get garbageWidth => 35;

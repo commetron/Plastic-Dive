@@ -26,38 +26,48 @@ import 'package:plasticdiver/game/components/animals/whale_shark.dart';
 import 'package:plasticdiver/game/dive_game.dart';
 
 enum AnimalType {
-  anglerFish,
-  angelFish,
+  // Level 0 (0 -> 5)
   clownFish,
   coral1,
   coral2,
   coral3,
-  dolphin,
   exoticFish,
-  giantSquid,
-  globeFish,
-  hammerheadShark,
-  jellyfish,
-  lionFish,
-  moonFish,
-  parrotFish,
-  seaHorse,
-  seaTurtle,
-  shark,
-  whale,
   tunaFish,
+
+  // Level 1  (6 -> 7)
+  jellyfish,
+  moonFish,
+
+  // Level 2 (8 -> 10)
+  globeFish,
+  seaTurtle,
+  parrotFish,
+
+  // Level 3 (11 -> 14)
+  angelFish,
+  seaHorse,
+  dolphin,
+  shark,
+
+  // Level 4 (15 -> 18)
+  hammerheadShark,
+  giantSquid,
+  lionFish,
   whaleShark,
+
+  // Level 5 (19 -> 20)
+  anglerFish,
+  whale,
 }
 
 // TODO do better
 List<List<AnimalType>> animalTypesByLevel = [
-  // TODO make sure it's OK depending on the level
   AnimalType.values.where((element) => element.index <= 5).toList(),
   AnimalType.values.where((element) => element.index <= 7).toList(),
-  AnimalType.values.where((element) => element.index <= 13).toList(),
-  AnimalType.values.where((element) => element.index <= 17).toList(),
-  AnimalType.values.where((element) => element.index <= 19).toList(),
-  AnimalType.values.where((element) => element.index <= 21).toList(),
+  AnimalType.values.where((element) => element.index <= 10).toList(),
+  AnimalType.values.where((element) => element.index <= 14).toList(),
+  AnimalType.values.where((element) => element.index <= 18).toList(),
+  AnimalType.values.where((element) => element.index <= 20).toList(),
 ];
 
 abstract class Animal extends SpriteComponent with HasGameReference<DiveGame> {

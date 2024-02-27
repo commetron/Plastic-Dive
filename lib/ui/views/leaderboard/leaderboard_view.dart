@@ -30,29 +30,31 @@ class LeaderboardView extends StackedView<LeaderboardViewModel> {
             padding: getResponsivePadding(context),
             child: viewModel.isBusy
                 ? const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(color: Colors.white),
                   )
-                : ListView.builder(
-                    itemCount: viewModel.data!.length,
-                    itemBuilder: (context, index) {
-                      final LeaderboardEntry entry = viewModel.data![index];
-                      return ListTile(
-                        leading: Text(
-                          '#${index + 1}',
-                          style: index < 3 ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
-                        ),
-                        title: Text(
-                          entry.pseudo,
-                          // TODO display skills "${entry.pseudo} (${entry.diveDepthLevel}/${entry.collectingSpeedLevel}/${entry.airTankLevel}/${entry.swimmingSpeedLevel})",
-                          style: index < 3 ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
-                        ),
-                        trailing: Text(
-                          '${entry.score}',
-                          style: index < 3 ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
-                        ),
-                      );
-                    },
-                  ),
+                : viewModel.data == null
+                    ? Center(child: Text("Impossible to load the leaderboard 😅", style: Theme.of(context).textTheme.titleMedium))
+                    : ListView.builder(
+                        itemCount: viewModel.data!.length,
+                        itemBuilder: (context, index) {
+                          final LeaderboardEntry entry = viewModel.data![index];
+                          return ListTile(
+                            leading: Text(
+                              '#${index + 1}',
+                              style: index < 3 ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
+                            ),
+                            title: Text(
+                              entry.pseudo,
+                              // TODO display skills "${entry.pseudo} (${entry.diveDepthLevel}/${entry.collectingSpeedLevel}/${entry.airTankLevel}/${entry.swimmingSpeedLevel})",
+                              style: index < 3 ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
+                            ),
+                            trailing: Text(
+                              '${entry.score}',
+                              style: index < 3 ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
+                            ),
+                          );
+                        },
+                      ),
           ),
         ),
       ],

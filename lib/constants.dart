@@ -1,6 +1,6 @@
 class Constants {
   // App constants
-  static const requiredPointsToUpgradeSkills = [0, 200, 800, 1500, 3000, 8000];
+  static const requiredPointsToUpgradeSkills = [0, 40, 150, 300, 800, 2000];
 
   // @end App constants
 
@@ -20,10 +20,12 @@ class Constants {
   // Background
   static const double surfaceVelocityMultiplier = 10;
   static const double backgroundVelocityMultiplier = 50;
+  static const double fishVelocityMultiplier = 30;
 
   // @end Game constants
 
-// Videos
+  // Videos
+  // TODO when the player lost the game, show a video about plastic pollution to win some seconds
   static const List<String> globalCitizenVideos = [
     'https://www.youtube.com/watch?v=dXxJqdb5_CA',
     'https://www.youtube.com/watch?v=7s0sOEKNOK8',

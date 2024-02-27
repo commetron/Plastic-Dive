@@ -15,8 +15,5 @@ class Straw extends Garbage {
   int get points => 10;
 
   @override
-  int get collectionTimeInSeconds => 1;
-
-  @override
   double get garbageWidth => 35;
 }

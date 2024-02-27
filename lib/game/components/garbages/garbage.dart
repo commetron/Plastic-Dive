@@ -43,7 +43,8 @@ enum GarbageType {
 
 abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame> {
   abstract final int points;
-  abstract final int collectionTimeInSeconds;
+
+  int get collectionTimeInSeconds => points ~/ 10;
 
   double get collectionTimeWithSpeedFactor => collectionTimeInSeconds / Constants.collectSpeedFactor[game.collectingSpeedLevel];
 

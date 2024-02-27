@@ -12,10 +12,7 @@ class HouseholdCleanerBottle extends Garbage {
   String get image => 'household_cleaner_bottle.png';
 
   @override
-  int get points => 10;
-
-  @override
-  int get collectionTimeInSeconds => 2;
+  int get points => 40;
 
   @override
   double get garbageWidth => 45;

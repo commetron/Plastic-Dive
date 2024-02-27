@@ -64,7 +64,11 @@ class LeaderboardService {
 
     // TODO write only if in the top 10 ?
     // https://github.com/flutter/super_dash/blob/f3562d60167f597a21d6fd503579631b51b21aae/packages/leaderboard_repository/lib/src/leaderboard_repository.dart#L76
-    await _firebaseFirestore.collection(collectionName).add(entry.toJson());
+    try {
+      await _firebaseFirestore.collection(collectionName).add(entry.toJson());
+    } catch (error, stackTrace) {
+      print(error);
+    }
   }
 }
 
@@ -75,12 +79,11 @@ extension on List<QueryDocumentSnapshot> {
     for (final document in this) {
       final data = document.data() as Map<String, dynamic>?;
       if (data != null) {
-        // TODO
-        // try {
-        leaderboardEntries.add(LeaderboardEntry.fromJson(data));
-        // } catch (error, stackTrace) {
-        //  throw LeaderboardDeserializationException(error, stackTrace);
-        // }
+        try {
+          leaderboardEntries.add(LeaderboardEntry.fromJson(data));
+        } catch (error, stackTrace) {
+          print(error);
+        }
       }
     }
     return leaderboardEntries;

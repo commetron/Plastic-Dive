@@ -1,4 +1,5 @@
 import 'package:flame/game.dart';
+import 'package:plasticdiver/constants.dart';
 import 'package:plasticdiver/game/components/animals/animal.dart';
 
 class JellyFish extends Animal {
@@ -20,5 +21,5 @@ class JellyFish extends Animal {
   String get image => 'jelly_fish.png';
 
   @override
-  Vector2 get floatingVelocity => Vector2(0, 40);
+  Vector2 get floatingVelocity => Vector2(0, 0.2 * Constants.fishVelocityMultiplier);
 }

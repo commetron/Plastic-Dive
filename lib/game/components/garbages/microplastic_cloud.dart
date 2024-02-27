@@ -12,10 +12,7 @@ class MicroplasticCloud extends Garbage {
   String get image => 'microplastic_cloud.png';
 
   @override
-  int get points => 10;
-
-  @override
-  int get collectionTimeInSeconds => 10;
+  int get points => 100;
 
   @override
   double get garbageWidth => 75;

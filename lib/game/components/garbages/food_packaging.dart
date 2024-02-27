@@ -12,10 +12,7 @@ class FoodPackaging extends Garbage {
   String get image => 'food_packaging.png';
 
   @override
-  int get points => 10;
-
-  @override
-  int get collectionTimeInSeconds => 2;
+  int get points => 30;
 
   @override
   double get garbageWidth => 35;

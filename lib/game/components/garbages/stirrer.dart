@@ -15,8 +15,5 @@ class Stirrer extends Garbage {
   int get points => 10;
 
   @override
-  int get collectionTimeInSeconds => 2;
-
-  @override
   double get garbageWidth => 35;
 }

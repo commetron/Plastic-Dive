@@ -12,10 +12,7 @@ class SodaCan extends Garbage {
   String get image => 'soda_can.png';
 
   @override
-  int get points => 10;
-
-  @override
-  int get collectionTimeInSeconds => 2;
+  int get points => 40;
 
   @override
   double get garbageWidth => 40;

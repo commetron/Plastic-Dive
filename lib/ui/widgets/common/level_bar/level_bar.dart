@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plasticdiver/ui/common/app_colors.dart';
 import 'package:plasticdiver/ui/common/app_theme.dart';
 import 'package:plasticdiver/ui/common/ui_helpers.dart';
 import 'package:plasticdiver/ui/widgets/common/game_button/game_button.dart';
@@ -28,7 +29,7 @@ class LevelBar extends StatelessWidget {
       children: [
         Text(
           skillName,
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         horizontalSpaceMedium,
         // Display the level as a number of rounded rectangles
@@ -40,7 +41,7 @@ class LevelBar extends StatelessWidget {
                 width: 20,
                 height: 20,
                 decoration: BoxDecoration(
-                  color: i < level ? Colors.green : Colors.grey,
+                  color: i < level ? kcPrimaryColor.withOpacity(0.7) : Colors.grey.withOpacity(0.5),
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),

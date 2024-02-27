@@ -39,7 +39,7 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
             primary: true,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            crossAxisCount: max(1, (quarterScreenWidth(context) * 2 ~/ 200).toInt()),
+            crossAxisCount: max(2, (quarterScreenWidth(context) * 2 ~/ 250).toInt()),
             padding: getResponsivePadding(context),
             children: List.generate(
               viewModel.source.length,
@@ -75,7 +75,7 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
                 Expanded(
                   child: Text(
                     viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? viewModel.source[index].description : "???",
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.bodyMedium,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 10,
                   ),
@@ -110,14 +110,18 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
 
   Widget _buildName(BuildContext context, InfoceanViewModel viewModel, int index) {
     return Text(
-      viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? viewModel.source[index].name : "???",
-      style: Theme.of(context).textTheme.titleLarge,
+      viewModel.source[index].requiredLevel != null && viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel!
+          ? viewModel.source[index].name
+          : "???",
+      style: Theme.of(context).textTheme.titleMedium,
     );
   }
 
   Widget _buildLifeLong(BuildContext context, InfoceanViewModel viewModel, int index) {
     return Chip(
-      label: Text(viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? viewModel.source[index].lifeLong : "???"),
+      label: Text(viewModel.source[index].requiredLevel != null && viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel!
+          ? viewModel.source[index].lifeLong
+          : "Unlock: Dive level ${viewModel.source[index].requiredLevel}"),
     );
   }
 }
