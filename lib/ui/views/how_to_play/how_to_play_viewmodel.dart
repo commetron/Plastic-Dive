@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:plasticdiver/app/app.locator.dart';
-import 'package:plasticdiver/app/app.router.dart';
-import 'package:plasticdiver/services/shared_preferences_service.dart';
+import 'package:plasticdive/app/app.locator.dart';
+import 'package:plasticdive/app/app.router.dart';
+import 'package:plasticdive/services/shared_preferences_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:plasticdiver/ui/common/app_theme.dart';
-import 'package:plasticdiver/ui/common/ui_helpers.dart';
-import 'package:plasticdiver/ui/widgets/common/game_button/game_button.dart';
+import 'package:plasticdive/ui/common/app_theme.dart';
+import 'package:plasticdive/ui/common/ui_helpers.dart';
+import 'package:plasticdive/ui/widgets/common/game_button/game_button.dart';
 import 'package:stacked/stacked.dart';
 
 import 'after_game_viewmodel.dart';

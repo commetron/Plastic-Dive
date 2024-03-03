@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plasticdiver/ui/common/app_colors.dart';
+import 'package:plasticdive/ui/common/app_colors.dart';
 
 // Inspired from https://medium.com/flutter-community/how-to-create-an-animated-fancy-button-for-flutter-games-and-apps-3da7b81c2c12
 class GameButton extends StatefulWidget {

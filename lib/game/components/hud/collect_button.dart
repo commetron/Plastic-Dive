@@ -4,7 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/input.dart';
 import 'package:flame/text.dart';
 import 'package:flutter/material.dart';
-import 'package:plasticdiver/constants.dart';
+import 'package:plasticdive/constants.dart';
 
 class CollectButton extends SpriteButtonComponent {
   static const double buttonWidth = 200;

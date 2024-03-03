@@ -6,9 +6,9 @@ import 'package:flame/effects.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:plasticdiver/constants.dart';
-import 'package:plasticdiver/game/components/components.dart';
-import 'package:plasticdiver/game/dive_game.dart';
+import 'package:plasticdive/constants.dart';
+import 'package:plasticdive/game/components/components.dart';
+import 'package:plasticdive/game/dive_game.dart';
 
 class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, CollisionCallbacks, KeyboardHandler {
   final spriteSize = Vector2(101.1, 40.0);
@@ -17,7 +17,14 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
   Vector2 velocity = Vector2.zero();
   double maxSpeed;
 
+  // Used for sprite orientation
   bool isGoingRight = true;
+
+  // Used for keys handling
+  bool isMovingRight = false;
+  bool isMovingLeft = false;
+  bool isMovingUp = false;
+  bool isMovingDown = false;
 
   bool isCollecting = false;
 
@@ -147,27 +154,42 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
   };
 
   @override
-  bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    keyboardDelta.setZero();
+  bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+    super.onKeyEvent(event, keysPressed);
 
     if (!_keysWatched.contains(event.logicalKey)) return true;
 
-    if (event is RawKeyDownEvent) {
+    if (event is KeyUpEvent) {
+      if (event.logicalKey == LogicalKeyboardKey.arrowUp) {
+        keyboardDelta.y = 0;
+      }
+      if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
+        keyboardDelta.x = 0;
+      }
+      if (event.logicalKey == LogicalKeyboardKey.arrowDown) {
+        keyboardDelta.y = 0;
+      }
+      if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
+        keyboardDelta.x = 0;
+      }
+    }
+
+    if (event is KeyDownEvent) {
       if (event.logicalKey == LogicalKeyboardKey.space) {
         // Press the button to collect the garbage if any
         game.collectButton.onPressed?.call();
       }
 
-      if (keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
+      if (event.logicalKey == LogicalKeyboardKey.arrowUp) {
         keyboardDelta.y = -1;
       }
-      if (keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
+      if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
         keyboardDelta.x = -1;
       }
-      if (keysPressed.contains(LogicalKeyboardKey.arrowDown)) {
+      if (event.logicalKey == LogicalKeyboardKey.arrowDown) {
         keyboardDelta.y = 1;
       }
-      if (keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
+      if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
         keyboardDelta.x = 1;
       }
     }
@@ -175,7 +197,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
     return true;
   }
 
-  // Actions
+// Actions
   void collectGarbage(Garbage garbage) {
     if (garbage.isRemoved || garbage.isRemoving || isCollecting) return;
 
@@ -186,11 +208,12 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
     onStartCollecting(garbage);
 
     // Move that when the garbage is collected after the timeout
-    // TODO take collecting time milliseconds into account
-    Future.delayed(Duration(seconds: collectingTime.ceil()), () {
+    int collectingTimeSeconds = collectingTime.toInt();
+    double collectingTimeMilliseconds = (collectingTime - collectingTime.floor()) * 1000;
+    Future.delayed(Duration(seconds: collectingTimeSeconds, milliseconds: collectingTimeMilliseconds.toInt()), () {
       garbage.removeFromParent();
 
-      // TODO add a text with the points
+      //  add a text with the points
       game.world.add(collectedPoints = TextComponent(
         text: "+${garbage.points.toString()} points",
         textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 17, color: Colors.white)),
@@ -224,7 +247,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
     });
   }
 
-  // Collision callbacks
+// Collision callbacks
   @override
   void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollisionStart(intersectionPoints, other);

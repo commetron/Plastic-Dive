@@ -1,5 +1,5 @@
 import 'package:flame/game.dart';
-import 'package:plasticdiver/game/components/animals/animal.dart';
+import 'package:plasticdive/game/components/animals/animal.dart';
 
 class Coral extends Animal {
   final int number;

@@ -1,6 +1,6 @@
-import 'package:plasticdiver/app/app.locator.dart';
-import 'package:plasticdiver/constants.dart';
-import 'package:plasticdiver/services/shared_preferences_service.dart';
+import 'package:plasticdive/app/app.locator.dart';
+import 'package:plasticdive/constants.dart';
+import 'package:plasticdive/services/shared_preferences_service.dart';
 
 class DiverUpgradeService {
   final SharedPreferencesService _sharedPreferencesService = locator<SharedPreferencesService>();

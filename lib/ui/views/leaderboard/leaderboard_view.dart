@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plasticdiver/services/leaderboard_service.dart';
-import 'package:plasticdiver/ui/common/ui_helpers.dart';
+import 'package:plasticdive/services/leaderboard_service.dart';
+import 'package:plasticdive/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
 import 'leaderboard_viewmodel.dart';

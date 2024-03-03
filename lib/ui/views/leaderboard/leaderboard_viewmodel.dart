@@ -1,5 +1,5 @@
-import 'package:plasticdiver/app/app.locator.dart';
-import 'package:plasticdiver/services/leaderboard_service.dart';
+import 'package:plasticdive/app/app.locator.dart';
+import 'package:plasticdive/services/leaderboard_service.dart';
 import 'package:stacked/stacked.dart';
 
 class LeaderboardViewModel extends FutureViewModel<List<LeaderboardEntry>> {

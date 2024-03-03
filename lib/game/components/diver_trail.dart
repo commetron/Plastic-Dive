@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:plasticdiver/game/components/components.dart';
+import 'package:plasticdive/game/components/components.dart';
 
 class DiverTrail extends Component with HasPaint {
   final Diver diver;

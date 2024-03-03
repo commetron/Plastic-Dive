@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plasticdiver/app/app.locator.dart';
-import 'package:plasticdiver/ui/views/home/home_viewmodel.dart';
+import 'package:plasticdive/app/app.locator.dart';
+import 'package:plasticdive/ui/views/home/home_viewmodel.dart';
 
 import '../helpers/test_helpers.dart';
 

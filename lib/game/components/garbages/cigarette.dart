@@ -1,4 +1,4 @@
-import 'package:plasticdiver/game/components/components.dart';
+import 'package:plasticdive/game/components/components.dart';
 
 class Cigarette extends Garbage {
   Cigarette({
@@ -15,5 +15,5 @@ class Cigarette extends Garbage {
   int get points => 20;
 
   @override
-  double get garbageWidth => 5;
+  double get garbageWidth => 35;
 }

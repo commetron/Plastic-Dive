@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
-import 'package:plasticdiver/constants.dart';
-import 'package:plasticdiver/game/dive_game.dart';
+import 'package:plasticdive/constants.dart';
+import 'package:plasticdive/game/dive_game.dart';
 
 class Surface extends ParallaxComponent<DiveGame> {
   Surface({required Vector2 position})

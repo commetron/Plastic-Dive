@@ -1,6 +1,6 @@
 import 'package:flame/game.dart';
-import 'package:plasticdiver/constants.dart';
-import 'package:plasticdiver/game/components/animals/animal.dart';
+import 'package:plasticdive/constants.dart';
+import 'package:plasticdive/game/components/animals/animal.dart';
 
 class ParrotFish extends Animal {
   ParrotFish({

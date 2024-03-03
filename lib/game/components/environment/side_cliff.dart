@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/painting.dart';
-import 'package:plasticdiver/game/dive_game.dart';
+import 'package:plasticdive/game/dive_game.dart';
 
 class Cliff extends ParallaxComponent<DiveGame> {
   final bool isLeft;

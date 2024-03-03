@@ -1,4 +1,4 @@
-import 'package:plasticdiver/game/components/components.dart';
+import 'package:plasticdive/game/components/components.dart';
 
 class PlasticBag extends Garbage {
   PlasticBag({

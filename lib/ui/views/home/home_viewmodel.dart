@@ -1,7 +1,7 @@
-import 'package:plasticdiver/app/app.locator.dart';
-import 'package:plasticdiver/app/app.router.dart';
-import 'package:plasticdiver/services/diver_upgrade_service.dart';
-import 'package:plasticdiver/services/shared_preferences_service.dart';
+import 'package:plasticdive/app/app.locator.dart';
+import 'package:plasticdive/app/app.router.dart';
+import 'package:plasticdive/services/diver_upgrade_service.dart';
+import 'package:plasticdive/services/shared_preferences_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -27,6 +27,7 @@ class HomeViewModel extends BaseViewModel {
     }
 
     await _routerService.navigateToGameView();
+    print("rebuilt");
     rebuildUi();
   }
 

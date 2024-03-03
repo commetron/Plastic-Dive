@@ -3,12 +3,12 @@ import 'package:flame/flame.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_seo/meta_seo.dart';
-import 'package:plasticdiver/app/app.bottomsheets.dart';
-import 'package:plasticdiver/app/app.dialogs.dart';
-import 'package:plasticdiver/app/app.locator.dart';
-import 'package:plasticdiver/app/app.router.dart';
-import 'package:plasticdiver/firebase_options.dart';
-import 'package:plasticdiver/ui/common/app_theme.dart';
+import 'package:plasticdive/app/app.bottomsheets.dart';
+import 'package:plasticdive/app/app.dialogs.dart';
+import 'package:plasticdive/app/app.locator.dart';
+import 'package:plasticdive/app/app.router.dart';
+import 'package:plasticdive/firebase_options.dart';
+import 'package:plasticdive/ui/common/app_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

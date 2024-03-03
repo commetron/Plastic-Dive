@@ -5,9 +5,9 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:plasticdiver/constants.dart';
-import 'package:plasticdiver/game/components/components.dart';
-import 'package:plasticdiver/game/dive_world.dart';
+import 'package:plasticdive/constants.dart';
+import 'package:plasticdive/game/components/components.dart';
+import 'package:plasticdive/game/dive_world.dart';
 
 class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   // Debug

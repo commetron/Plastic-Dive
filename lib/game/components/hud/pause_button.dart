@@ -4,8 +4,8 @@ import 'package:flame/input.dart';
 import 'package:flame/text.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
-import 'package:plasticdiver/constants.dart';
-import 'package:plasticdiver/game/dive_game.dart';
+import 'package:plasticdive/constants.dart';
+import 'package:plasticdive/game/dive_game.dart';
 
 class PauseButton extends SpriteButtonComponent with HasGameRef<DiveGame> {
   static const double buttonWidth = 200;

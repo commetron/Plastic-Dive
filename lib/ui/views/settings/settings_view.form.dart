@@ -7,7 +7,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, non_constant_identifier_names,unnecessary_this
 
 import 'package:flutter/material.dart';
-import 'package:plasticdiver/ui/validators/form_validators.dart';
+import 'package:plasticdive/ui/validators/form_validators.dart';
 import 'package:stacked/stacked.dart';
 
 const bool _autoTextFieldValidation = true;

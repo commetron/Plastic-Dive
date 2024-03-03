@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plasticdiver/ui/common/app_colors.dart';
+import 'package:plasticdive/ui/common/app_colors.dart';
 
 const buttonTextStyle = TextStyle(
   fontFamily: 'PixeloidSans',

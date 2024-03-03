@@ -3,27 +3,27 @@ import 'dart:math';
 
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
-import 'package:plasticdiver/constants.dart';
-import 'package:plasticdiver/game/components/animals/angel_fish.dart';
-import 'package:plasticdiver/game/components/animals/angler_fish.dart';
-import 'package:plasticdiver/game/components/animals/clown_fish.dart';
-import 'package:plasticdiver/game/components/animals/coral.dart';
-import 'package:plasticdiver/game/components/animals/dolphin.dart';
-import 'package:plasticdiver/game/components/animals/exotic_fish.dart';
-import 'package:plasticdiver/game/components/animals/giant_squid.dart';
-import 'package:plasticdiver/game/components/animals/globe_fish.dart';
-import 'package:plasticdiver/game/components/animals/hammerhead_shark.dart';
-import 'package:plasticdiver/game/components/animals/jelly_fish.dart';
-import 'package:plasticdiver/game/components/animals/lion_fish.dart';
-import 'package:plasticdiver/game/components/animals/moon_fish.dart';
-import 'package:plasticdiver/game/components/animals/parrot_fish.dart';
-import 'package:plasticdiver/game/components/animals/sea_horse.dart';
-import 'package:plasticdiver/game/components/animals/sea_turtle.dart';
-import 'package:plasticdiver/game/components/animals/shark.dart';
-import 'package:plasticdiver/game/components/animals/tuna_fish.dart';
-import 'package:plasticdiver/game/components/animals/whale.dart';
-import 'package:plasticdiver/game/components/animals/whale_shark.dart';
-import 'package:plasticdiver/game/dive_game.dart';
+import 'package:plasticdive/constants.dart';
+import 'package:plasticdive/game/components/animals/angel_fish.dart';
+import 'package:plasticdive/game/components/animals/angler_fish.dart';
+import 'package:plasticdive/game/components/animals/clown_fish.dart';
+import 'package:plasticdive/game/components/animals/coral.dart';
+import 'package:plasticdive/game/components/animals/dolphin.dart';
+import 'package:plasticdive/game/components/animals/exotic_fish.dart';
+import 'package:plasticdive/game/components/animals/giant_squid.dart';
+import 'package:plasticdive/game/components/animals/globe_fish.dart';
+import 'package:plasticdive/game/components/animals/hammerhead_shark.dart';
+import 'package:plasticdive/game/components/animals/jelly_fish.dart';
+import 'package:plasticdive/game/components/animals/lion_fish.dart';
+import 'package:plasticdive/game/components/animals/moon_fish.dart';
+import 'package:plasticdive/game/components/animals/parrot_fish.dart';
+import 'package:plasticdive/game/components/animals/sea_horse.dart';
+import 'package:plasticdive/game/components/animals/sea_turtle.dart';
+import 'package:plasticdive/game/components/animals/shark.dart';
+import 'package:plasticdive/game/components/animals/tuna_fish.dart';
+import 'package:plasticdive/game/components/animals/whale.dart';
+import 'package:plasticdive/game/components/animals/whale_shark.dart';
+import 'package:plasticdive/game/dive_game.dart';
 
 enum AnimalType {
   // Level 0 (0 -> 5)

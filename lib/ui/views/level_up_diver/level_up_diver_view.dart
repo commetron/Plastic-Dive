@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plasticdiver/ui/common/ui_helpers.dart';
-import 'package:plasticdiver/ui/widgets/common/level_bar/level_bar.dart';
+import 'package:plasticdive/ui/common/ui_helpers.dart';
+import 'package:plasticdive/ui/widgets/common/level_bar/level_bar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'level_up_diver_viewmodel.dart';

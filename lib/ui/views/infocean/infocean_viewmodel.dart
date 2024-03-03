@@ -1,5 +1,5 @@
-import 'package:plasticdiver/app/app.locator.dart';
-import 'package:plasticdiver/services/diver_upgrade_service.dart';
+import 'package:plasticdive/app/app.locator.dart';
+import 'package:plasticdive/services/diver_upgrade_service.dart';
 import 'package:stacked/stacked.dart';
 
 class InfoceanViewModel extends IndexTrackingViewModel {
