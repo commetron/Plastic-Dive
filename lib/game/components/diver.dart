@@ -157,6 +157,8 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     super.onKeyEvent(event, keysPressed);
 
+    if (game.isPaused) return true;
+
     if (!_keysWatched.contains(event.logicalKey)) return true;
 
     if (event is KeyUpEvent) {
@@ -241,7 +243,9 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
       ));
 
       isCollecting = false;
-      FlameAudio.play('sfx/collected.mp3');
+      if (game.isSoundEnabled) {
+        FlameAudio.play('sfx/collected.mp3', volume: 0.4);
+      }
       // TODO Pass addScore method to Diver constructor
       game.score.value += garbage.points;
     });

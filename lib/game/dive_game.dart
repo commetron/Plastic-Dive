@@ -4,7 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_audio/flame_audio.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:plasticdive/constants.dart';
 import 'package:plasticdive/game/components/components.dart';
 import 'package:plasticdive/game/dive_world.dart';
@@ -13,6 +13,8 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   // Debug
   @override
   bool get debugMode => false;
+
+  bool isPaused = false;
 
   // Value Notifiers
   final score = ValueNotifier(0);
@@ -90,6 +92,23 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     // Add callback to update score text
     countdownTimer.onTick = () {
       remainingTime.value -= countdownTimer.limit;
+
+      // Add a message to the player at the center of the screen when the air tank is almost empty
+      if (remainingTime.value <= 10 && remainingTime.value > 9.5) {
+        camera.viewport.add(
+          TextComponent(
+            text: 'Air tank almost empty! Go to surface before it\'s too late!',
+            position: Vector2(Constants.gameWidth / 2, Constants.gameHeight - 100),
+            anchor: Anchor.center,
+            textRenderer: TextPaint(style: TextStyle(fontFamily: 'PixeloidSans', fontSize: 16, color: Colors.white.withOpacity(0.3))),
+          ),
+        );
+
+        if (isSoundEnabled) {
+          FlameAudio.play('sfx/air-tank-almost-empty.mp3', volume: 0.5);
+        }
+      }
+
       if (remainingTime.value <= 0) {
         // Time is over -> player lost
         endTheGame(false, score.value);
@@ -123,13 +142,12 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   @override
   void update(double dt) {
     super.update(dt);
+    if (isPaused) return;
     countdownTimer.update(dt);
     remainingCollectTimeTimer.update(dt);
   }
 
   void enableCollectButton(Garbage garbage) {
-    print('enableCollectButton');
-
     // Add keyboard press event
     collectButton.enable(
       collectionTimeInSeconds: garbage.collectionTimeWithSpeedFactor,
@@ -141,6 +159,14 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     collectButton.disable();
   }
 
+  void pauseGame() {
+    isPaused = true;
+    // countdownTimer.pause();
+    // remainingCollectTimeTimer.pause();
+    FlameAudio.bgm.pause();
+    overlays.add('PauseMenu');
+  }
+
   void endTheGame(bool hasWon, int score) {
     pauseEngine();
 
@@ -149,16 +175,14 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
 
     if (isSoundEnabled) {
       FlameAudio.bgm.stop();
-      FlameAudio.play(hasWon ? 'sfx/game-win.mp3' : 'sfx/game-over.mp3');
+      FlameAudio.play(hasWon ? 'sfx/game-win.mp3' : 'sfx/game-over.mp3', volume: 0.4);
     }
 
     onGameOver(hasWon, score);
   }
 
   startCollecting(Garbage garbage) {
-    print('startCollecting: ${garbage.runtimeType} : ${garbage.collectionTimeWithSpeedFactor}');
     remainingCollectTime.value = garbage.collectionTimeWithSpeedFactor;
-    print('remainingCollectTime: ${remainingCollectTime.value}');
     remainingCollectTimeTimer.reset();
     remainingCollectTimeTimer.start();
   }
@@ -166,6 +190,9 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   void resumeGame() {
     FlameAudio.bgm.resume();
     overlays.clear();
+    isPaused = false;
+    // remainingCollectTimeTimer.resume();
+    // countdownTimer.resume();
     // overlays.remove('PauseMenu');
     resumeEngine();
   }
