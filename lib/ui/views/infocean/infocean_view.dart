@@ -70,7 +70,13 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
               children: [
                 _buildName(context, viewModel, index),
                 verticalSpaceSmall,
-                _buildLifeLong(context, viewModel, index),
+                Row(children: [
+                  _buildLifeLong(context, viewModel, index),
+                  if (viewModel.source[index].points != null) ...[
+                    horizontalSpaceSmall,
+                    _buildPoints(context, viewModel, index),
+                  ]
+                ]),
                 verticalSpaceMedium,
                 Expanded(
                   child: Text(
@@ -120,6 +126,12 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
       label: Text(viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel
           ? viewModel.source[index].lifeLong
           : "Unlock: Dive level ${viewModel.source[index].requiredLevel}"),
+    );
+  }
+
+  Widget _buildPoints(BuildContext context, InfoceanViewModel viewModel, int index) {
+    return Chip(
+      label: Text("${viewModel.source[index].points} points"),
     );
   }
 }

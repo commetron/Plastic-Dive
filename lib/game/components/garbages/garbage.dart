@@ -5,14 +5,18 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/extensions.dart';
+import 'package:flutter/material.dart';
 import 'package:plasticdiver/constants.dart';
+import 'package:plasticdiver/game/components/components.dart';
 import 'package:plasticdiver/game/components/garbages/bottle.dart';
+import 'package:plasticdiver/game/components/garbages/cigarette.dart';
 import 'package:plasticdiver/game/components/garbages/coffee_cup.dart';
 import 'package:plasticdiver/game/components/garbages/cotton_rod.dart';
 import 'package:plasticdiver/game/components/garbages/cutlery.dart';
 import 'package:plasticdiver/game/components/garbages/food_packaging.dart';
 import 'package:plasticdiver/game/components/garbages/household_cleaner_bottle.dart';
 import 'package:plasticdiver/game/components/garbages/lid.dart';
+import 'package:plasticdiver/game/components/garbages/mask.dart';
 import 'package:plasticdiver/game/components/garbages/microplastic_cloud.dart';
 import 'package:plasticdiver/game/components/garbages/plastic_bag.dart';
 import 'package:plasticdiver/game/components/garbages/shampoo_bottle.dart';
@@ -39,10 +43,14 @@ enum GarbageType {
   toothbrush,
   yogurtCup,
   foodPackaging,
+  cigarette,
+  mask,
 }
 
-abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame> {
+abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame>, CollisionCallbacks {
   abstract final int points;
+
+  ColorEffect? effect;
 
   int get collectionTimeInSeconds => points ~/ 10;
 
@@ -65,16 +73,13 @@ abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame> {
     Anchor super.anchor = Anchor.center,
   });
 
-  // @override
-  // Decorator get decorator => PaintDecorator.tint(const Color(0xAAFF0000));
-
   @override
   FutureOr<void> onLoad() async {
     sprite = await game.loadSprite('garbages/$image');
     final ratio = sprite!.originalSize.x / sprite!.originalSize.y;
     size = Vector2(garbageWidth * ratio, garbageWidth);
 
-    final hitboxSize = size * 1.2;
+    final hitboxSize = size * 1.5;
     add(RectangleHitbox(size: hitboxSize));
   }
 
@@ -147,10 +152,35 @@ abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame> {
         return YogurtCup(position: position, maxWorldDeepness: maxWorldDeepness);
       case GarbageType.foodPackaging:
         return FoodPackaging(position: position, maxWorldDeepness: maxWorldDeepness);
-      case GarbageType.bottle:
+      case GarbageType.cigarette:
+        return Cigarette(position: position, maxWorldDeepness: maxWorldDeepness);
+      case GarbageType.mask:
+        return Mask(position: position, maxWorldDeepness: maxWorldDeepness);
+      // case GarbageType.bottle:
       default:
         // TODO not good that the abstraction knows the implementations
         return Bottle(position: position, maxWorldDeepness: maxWorldDeepness);
     }
+  }
+
+  @override
+  void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (other is Diver && !isBeingCollected) {
+      isHighlighted = true;
+      add(effect = ColorEffect(
+        Colors.white,
+        EffectController(duration: 0.5),
+        opacityFrom: 0.2,
+        opacityTo: 0.8,
+      ));
+    }
+    super.onCollisionStart(intersectionPoints, other);
+  }
+
+  @override
+  void onCollisionEnd(PositionComponent other) {
+    effect?.reset();
+    effect?.removeFromParent();
+    super.onCollisionEnd(other);
   }
 }

@@ -102,6 +102,18 @@ class InfoceanViewModel extends IndexTrackingViewModel {
         lifeLong: '450 years',
         description: 'Lids are made of polystyrene and take 450 years to decompose.',
         points: 10),
+    InfoceanGarbage(
+        name: 'Cigarette',
+        image: 'cigarette.png',
+        lifeLong: '10-12 years',
+        description: 'Cigarettes are made of cellulose acetate and take 10-12 years to decompose.',
+        points: 20),
+    InfoceanGarbage(
+        name: 'Mask',
+        image: 'mask.png',
+        lifeLong: '450 years',
+        description: 'Masks are made of polypropylene and take 450 years to decompose.',
+        points: 30),
   ];
 
   final animals = [
