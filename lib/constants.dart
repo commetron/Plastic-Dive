@@ -14,6 +14,8 @@ class Constants {
   static const List<double> maxDiverSpeed = [200, 250, 300, 350, 400, 500];
   static const List<double> collectSpeedFactor = [1, 1.2, 1.5, 2, 3, 5];
   static const List<double> airTankCapacityInSeconds = [45, 60, 100, 150, 200, 250];
+  static const List<double> animalMaxSpawnTime = [3, 2.5, 2, 2, 1.5, 1];
+  static const List<double> garbageMaxSpawnTime = [3, 2.5, 2, 2, 1.5, 1];
   static const double worldWidth = 5000;
   static const double worldWidthWithOffset = worldWidth + 2000;
 

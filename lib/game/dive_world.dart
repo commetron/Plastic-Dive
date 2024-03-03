@@ -48,7 +48,7 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
           random: _random,
         ),
         minPeriod: 0.5,
-        maxPeriod: 3,
+        maxPeriod: Constants.animalMaxSpawnTime[diveDepthLevel],
         area: Rectangle.fromPoints(
           Vector2(-Constants.worldWidth / 2, surfaceLevel.y + 10),
           Vector2(Constants.worldWidth / 2, worldDeepness),
@@ -65,7 +65,7 @@ class DiveWorld extends World with HasGameReference<DiveGame>, HasCollisionDetec
           random: _random,
         ),
         minPeriod: 1,
-        maxPeriod: 3,
+        maxPeriod: Constants.animalMaxSpawnTime[diveDepthLevel],
         selfPositioning: true,
         random: _random,
       ),
