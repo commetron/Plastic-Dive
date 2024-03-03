@@ -1,4 +1,4 @@
-name: plasticdiver
+name: plasticdive
 description: Plastic Dive is a game where you dive into the ocean to collect plastic and save the marine life.
 publish_to: 'none'
 version: 0.1.0
@@ -11,14 +11,14 @@ dependencies:
     sdk: flutter
 
   # Game
-  flame: 1.15.0
+  flame: ^1.16.0
 
   # Firebase
-  firebase_core: ^2.25.4
-  cloud_firestore: ^4.15.5
+  firebase_core: ^2.25.5
+  cloud_firestore: ^4.15.6
 
   # Audio
-  flame_audio: ^2.1.8
+  flame_audio: ^2.10.0
 
   # Stacked Framework
   stacked: ^3.4.1+1
