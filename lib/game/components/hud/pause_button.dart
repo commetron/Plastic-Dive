@@ -37,6 +37,6 @@ class PauseButton extends SpriteButtonComponent with HasGameRef<DiveGame> {
     super.onTapDown(_);
     FlameAudio.bgm.pause();
     game.overlays.add('PauseMenu');
-    game.pauseEngine();
+    game.pauseGame();
   }
 }
