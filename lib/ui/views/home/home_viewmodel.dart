@@ -27,7 +27,6 @@ class HomeViewModel extends BaseViewModel {
     }
 
     await _routerService.navigateToGameView();
-    print("rebuilt");
     rebuildUi();
   }
 
@@ -54,6 +53,10 @@ class HomeViewModel extends BaseViewModel {
 
   Future navigateToLevelUpDiver() async {
     await _routerService.navigateToLevelUpDiverView();
+    rebuildUi();
+  }
+
+  void refreshPoints() {
     rebuildUi();
   }
 }
