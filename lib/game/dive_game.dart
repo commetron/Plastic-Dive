@@ -77,7 +77,10 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     await camera.viewport.add(Score(scoreNotifier: score, previousHighScore: previousHighScore));
     await camera.viewport.add(AirTank(remainingTimeNotifier: remainingTime, initialTimeInSeconds: Constants.airTankCapacityInSeconds[airTankLevel]));
     await camera.viewport.add(Nanometer(diveDepthNotifier: diveDepth, maxDepth: Constants.worldDeepness.last));
-    await camera.viewport.add(joystick = Joystick());
+
+    final backgroundImage = await images.load('ui/joystick-background.png');
+    final knobImage = await images.load('ui/joystick-knob.png');
+    await camera.viewport.add(joystick = Joystick(backgroundImage, knobImage));
     await camera.viewport.add(collectButton = CollectButton());
 
     await camera.viewport.add(PauseButton());

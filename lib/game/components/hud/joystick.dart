@@ -1,17 +1,15 @@
 import 'package:flame/components.dart';
-import 'package:flame/palette.dart';
+import 'package:flame/extensions.dart';
 import 'package:plasticdive/constants.dart';
 
 class Joystick extends JoystickComponent {
-  static const double radius = 75;
-  static final knobPaint = BasicPalette.blue.withAlpha(200).paint();
-  static final backgroundPaint = BasicPalette.blue.withAlpha(100).paint();
+  static const double radius = 50;
 
-  Joystick()
+  Joystick(Image backgroundImage, Image knobImage)
       : super(
           anchor: Anchor.bottomLeft,
-          knob: CircleComponent(radius: radius / 3, paint: knobPaint),
-          background: CircleComponent(radius: radius, paint: backgroundPaint),
           position: Vector2(20, Constants.gameHeight - 20),
+          background: SpriteComponent.fromImage(backgroundImage, size: Vector2.all(radius * 2)),
+          knob: SpriteComponent.fromImage(knobImage, size: Vector2.all(radius / 2)),
         );
 }
