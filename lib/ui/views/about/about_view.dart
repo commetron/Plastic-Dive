@@ -80,7 +80,7 @@ class AboutView extends StackedView<AboutViewModel> {
                 ),
                 verticalSpaceSmall,
                 Text(
-                  'Freepik and DALL-E for the amazing icons and images we used in our game. (We are still working on our own art skills! 😅)',
+                  'DALL-E for the amazing icon and images we used in our game. (We are still working on our own art skills! 😅)',
                   style: context.bodyLarge,
                 ),
                 verticalSpaceSmall,
