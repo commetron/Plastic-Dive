@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:plasticdive/ui/common/app_colors.dart';
-import 'package:plasticdive/ui/common/app_theme.dart';
 import 'package:plasticdive/ui/common/ui_helpers.dart';
+import 'package:plasticdive/ui/extensions/context_extensions.dart';
 import 'package:plasticdive/ui/widgets/common/game_button/game_button.dart';
 import 'package:stacked/stacked.dart';
 
@@ -23,14 +23,14 @@ class HowToPlayView extends StackedView<HowToPlayViewModel> {
       children: [
         Image.asset(
           "assets/images/screens-backgrounds/home.jpg",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          height: context.height,
+          width: context.width,
           fit: BoxFit.cover,
         ),
         IntroductionScreen(
           key: viewModel.introScreenKey,
           pages: listPagesViewModel(context),
-          bodyPadding: getResponsivePadding(context),
+          bodyPadding: getResponsivePadding(context).copyWith(bottom: -50),
           globalBackgroundColor: Colors.transparent,
           showNextButton: true,
           showSkipButton: true,
@@ -46,17 +46,17 @@ class HowToPlayView extends StackedView<HowToPlayViewModel> {
           skip: GameButton(
             onPressed: viewModel.skipToLastPage,
             size: screenHeightFraction(context, dividedBy: 20),
-            child: const Text('Skip', style: buttonTextStyle),
+            child: Text('Skip', style: context.responsiveButtonTextStyle),
           ),
           next: GameButton(
             onPressed: viewModel.goToNextPage,
             size: screenHeightFraction(context, dividedBy: 20),
-            child: const Text('Next', style: buttonTextStyle),
+            child: Text('Next', style: context.responsiveButtonTextStyle),
           ),
           done: GameButton(
             onPressed: viewModel.completeHowToPlay,
             size: screenHeightFraction(context, dividedBy: 20),
-            child: const Text('Done', style: buttonTextStyle),
+            child: Text('Done', style: context.responsiveButtonTextStyle),
           ),
           onDone: viewModel.completeHowToPlay,
         ),
@@ -65,8 +65,8 @@ class HowToPlayView extends StackedView<HowToPlayViewModel> {
   }
 
   PageDecoration getDecoration(BuildContext context) => PageDecoration(
-        bodyTextStyle: Theme.of(context).textTheme.bodyLarge!,
-        titleTextStyle: Theme.of(context).textTheme.titleLarge!,
+        bodyTextStyle: context.bodyMedium!,
+        titleTextStyle: context.titleMedium!,
       );
 
   List<PageViewModel> listPagesViewModel(BuildContext context) => [

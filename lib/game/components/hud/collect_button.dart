@@ -4,23 +4,22 @@ import 'package:flame/components.dart';
 import 'package:flame/input.dart';
 import 'package:flame/text.dart';
 import 'package:flutter/material.dart';
-import 'package:plasticdive/constants.dart';
 
 class CollectButton extends SpriteButtonComponent {
-  static const double buttonWidth = 200;
-  static const double buttonHeight = 100;
+  static const double buttonWidth = 150;
+  static const double buttonHeight = 75;
 
   final TextComponent timeText = TextComponent(
     text: 'Collect',
-    textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 20, color: Colors.white)),
+    textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 17, color: Colors.white)),
     position: Vector2(buttonWidth / 2, buttonHeight / 2 - 7),
     anchor: Anchor.center,
   );
 
-  CollectButton()
+  CollectButton({required double gameWidth, required double gameHeight})
       : super(
           size: Vector2(buttonWidth, buttonHeight),
-          position: Vector2(Constants.gameWidth - 20, Constants.gameHeight - 20),
+          position: Vector2(gameWidth - 20, gameHeight - 20),
           anchor: Anchor.bottomRight,
         );
 

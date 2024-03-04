@@ -36,10 +36,10 @@ final appTheme = ThemeData(
   // AppBar
   appBarTheme: AppBarTheme(
     centerTitle: true,
-    titleTextStyle: TextStyle(fontFamily: 'PixeloidSans', fontSize: 30, fontWeight: FontWeight.w700, color: Colors.white, shadows: [
+    titleTextStyle: TextStyle(fontFamily: 'PixeloidSans', fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white, shadows: [
       Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(2, 2), blurRadius: 3),
     ]),
-    backgroundColor: Colors.white.withOpacity(0.3),
+    backgroundColor: Colors.white.withOpacity(0.4),
     elevation: 3,
     foregroundColor: Colors.white,
   ),

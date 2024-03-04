@@ -4,6 +4,7 @@ import 'package:meta_seo/meta_seo.dart';
 import 'package:plasticdive/ui/common/app_colors.dart';
 import 'package:plasticdive/ui/common/app_theme.dart';
 import 'package:plasticdive/ui/common/ui_helpers.dart';
+import 'package:plasticdive/ui/extensions/context_extensions.dart';
 import 'package:plasticdive/ui/widgets/common/game_button/game_button.dart';
 import 'package:stacked/stacked.dart';
 
@@ -33,8 +34,8 @@ class HomeView extends StackedView<HomeViewModel> {
       children: [
         Image.asset(
           "assets/images/screens-backgrounds/home.jpg",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          height: context.height,
+          width: context.width,
           fit: BoxFit.cover,
         ),
         Scaffold(
@@ -42,7 +43,7 @@ class HomeView extends StackedView<HomeViewModel> {
             child: Stack(
               children: [
                 Positioned(
-                  top: 40,
+                  top: 10,
                   right: 40,
                   child: Row(
                     children: [
@@ -70,36 +71,34 @@ class HomeView extends StackedView<HomeViewModel> {
                 Padding(
                   padding: getResponsivePadding(context),
                   child: Center(
-                    child: Row(
+                    child: Flex(
+                      direction: context.isLandScape ? Axis.horizontal : Axis.vertical,
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Image.asset("assets/images/icons/logo-no-background.png", width: quarterScreenWidth(context)),
-                            Text("A game for \nGlobal Gamers Challenge", style: Theme.of(context).textTheme.bodyLarge, textAlign: TextAlign.center),
+                            verticalSpaceMedium,
+                            Text("A game for \nGlobal Gamers Challenge", style: context.bodyLarge, textAlign: TextAlign.center),
                           ],
                         ),
                         Column(
-                          mainAxisSize: MainAxisSize.max,
+                          mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            GameButton(
-                                onPressed: viewModel.navigateToGame,
-                                size: screenWidthFraction(context, dividedBy: 20),
-                                child: const Text("PLAY", style: buttonTextStyle)),
+                            verticalSpaceLarge,
+                            GameButton(onPressed: viewModel.navigateToGame, size: 50, child: Text("PLAY", style: context.responsiveButtonTextStyle)),
                             verticalSpaceMedium,
                             GameButton(
                                 onPressed: viewModel.navigateToHowToPlay,
-                                size: screenWidthFraction(context, dividedBy: 20),
-                                child: const Text("HOW-TO PLAY", style: buttonTextStyle)),
+                                size: 50,
+                                child: Text("HOW-TO PLAY", style: context.responsiveButtonTextStyle)),
                             verticalSpaceMedium,
                             GameButton(
-                                onPressed: viewModel.navigateToInfocean,
-                                size: screenWidthFraction(context, dividedBy: 20),
-                                child: const Text("INFOCEAN", style: buttonTextStyle)),
+                                onPressed: viewModel.navigateToInfocean, size: 50, child: Text("INFOCEAN", style: context.responsiveButtonTextStyle)),
                           ],
                         ),
                       ],
@@ -116,19 +115,19 @@ class HomeView extends StackedView<HomeViewModel> {
               size: 50,
               child: viewModel.isSoundEnabled ? const Icon(Icons.volume_up, color: Colors.white) : const Icon(Icons.volume_off, color: Colors.white),
             ),
-            horizontalSpaceMedium,
+            responsiveHorizontalSpace(context),
             GameButton(
               onPressed: viewModel.navigateToLeaderboard,
               size: 50,
               child: const Icon(Icons.leaderboard, color: Colors.white),
             ),
-            horizontalSpaceMedium,
+            responsiveHorizontalSpace(context),
             GameButton(
               onPressed: viewModel.navigateToSettings,
               size: 50,
               child: const Icon(Icons.settings, color: Colors.white),
             ),
-            horizontalSpaceMedium,
+            responsiveHorizontalSpace(context),
             GameButton(
               onPressed: viewModel.navigateToAbout,
               size: 50,
@@ -145,7 +144,4 @@ class HomeView extends StackedView<HomeViewModel> {
     BuildContext context,
   ) =>
       HomeViewModel();
-
-  @override
-  void onViewModelReady(HomeViewModel viewModel) => viewModel.refreshPoints();
 }

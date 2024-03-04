@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:plasticdive/ui/common/ui_helpers.dart';
+import 'package:plasticdive/ui/extensions/context_extensions.dart';
 import 'package:stacked/stacked.dart';
 
 import 'infocean_viewmodel.dart';
@@ -19,8 +20,8 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
       children: [
         Image.asset(
           "assets/images/screens-backgrounds/home.jpg",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          height: context.height,
+          width: context.width,
           fit: BoxFit.cover,
         ),
         Scaffold(
@@ -39,7 +40,7 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
             primary: true,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            crossAxisCount: max(2, (quarterScreenWidth(context) * 2 ~/ 250).toInt()),
+            crossAxisCount: max(1, (quarterScreenWidth(context) ~/ 100).toInt()),
             padding: getResponsivePadding(context),
             children: List.generate(
               viewModel.source.length,
@@ -63,6 +64,7 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
       child: Stack(
         children: [
           _buildImage(context, viewModel, index),
+          _buildPoints(context, viewModel, index),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
@@ -70,18 +72,12 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
               children: [
                 _buildName(context, viewModel, index),
                 verticalSpaceSmall,
-                Row(children: [
-                  _buildLifeLong(context, viewModel, index),
-                  if (viewModel.source[index].points != null) ...[
-                    horizontalSpaceSmall,
-                    _buildPoints(context, viewModel, index),
-                  ]
-                ]),
+                _buildLifeLong(context, viewModel, index),
                 verticalSpaceMedium,
                 Expanded(
                   child: Text(
                     viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? viewModel.source[index].description : "???",
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: context.bodyMedium,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 10,
                   ),
@@ -117,7 +113,7 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
   Widget _buildName(BuildContext context, InfoceanViewModel viewModel, int index) {
     return Text(
       viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? viewModel.source[index].name : "???",
-      style: Theme.of(context).textTheme.titleMedium,
+      style: context.titleMedium,
     );
   }
 
@@ -130,8 +126,17 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
   }
 
   Widget _buildPoints(BuildContext context, InfoceanViewModel viewModel, int index) {
-    return Chip(
-      label: Text("${viewModel.source[index].points} points"),
-    );
+    if (viewModel.source[index].points != null) {
+      return Positioned(
+        bottom: 20,
+        left: 20,
+        child: Chip(
+          padding: const EdgeInsets.all(5),
+          label: Text("${viewModel.source[index].points} points", style: context.bodySmall),
+        ),
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
   }
 }

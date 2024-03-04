@@ -4,11 +4,6 @@ class Constants {
 
   // @end App constants
 
-  // Game constants
-  static const ratio = 16 / 9;
-  static const double gameHeight = 800;
-  static const double gameWidth = gameHeight * ratio;
-
   // Constants based on the skill level
   static const List<double> worldDeepness = [1000, 1500, 2000, 3000, 5000, 7500];
   static const List<double> maxDiverSpeed = [200, 250, 300, 350, 400, 500];

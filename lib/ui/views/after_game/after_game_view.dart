@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plasticdive/ui/common/app_theme.dart';
 import 'package:plasticdive/ui/common/ui_helpers.dart';
+import 'package:plasticdive/ui/extensions/context_extensions.dart';
 import 'package:plasticdive/ui/widgets/common/game_button/game_button.dart';
 import 'package:stacked/stacked.dart';
 
@@ -22,8 +23,8 @@ class AfterGameView extends StackedView<AfterGameViewModel> {
       children: [
         Image.asset(
           "assets/images/screens-backgrounds/home.jpg",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          height: context.height,
+          width: context.width,
           fit: BoxFit.cover,
         ),
         Scaffold(
@@ -34,33 +35,33 @@ class AfterGameView extends StackedView<AfterGameViewModel> {
               children: [
                 Text(
                   isWon ? 'You won! 🙌' : 'You lost! 🥹',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: context.titleLarge,
                 ),
                 if (isWon) ...[
                   Text(
                     'New score: $score',
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: context.titleMedium,
                   ),
                 ],
                 Text(
                   'High score: ${viewModel.highScore}',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: context.titleMedium,
                 ),
                 Text(
                   'Total points: ${viewModel.points}',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: context.titleMedium,
                 ),
                 verticalSpaceLarge,
                 GameButton(
                   onPressed: viewModel.replay,
                   size: 50,
-                  child: const Text('Replay', style: buttonTextStyle),
+                  child: Text('Replay', style: context.responsiveButtonTextStyle),
                 ),
                 verticalSpaceMedium,
                 GameButton(
                   onPressed: viewModel.isDiverUpgradable ? viewModel.navigateToLevelUpDiver : null,
                   size: 50,
-                  child: Text(viewModel.isDiverUpgradable ? 'Level up diver' : 'No level up possible yet', style: buttonTextStyle),
+                  child: Text(viewModel.isDiverUpgradable ? 'Level up diver' : 'No level up possible yet', style: context.responsiveButtonTextStyle),
                 ),
                 verticalSpaceMedium,
                 Row(

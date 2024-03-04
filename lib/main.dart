@@ -19,7 +19,6 @@ Future<void> main() async {
   );
 
   // Flame
-  await Flame.device.setLandscape();
   await Flame.device.fullScreen();
 
   // Stacked

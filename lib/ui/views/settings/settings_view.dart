@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plasticdive/ui/common/app_theme.dart';
 import 'package:plasticdive/ui/common/ui_helpers.dart';
+import 'package:plasticdive/ui/extensions/context_extensions.dart';
 import 'package:plasticdive/ui/validators/form_validators.dart';
 import 'package:plasticdive/ui/widgets/common/game_button/game_button.dart';
 import 'package:stacked/stacked.dart';
@@ -25,8 +25,8 @@ class SettingsView extends StackedView<SettingsViewModel> with $SettingsView {
       children: [
         Image.asset(
           "assets/images/screens-backgrounds/home.jpg",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          height: context.height,
+          width: context.width,
           fit: BoxFit.cover,
         ),
         Scaffold(
@@ -39,7 +39,7 @@ class SettingsView extends StackedView<SettingsViewModel> with $SettingsView {
               children: [
                 Text(
                   'Username',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: context.titleLarge,
                 ),
                 verticalSpaceSmall,
                 TextFormField(
@@ -52,7 +52,7 @@ class SettingsView extends StackedView<SettingsViewModel> with $SettingsView {
                 verticalSpaceMedium,
                 Text(
                   'Sound',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: context.titleLarge,
                 ),
                 verticalSpaceSmall,
                 Transform.scale(
@@ -64,22 +64,27 @@ class SettingsView extends StackedView<SettingsViewModel> with $SettingsView {
                         (states) => states.contains(MaterialState.selected) ? const Icon(Icons.volume_up) : const Icon(Icons.volume_off)),
                   ),
                 ),
+                verticalSpaceLarge,
+                Text(
+                  '🚨 Danger Zone ',
+                  style: context.titleLarge,
+                ),
+                verticalSpaceMedium,
+                GameButton(
+                  onPressed: viewModel.clearSettings,
+                  size: 50,
+                  color: Colors.redAccent,
+                  child: Text('CLEAR SETTINGS', style: context.responsiveButtonTextStyle),
+                ),
               ],
             ),
           ),
           persistentFooterAlignment: AlignmentDirectional.center,
           persistentFooterButtons: [
             GameButton(
-              onPressed: viewModel.clearSettings,
-              size: 50,
-              color: Colors.redAccent,
-              child: const Text('CLEAR SETTINGS', style: buttonTextStyle),
-            ),
-            horizontalSpaceMedium,
-            GameButton(
               onPressed: viewModel.updateUsername,
               size: 50,
-              child: const Text('UPDATE', style: buttonTextStyle),
+              child: Text('UPDATE', style: context.responsiveButtonTextStyle),
             ),
           ],
         ),

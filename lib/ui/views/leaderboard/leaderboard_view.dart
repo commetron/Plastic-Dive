@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plasticdive/services/leaderboard_service.dart';
 import 'package:plasticdive/ui/common/ui_helpers.dart';
+import 'package:plasticdive/ui/extensions/context_extensions.dart';
 import 'package:stacked/stacked.dart';
 
 import 'leaderboard_viewmodel.dart';
@@ -18,8 +19,8 @@ class LeaderboardView extends StackedView<LeaderboardViewModel> {
       children: [
         Image.asset(
           "assets/images/screens-backgrounds/home.jpg",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          height: context.height,
+          width: context.width,
           fit: BoxFit.cover,
         ),
         Scaffold(
@@ -33,7 +34,7 @@ class LeaderboardView extends StackedView<LeaderboardViewModel> {
                     child: CircularProgressIndicator(color: Colors.white),
                   )
                 : viewModel.data == null
-                    ? Center(child: Text("Impossible to load the leaderboard 😅", style: Theme.of(context).textTheme.titleMedium))
+                    ? Center(child: Text("Impossible to load the leaderboard 😅", style: context.bodyLarge))
                     : ListView.builder(
                         itemCount: viewModel.data!.length,
                         itemBuilder: (context, index) {
@@ -41,16 +42,16 @@ class LeaderboardView extends StackedView<LeaderboardViewModel> {
                           return ListTile(
                             leading: Text(
                               '#${index + 1}',
-                              style: index < 3 ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
+                              style: index < 3 ? context.titleMedium : context.bodyMedium,
                             ),
                             title: Text(
                               entry.pseudo,
                               // TODO display skills "${entry.pseudo} (${entry.diveDepthLevel}/${entry.collectingSpeedLevel}/${entry.airTankLevel}/${entry.swimmingSpeedLevel})",
-                              style: index < 3 ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
+                              style: index < 3 ? context.titleMedium : context.bodyMedium,
                             ),
                             trailing: Text(
                               '${entry.score}',
-                              style: index < 3 ? Theme.of(context).textTheme.titleLarge : Theme.of(context).textTheme.titleMedium,
+                              style: index < 3 ? context.titleMedium : context.bodyMedium,
                             ),
                           );
                         },

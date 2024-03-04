@@ -1,6 +1,5 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:plasticdive/constants.dart';
 import 'package:plasticdive/game/dive_game.dart';
 
 class AirTank extends SpriteComponent with HasGameReference<DiveGame> {
@@ -11,11 +10,21 @@ class AirTank extends SpriteComponent with HasGameReference<DiveGame> {
 
   late TextComponent remainingText;
 
-  AirTank({required ValueNotifier<double> remainingTimeNotifier, required this.initialTimeInSeconds})
+  AirTank(
+      {required ValueNotifier<double> remainingTimeNotifier,
+      required this.initialTimeInSeconds,
+      required double gameWidth,
+      required double gameHeight})
       : super(
           size: Vector2(150, 50),
-          position: Vector2(Constants.gameWidth / 2 + 30, 20),
-          anchor: Anchor.topLeft,
+          position: (gameWidth <= gameHeight)
+              ?
+              // On the side of the screen
+              Vector2(40, gameHeight / 4 - 30)
+              // On top of the screen
+              : Vector2(gameWidth / 2 + 30, 20),
+          anchor: (gameWidth <= gameHeight) ? Anchor.center : Anchor.topLeft,
+          angle: (gameWidth <= gameHeight) ? 33 : 0,
         ) {
     remainingTimeInSeconds = initialTimeInSeconds;
 

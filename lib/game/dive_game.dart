@@ -10,6 +10,9 @@ import 'package:plasticdive/game/components/components.dart';
 import 'package:plasticdive/game/dive_world.dart';
 
 class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
+  final double gameHeight;
+  final double gameWidth;
+
   // Debug
   @override
   bool get debugMode => false;
@@ -42,6 +45,8 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   late RectangleComponent darkenEffect;
 
   DiveGame({
+    required this.gameHeight,
+    required this.gameWidth,
     required this.onGameOver,
     required this.airTankLevel,
     required this.swimmingSpeedLevel,
@@ -56,7 +61,7 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
             diveDepthLevel: diveDepthLevel,
             swimmingSpeedLevel: swimmingSpeedLevel,
           ),
-          camera: CameraComponent.withFixedResolution(width: Constants.gameWidth, height: Constants.gameHeight),
+          camera: CameraComponent.withFixedResolution(width: gameWidth, height: gameHeight),
         );
 
   @override
@@ -71,23 +76,28 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
     await camera.backdrop.add(background = Background(size: Vector2(Constants.worldWidthWithOffset, Constants.worldDeepness[diveDepthLevel])));
 
     if (debugMode) {
-      await camera.viewport.add(FpsTextComponent(position: Vector2(Constants.gameWidth - 20, 20), anchor: Anchor.topRight));
+      await camera.viewport.add(FpsTextComponent(position: Vector2(gameWidth - 20, 20), anchor: Anchor.topRight));
     }
 
     await camera.viewport.add(Score(scoreNotifier: score, previousHighScore: previousHighScore));
-    await camera.viewport.add(AirTank(remainingTimeNotifier: remainingTime, initialTimeInSeconds: Constants.airTankCapacityInSeconds[airTankLevel]));
-    await camera.viewport.add(Nanometer(diveDepthNotifier: diveDepth, maxDepth: Constants.worldDeepness.last));
+    await camera.viewport.add(AirTank(
+        remainingTimeNotifier: remainingTime,
+        initialTimeInSeconds: Constants.airTankCapacityInSeconds[airTankLevel],
+        gameWidth: gameWidth,
+        gameHeight: gameHeight));
+    await camera.viewport
+        .add(Nanometer(diveDepthNotifier: diveDepth, maxDepth: Constants.worldDeepness.last, gameWidth: gameWidth, gameHeight: gameHeight));
 
     final backgroundImage = await images.load('ui/joystick-background.png');
     final knobImage = await images.load('ui/joystick-knob.png');
-    await camera.viewport.add(joystick = Joystick(backgroundImage, knobImage));
-    await camera.viewport.add(collectButton = CollectButton());
+    await camera.viewport.add(joystick = Joystick(backgroundImage: backgroundImage, knobImage: knobImage, gameHeight: gameHeight));
+    await camera.viewport.add(collectButton = CollectButton(gameHeight: gameHeight, gameWidth: gameWidth));
 
-    await camera.viewport.add(PauseButton());
+    await camera.viewport.add(PauseButton(gameWidth: gameWidth));
 
     // Darken the world as we go deeper
     await camera.viewport.add(darkenEffect = RectangleComponent(
-      size: Vector2(Constants.gameWidth, Constants.gameHeight),
+      size: Vector2(gameWidth, gameHeight),
       paint: Paint()..color = const Color(0x00000000),
       priority: -100,
     ));
@@ -101,7 +111,7 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
         camera.viewport.add(
           TextComponent(
             text: 'Air tank almost empty! Go to surface before it\'s too late!',
-            position: Vector2(Constants.gameWidth / 2, Constants.gameHeight - 100),
+            position: Vector2(gameWidth / 2, gameHeight - 100),
             anchor: Anchor.center,
             textRenderer: TextPaint(style: TextStyle(fontFamily: 'PixeloidSans', fontSize: 16, color: Colors.white.withOpacity(0.3))),
           ),

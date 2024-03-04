@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/text.dart';
 import 'package:flutter/material.dart';
-import 'package:plasticdive/constants.dart';
 import 'package:plasticdive/game/dive_game.dart';
 
 class Nanometer extends PositionComponent with HasGameReference<DiveGame> {
@@ -11,10 +10,15 @@ class Nanometer extends PositionComponent with HasGameReference<DiveGame> {
   final double maxDepth;
   double currentDepth = 0;
 
-  Nanometer({required ValueNotifier<double> diveDepthNotifier, required this.maxDepth})
+  Nanometer({required ValueNotifier<double> diveDepthNotifier, required this.maxDepth, required double gameWidth, required double gameHeight})
       : super(
           size: Vector2(50, 50),
-          position: Vector2(Constants.gameWidth / 2 - 30, 20),
+          position: (gameWidth <= gameHeight)
+              ?
+              // On the side of the screen
+              Vector2(gameWidth - 20, gameHeight / 4 - 30)
+              // On top of the screen
+              : Vector2(gameWidth / 2 - 30, 20),
           anchor: Anchor.topRight,
         ) {
     diveDepthNotifier.addListener(() {

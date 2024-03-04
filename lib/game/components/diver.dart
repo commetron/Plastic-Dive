@@ -218,7 +218,13 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
       //  add a text with the points
       game.world.add(collectedPoints = TextComponent(
         text: "+${garbage.points.toString()} points",
-        textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 17, color: Colors.white)),
+        textRenderer: TextPaint(
+            style: const TextStyle(
+          fontFamily: 'PixeloidSans',
+          fontSize: 17,
+          color: Colors.white,
+          shadows: [Shadow(blurRadius: 7, color: Colors.black, offset: Offset(0, 0))],
+        )),
       ));
       collectedPoints.anchor = Anchor.center;
       collectedPoints.position = position.clone()..y -= 50;

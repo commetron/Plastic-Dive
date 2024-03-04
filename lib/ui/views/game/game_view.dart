@@ -1,8 +1,8 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:plasticdive/game/dive_game.dart';
-import 'package:plasticdive/ui/common/app_theme.dart';
 import 'package:plasticdive/ui/common/ui_helpers.dart';
+import 'package:plasticdive/ui/extensions/context_extensions.dart';
 import 'package:plasticdive/ui/widgets/common/game_button/game_button.dart';
 import 'package:stacked/stacked.dart';
 
@@ -19,6 +19,8 @@ class GameView extends StackedView<GameViewModel> {
   ) {
     return GameWidget(
       game: DiveGame(
+        gameHeight: context.height,
+        gameWidth: context.width,
         onGameOver: viewModel.onGameOver,
         airTankLevel: viewModel.airTankLevel,
         collectingSpeedLevel: viewModel.collectingSpeedLevel,
@@ -28,26 +30,47 @@ class GameView extends StackedView<GameViewModel> {
         isSoundEnabled: viewModel.isSoundEnabled,
       ),
       autofocus: true,
-      loadingBuilder: (context) => const Center(
-        // TODO make something better
-        child: CircularProgressIndicator(),
+      loadingBuilder: (context) => Stack(
+        children: [
+          Image.asset(
+            "assets/images/screens-backgrounds/home.jpg",
+            height: context.height,
+            width: context.width,
+            fit: BoxFit.cover,
+          ),
+          Scaffold(
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Loading...',
+                    style: context.titleLarge,
+                  ),
+                  verticalSpaceMedium,
+                  const CircularProgressIndicator(color: Colors.white),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
       overlayBuilderMap: {
         'PauseMenu': (BuildContext context, DiveGame game) {
           return Scaffold(
             body: Center(
               child: SizedBox(
-                width: halfScreenWidth(context),
+                width: context.isMobile ? screenWidthFraction(context, dividedBy: 1) : thirdScreenWidth(context) * 2,
                 height: halfScreenHeight(context),
                 child: Card(
-                  color: Theme.of(context).cardColor.withOpacity(0.7),
+                  color: context.cardColor.withOpacity(0.7),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         'Paused',
-                        style: Theme.of(context).textTheme.titleLarge,
+                        style: context.titleLarge,
                       ),
                       verticalSpaceLarge,
                       Row(
@@ -57,13 +80,13 @@ class GameView extends StackedView<GameViewModel> {
                             onPressed: () => viewModel.exitGame(game),
                             size: 50,
                             color: Colors.redAccent,
-                            child: const Text('Exit', style: buttonTextStyle),
+                            child: Text('Exit', style: context.responsiveButtonTextStyle),
                           ),
                           horizontalSpaceMedium,
                           GameButton(
                             onPressed: () => viewModel.resumeGame(game),
                             size: 50,
-                            child: const Text('Resume', style: buttonTextStyle),
+                            child: Text('Resume', style: context.responsiveButtonTextStyle),
                           ),
                         ],
                       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plasticdive/ui/common/ui_helpers.dart';
+import 'package:plasticdive/ui/extensions/context_extensions.dart';
 import 'package:plasticdive/ui/widgets/common/level_bar/level_bar.dart';
 import 'package:stacked/stacked.dart';
 
@@ -18,8 +19,8 @@ class LevelUpDiverView extends StackedView<LevelUpDiverViewModel> {
       children: [
         Image.asset(
           "assets/images/screens-backgrounds/home.jpg",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          height: context.height,
+          width: context.width,
           fit: BoxFit.cover,
         ),
         Scaffold(
@@ -28,13 +29,13 @@ class LevelUpDiverView extends StackedView<LevelUpDiverViewModel> {
           ),
           body: Padding(
             padding: getResponsivePadding(context),
-            child: Center(
+            child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Total points: ${viewModel.points}',
-                    style: Theme.of(context).textTheme.titleLarge,
+                    'Available points: ${viewModel.points}',
+                    style: context.titleLarge,
                   ),
                   verticalSpaceLarge,
                   LevelBar(

@@ -9,7 +9,7 @@ class Score extends PositionComponent {
   Score({
     required ValueNotifier<int> scoreNotifier,
     required this.previousHighScore,
-  }) : super(size: Vector2(100, 100)) {
+  }) : super(size: Vector2(100, 100), position: Vector2(10, 20), anchor: Anchor.topLeft) {
     // Add callback to update score text
     scoreNotifier.addListener(() {
       String scoreText = 'Score: ${scoreNotifier.value}';
@@ -30,7 +30,12 @@ class Score extends PositionComponent {
       scoreTextComponent = TextComponent(
         text: 'Score: 0',
         position: Vector2(10, 10),
-        textRenderer: TextPaint(style: const TextStyle(fontFamily: 'PixeloidSans', fontSize: 25, color: Colors.white)),
+        textRenderer: TextPaint(
+            style: const TextStyle(
+                fontFamily: 'PixeloidSans',
+                fontSize: 25,
+                color: Colors.white,
+                shadows: [Shadow(blurRadius: 7, color: Colors.black, offset: Offset(0, 0))])),
       ),
     );
   }

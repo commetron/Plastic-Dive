@@ -51,7 +51,7 @@ class LeaderboardService {
 
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  Future<List<LeaderboardEntry>> getLeaderboard({int limit = 10}) async {
+  Future<List<LeaderboardEntry>> getLeaderboard({int limit = 30}) async {
     final QuerySnapshot querySnapshot = await _firebaseFirestore.collection(collectionName).orderBy(scoreField, descending: true).limit(limit).get();
 
     return querySnapshot.docs.toLeaderboard();
