@@ -110,7 +110,8 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
       // Add a message to the player at the center of the screen when the air tank is almost empty
       if (remainingTime.value <= 10 && remainingTime.value > 9.5) {
         camera.viewport.add(
-          TextComponent(
+          ScrollTextBoxComponent(
+            size: Vector2(gameWidth * 0.8, 100),
             text: 'Air tank almost empty! Go to surface before it\'s too late!',
             position: Vector2(gameWidth / 2, gameHeight - 100),
             anchor: Anchor.center,
