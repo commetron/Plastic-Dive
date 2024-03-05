@@ -3,12 +3,18 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:plasticdive/ui/common/app_colors.dart';
 import 'package:plasticdive/ui/common/ui_helpers.dart';
 import 'package:plasticdive/ui/extensions/context_extensions.dart';
+import 'package:plasticdive/ui/validators/form_validators.dart';
+import 'package:plasticdive/ui/views/how_to_play/how_to_play_view.form.dart';
 import 'package:plasticdive/ui/widgets/common/game_button/game_button.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import 'how_to_play_viewmodel.dart';
 
-class HowToPlayView extends StackedView<HowToPlayViewModel> {
+@FormView(fields: [
+  FormTextField(name: 'username', validator: FormValidators.usernameValidator),
+])
+class HowToPlayView extends StackedView<HowToPlayViewModel> with $HowToPlayView {
   final bool goToGameOnComplete;
 
   const HowToPlayView({this.goToGameOnComplete = false, super.key});
@@ -29,7 +35,7 @@ class HowToPlayView extends StackedView<HowToPlayViewModel> {
         ),
         IntroductionScreen(
           key: viewModel.introScreenKey,
-          pages: listPagesViewModel(context),
+          pages: listPagesViewModel(context, viewModel),
           bodyPadding: getResponsivePadding(context).copyWith(bottom: -50),
           globalBackgroundColor: Colors.transparent,
           showNextButton: true,
@@ -69,7 +75,7 @@ class HowToPlayView extends StackedView<HowToPlayViewModel> {
         titleTextStyle: context.titleMedium!,
       );
 
-  List<PageViewModel> listPagesViewModel(BuildContext context) => [
+  List<PageViewModel> listPagesViewModel(BuildContext context, HowToPlayViewModel viewModel) => [
         PageViewModel(
           title: "Welcome, little diver!",
           body: "You're about to discover the wonders of the oceans, but beware, some might surprise you!",
@@ -90,6 +96,32 @@ class HowToPlayView extends StackedView<HowToPlayViewModel> {
           image: Image.asset("assets/images/how-to-play/howtoplay3.png", height: quarterScreenHeight(context)),
           decoration: getDecoration(context),
         ),
+        if (viewModel.shouldDisplayUsernameForm) ...[
+          PageViewModel(
+            title: "Ready to dive?",
+            bodyWidget: Form(
+              // key: viewModel.formKey,
+              child: Column(
+                children: [
+                  Text(
+                    "Before you dive, please enter your username",
+                    style: context.bodyMedium,
+                  ),
+                  verticalSpaceMedium,
+                  TextFormField(
+                    controller: usernameController,
+                    focusNode: usernameFocusNode,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your username',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            image: Image.asset("assets/images/how-to-play/howtoplay4.png", height: quarterScreenHeight(context)),
+            decoration: getDecoration(context),
+          ),
+        ],
       ];
 
   @override
@@ -97,4 +129,15 @@ class HowToPlayView extends StackedView<HowToPlayViewModel> {
     BuildContext context,
   ) =>
       HowToPlayViewModel(goToGameOnComplete: goToGameOnComplete);
+
+  @override
+  void onViewModelReady(HowToPlayViewModel viewModel) {
+    syncFormWithViewModel(viewModel);
+  }
+
+  @override
+  void onDispose(HowToPlayViewModel viewModel) {
+    super.onDispose(viewModel);
+    disposeForm();
+  }
 }
