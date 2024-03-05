@@ -48,7 +48,6 @@ class MainApp extends StatelessWidget {
       theme: appTheme,
 
       // Routing
-      // Routing
       initialRoute: Routes.homeView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,

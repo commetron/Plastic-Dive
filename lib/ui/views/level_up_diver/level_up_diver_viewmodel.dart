@@ -1,9 +1,12 @@
 import 'package:plasticdive/app/app.locator.dart';
+import 'package:plasticdive/app/app.router.dart';
 import 'package:plasticdive/services/diver_upgrade_service.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class LevelUpDiverViewModel extends BaseViewModel {
   final _diverUpgradeService = locator<DiverUpgradeService>();
+  final _navigationService = locator<NavigationService>();
 
   int get airTankLevel => _diverUpgradeService.airTankLevel;
 
@@ -57,5 +60,10 @@ class LevelUpDiverViewModel extends BaseViewModel {
   Future upgradeDiveDepth() async {
     await _diverUpgradeService.upgradeDiveDepth();
     rebuildUi();
+  }
+
+  Future goBack() async {
+    // Quick fix to update the points in the home view
+    await _navigationService.replaceWithHomeView();
   }
 }

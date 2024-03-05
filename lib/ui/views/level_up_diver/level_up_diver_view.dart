@@ -26,6 +26,10 @@ class LevelUpDiverView extends StackedView<LevelUpDiverViewModel> {
         Scaffold(
           appBar: AppBar(
             title: const Text('Level up diver'),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => viewModel.goBack(),
+            ),
           ),
           body: Padding(
             padding: getResponsivePadding(context),
