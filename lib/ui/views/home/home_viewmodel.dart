@@ -6,7 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
-  final _routerService = locator<RouterService>();
+  final _navigationService = locator<NavigationService>();
   final _sharedPreferencesService = locator<SharedPreferencesService>();
   final _diverUpgradeService = locator<DiverUpgradeService>();
 
@@ -23,36 +23,36 @@ class HomeViewModel extends BaseViewModel {
 
   Future navigateToGame() async {
     if (!_sharedPreferencesService.hasSeenHowToPlay) {
-      return await _routerService.navigateToHowToPlayView(goToGameOnComplete: true);
+      return await _navigationService.navigateToHowToPlayView(goToGameOnComplete: true);
     }
 
-    await _routerService.navigateToGameView();
+    await _navigationService.navigateToGameView();
     rebuildUi();
   }
 
   Future navigateToHowToPlay() async {
-    return await _routerService.navigateToHowToPlayView(goToGameOnComplete: false);
+    return await _navigationService.navigateToHowToPlayView(goToGameOnComplete: false);
   }
 
   Future navigateToSettings() async {
-    await _routerService.navigateToSettingsView();
+    await _navigationService.navigateToSettingsView();
     rebuildUi(); // Make sure the sound icon is updated
   }
 
   Future navigateToAbout() async {
-    return await _routerService.navigateToAboutView();
+    return await _navigationService.navigateToAboutView();
   }
 
   Future navigateToInfocean() async {
-    return await _routerService.navigateToInfoceanView();
+    return await _navigationService.navigateToInfoceanView();
   }
 
   Future navigateToLeaderboard() async {
-    return await _routerService.navigateToLeaderboardView();
+    return await _navigationService.navigateToLeaderboardView();
   }
 
   Future navigateToLevelUpDiver() async {
-    await _routerService.navigateToLevelUpDiverView();
+    await _navigationService.navigateToLevelUpDiverView();
     rebuildUi();
   }
 

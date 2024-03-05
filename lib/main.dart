@@ -9,6 +9,7 @@ import 'package:plasticdive/app/app.locator.dart';
 import 'package:plasticdive/app/app.router.dart';
 import 'package:plasticdive/firebase_options.dart';
 import 'package:plasticdive/ui/common/app_theme.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +23,7 @@ Future<void> main() async {
   await Flame.device.fullScreen();
 
   // Stacked
-  await setupLocator(stackedRouter: stackedRouter);
+  await setupLocator();
   setupDialogUi();
   setupBottomSheetUi();
 
@@ -40,15 +41,20 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       title: 'Plastic Dive',
 
       // AppTheme
       theme: appTheme,
 
       // Routing
-      routerDelegate: stackedRouter.delegate(),
-      routeInformationParser: stackedRouter.defaultRouteParser(),
+      // Routing
+      initialRoute: Routes.homeView,
+      onGenerateRoute: StackedRouter().onGenerateRoute,
+      navigatorKey: StackedService.navigatorKey,
+      navigatorObservers: [
+        StackedService.routeObserver,
+      ],
     );
   }
 }

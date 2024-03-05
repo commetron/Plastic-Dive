@@ -6,7 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class AfterGameViewModel extends BaseViewModel {
-  final _routerService = locator<RouterService>();
+  final _navigationService = locator<NavigationService>();
   final _sharedPreferencesService = locator<SharedPreferencesService>();
   final _diverUpgradeService = locator<DiverUpgradeService>();
 
@@ -17,18 +17,18 @@ class AfterGameViewModel extends BaseViewModel {
   int get points => _sharedPreferencesService.points;
 
   Future replay() async {
-    await _routerService.replaceWithGameView();
+    await _navigationService.replaceWithGameView();
   }
 
   Future navigateToHome() async {
-    await _routerService.replaceWithHomeView();
+    await _navigationService.replaceWithHomeView();
   }
 
   Future navigateToLeaderboard() async {
-    await _routerService.replaceWithLeaderboardView();
+    await _navigationService.replaceWithLeaderboardView();
   }
 
   Future navigateToLevelUpDiver() async {
-    await _routerService.replaceWithLevelUpDiverView();
+    await _navigationService.replaceWithLevelUpDiverView();
   }
 }

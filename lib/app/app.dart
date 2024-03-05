@@ -37,7 +37,7 @@ import 'package:stacked_shared/stacked_shared.dart';
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: SnackbarService),
     LazySingleton(classType: DialogService),
-    LazySingleton(classType: RouterService),
+    LazySingleton(classType: NavigationService),
     LazySingleton(classType: LeaderboardService),
     LazySingleton(classType: DiverUpgradeService),
 // @stacked-service

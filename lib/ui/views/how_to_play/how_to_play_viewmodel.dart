@@ -8,7 +8,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class HowToPlayViewModel extends BaseViewModel {
   final _sharedPreferencesService = locator<SharedPreferencesService>();
-  final _routerService = locator<RouterService>();
+  final _navigationService = locator<NavigationService>();
 
   final bool goToGameOnComplete;
 
@@ -20,10 +20,10 @@ class HowToPlayViewModel extends BaseViewModel {
     await _sharedPreferencesService.setHasSeenHowToPlay(true);
 
     if (goToGameOnComplete) {
-      return await _routerService.replaceWithGameView();
+      return await _navigationService.replaceWithGameView();
     }
 
-    return _routerService.back();
+    return _navigationService.back();
   }
 
   Future skipToLastPage() async {

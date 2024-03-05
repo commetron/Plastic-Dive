@@ -669,7 +669,7 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
 /// See the documentation for Mockito's code generation for more information.
 class MockLeaderboardService extends _i1.Mock implements _i7.LeaderboardService {
   @override
-  _i5.Future<List<_i7.LeaderboardEntry>> getLeaderboard({int? limit = 10}) => (super.noSuchMethod(
+  _i5.Future<List<_i7.LeaderboardEntry>> getLeaderboard({int? limit = 30}) => (super.noSuchMethod(
         Invocation.method(
           #getLeaderboard,
           [],

@@ -11,7 +11,7 @@ import 'how_to_play_viewmodel.dart';
 class HowToPlayView extends StackedView<HowToPlayViewModel> {
   final bool goToGameOnComplete;
 
-  const HowToPlayView({required this.goToGameOnComplete, super.key});
+  const HowToPlayView({this.goToGameOnComplete = false, super.key});
 
   @override
   Widget builder(

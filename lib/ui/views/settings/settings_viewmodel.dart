@@ -1,4 +1,5 @@
 import 'package:plasticdive/app/app.locator.dart';
+import 'package:plasticdive/app/app.router.dart';
 import 'package:plasticdive/services/shared_preferences_service.dart';
 import 'package:plasticdive/ui/views/settings/settings_view.form.dart';
 import 'package:stacked/stacked.dart';
@@ -6,7 +7,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class SettingsViewModel extends FormViewModel with $SettingsView {
   final _sharedPreferencesService = locator<SharedPreferencesService>();
-  final _routerService = locator<RouterService>();
+  final _navigationService = locator<NavigationService>();
   final _dialogService = locator<DialogService>();
   final _snackbarService = locator<SnackbarService>();
 
@@ -24,7 +25,7 @@ class SettingsViewModel extends FormViewModel with $SettingsView {
     rebuildUi();
     // TODO apply theme
     _snackbarService.showSnackbar(message: "✅ Settings updated", duration: const Duration(milliseconds: 1500));
-    _routerService.back();
+    _navigationService.back();
   }
 
   void toggleSound(bool _) {
@@ -44,5 +45,9 @@ class SettingsViewModel extends FormViewModel with $SettingsView {
     await _sharedPreferencesService.clearPreferences();
     usernameController.text = username;
     rebuildUi();
+  }
+
+  Future goBack() async {
+    await _navigationService.replaceWithHomeView();
   }
 }

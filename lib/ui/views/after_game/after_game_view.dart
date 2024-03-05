@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:plasticdive/ui/common/app_theme.dart';
 import 'package:plasticdive/ui/common/ui_helpers.dart';
 import 'package:plasticdive/ui/extensions/context_extensions.dart';
 import 'package:plasticdive/ui/widgets/common/game_button/game_button.dart';

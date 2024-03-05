@@ -7,7 +7,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class GameViewModel extends BaseViewModel {
-  final _routerService = locator<RouterService>();
+  final _navigationService = locator<NavigationService>();
   final _leaderboardService = locator<LeaderboardService>();
   final _sharedPreferencesService = locator<SharedPreferencesService>();
 
@@ -41,7 +41,7 @@ class GameViewModel extends BaseViewModel {
         await _sharedPreferencesService.setHighScore(score);
       }
     }
-    await _routerService.replaceWithAfterGameView(isWon: isWon, score: score);
+    await _navigationService.replaceWithAfterGameView(isWon: isWon, score: score);
   }
 
   void resumeGame(DiveGame game) {

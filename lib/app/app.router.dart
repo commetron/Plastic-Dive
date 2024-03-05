@@ -1,259 +1,176 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// StackedRouterGenerator
+// StackedNavigatorGenerator
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i12;
-import 'package:stacked/stacked.dart' as _i11;
-import 'package:stacked_services/stacked_services.dart' as _i10;
+import 'package:flutter/material.dart' as _i11;
+import 'package:flutter/material.dart';
+import 'package:plasticdive/app/custom_route_transition.dart' as _i12;
+import 'package:plasticdive/ui/views/about/about_view.dart' as _i6;
+import 'package:plasticdive/ui/views/after_game/after_game_view.dart' as _i8;
+import 'package:plasticdive/ui/views/game/game_view.dart' as _i3;
+import 'package:plasticdive/ui/views/home/home_view.dart' as _i2;
+import 'package:plasticdive/ui/views/how_to_play/how_to_play_view.dart' as _i10;
+import 'package:plasticdive/ui/views/infocean/infocean_view.dart' as _i7;
+import 'package:plasticdive/ui/views/leaderboard/leaderboard_view.dart' as _i4;
+import 'package:plasticdive/ui/views/level_up_diver/level_up_diver_view.dart' as _i9;
+import 'package:plasticdive/ui/views/settings/settings_view.dart' as _i5;
+import 'package:stacked/stacked.dart' as _i1;
+import 'package:stacked_services/stacked_services.dart' as _i13;
 
-import '../ui/views/about/about_view.dart' as _i5;
-import '../ui/views/after_game/after_game_view.dart' as _i7;
-import '../ui/views/game/game_view.dart' as _i2;
-import '../ui/views/home/home_view.dart' as _i1;
-import '../ui/views/how_to_play/how_to_play_view.dart' as _i9;
-import '../ui/views/infocean/infocean_view.dart' as _i6;
-import '../ui/views/leaderboard/leaderboard_view.dart' as _i3;
-import '../ui/views/level_up_diver/level_up_diver_view.dart' as _i8;
-import '../ui/views/settings/settings_view.dart' as _i4;
-import 'custom_route_transition.dart' as _i13;
+class Routes {
+  static const homeView = '/';
 
-final stackedRouter = StackedRouterWeb(navigatorKey: _i10.StackedService.navigatorKey);
+  static const gameView = '/play';
 
-class StackedRouterWeb extends _i11.RootStackRouter {
-  StackedRouterWeb({_i12.GlobalKey<_i12.NavigatorState>? navigatorKey}) : super(navigatorKey);
+  static const leaderboardView = '/leaderboard';
 
-  @override
-  final Map<String, _i11.PageFactory> pagesMap = {
-    HomeViewRoute.name: (routeData) {
-      return _i11.CustomPage<dynamic>(
-        routeData: routeData,
-        child: const _i1.HomeView(),
-        transitionsBuilder: _i13.CustomRouteTransition.sharedAxis,
-        opaque: true,
-        barrierDismissible: false,
+  static const settingsView = '/settings';
+
+  static const aboutView = '/about';
+
+  static const infoceanView = '/infocean';
+
+  static const afterGameView = '/well-played';
+
+  static const levelUpDiverView = '/level-up';
+
+  static const howToPlayView = '/how-to-play';
+
+  static const all = <String>{
+    homeView,
+    gameView,
+    leaderboardView,
+    settingsView,
+    aboutView,
+    infoceanView,
+    afterGameView,
+    levelUpDiverView,
+    howToPlayView,
+  };
+}
+
+class StackedRouter extends _i1.RouterBase {
+  final _routes = <_i1.RouteDef>[
+    _i1.RouteDef(
+      Routes.homeView,
+      page: _i2.HomeView,
+    ),
+    _i1.RouteDef(
+      Routes.gameView,
+      page: _i3.GameView,
+    ),
+    _i1.RouteDef(
+      Routes.leaderboardView,
+      page: _i4.LeaderboardView,
+    ),
+    _i1.RouteDef(
+      Routes.settingsView,
+      page: _i5.SettingsView,
+    ),
+    _i1.RouteDef(
+      Routes.aboutView,
+      page: _i6.AboutView,
+    ),
+    _i1.RouteDef(
+      Routes.infoceanView,
+      page: _i7.InfoceanView,
+    ),
+    _i1.RouteDef(
+      Routes.afterGameView,
+      page: _i8.AfterGameView,
+    ),
+    _i1.RouteDef(
+      Routes.levelUpDiverView,
+      page: _i9.LevelUpDiverView,
+    ),
+    _i1.RouteDef(
+      Routes.howToPlayView,
+      page: _i10.HowToPlayView,
+    ),
+  ];
+
+  final _pagesMap = <Type, _i1.StackedRouteFactory>{
+    _i2.HomeView: (data) {
+      return _i11.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) => const _i2.HomeView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i12.CustomRouteTransition.sharedAxis,
       );
     },
-    GameViewRoute.name: (routeData) {
-      return _i11.CustomPage<dynamic>(
-        routeData: routeData,
-        child: const _i2.GameView(),
-        transitionsBuilder: _i13.CustomRouteTransition.sharedAxis,
-        opaque: true,
-        barrierDismissible: false,
+    _i3.GameView: (data) {
+      return _i11.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) => const _i3.GameView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i12.CustomRouteTransition.sharedAxis,
       );
     },
-    LeaderboardViewRoute.name: (routeData) {
-      return _i11.CustomPage<dynamic>(
-        routeData: routeData,
-        child: const _i3.LeaderboardView(),
-        transitionsBuilder: _i13.CustomRouteTransition.sharedAxis,
-        opaque: true,
-        barrierDismissible: false,
+    _i4.LeaderboardView: (data) {
+      return _i11.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) => const _i4.LeaderboardView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i12.CustomRouteTransition.sharedAxis,
       );
     },
-    SettingsViewRoute.name: (routeData) {
-      return _i11.CustomPage<dynamic>(
-        routeData: routeData,
-        child: const _i4.SettingsView(),
-        transitionsBuilder: _i13.CustomRouteTransition.sharedAxis,
-        opaque: true,
-        barrierDismissible: false,
+    _i5.SettingsView: (data) {
+      return _i11.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) => const _i5.SettingsView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i12.CustomRouteTransition.sharedAxis,
       );
     },
-    AboutViewRoute.name: (routeData) {
-      return _i11.CustomPage<dynamic>(
-        routeData: routeData,
-        child: const _i5.AboutView(),
-        transitionsBuilder: _i13.CustomRouteTransition.sharedAxis,
-        opaque: true,
-        barrierDismissible: false,
+    _i6.AboutView: (data) {
+      return _i11.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) => const _i6.AboutView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i12.CustomRouteTransition.sharedAxis,
       );
     },
-    InfoceanViewRoute.name: (routeData) {
-      return _i11.CustomPage<dynamic>(
-        routeData: routeData,
-        child: const _i6.InfoceanView(),
-        transitionsBuilder: _i13.CustomRouteTransition.sharedAxis,
-        opaque: true,
-        barrierDismissible: false,
+    _i7.InfoceanView: (data) {
+      return _i11.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) => const _i7.InfoceanView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i12.CustomRouteTransition.sharedAxis,
       );
     },
-    AfterGameViewRoute.name: (routeData) {
-      final args = routeData.argsAs<AfterGameViewArgs>();
-      return _i11.CustomPage<dynamic>(
-        routeData: routeData,
-        child: _i7.AfterGameView(
-          isWon: args.isWon,
-          score: args.score,
-          key: args.key,
-        ),
-        transitionsBuilder: _i13.CustomRouteTransition.sharedAxis,
-        opaque: true,
-        barrierDismissible: false,
+    _i8.AfterGameView: (data) {
+      final args = data.getArgs<AfterGameViewArguments>(nullOk: false);
+      return _i11.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) => _i8.AfterGameView(isWon: args.isWon, score: args.score, key: args.key),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i12.CustomRouteTransition.sharedAxis,
       );
     },
-    LevelUpDiverViewRoute.name: (routeData) {
-      return _i11.CustomPage<dynamic>(
-        routeData: routeData,
-        child: const _i8.LevelUpDiverView(),
-        transitionsBuilder: _i13.CustomRouteTransition.sharedAxis,
-        opaque: true,
-        barrierDismissible: false,
+    _i9.LevelUpDiverView: (data) {
+      return _i11.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) => const _i9.LevelUpDiverView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i12.CustomRouteTransition.sharedAxis,
       );
     },
-    HowToPlayViewRoute.name: (routeData) {
-      final args = routeData.argsAs<HowToPlayViewArgs>();
-      return _i11.CustomPage<dynamic>(
-        routeData: routeData,
-        child: _i9.HowToPlayView(
-          goToGameOnComplete: args.goToGameOnComplete,
-          key: args.key,
-        ),
-        transitionsBuilder: _i13.CustomRouteTransition.sharedAxis,
-        opaque: true,
-        barrierDismissible: false,
+    _i10.HowToPlayView: (data) {
+      final args = data.getArgs<HowToPlayViewArguments>(
+        orElse: () => const HowToPlayViewArguments(),
+      );
+      return _i11.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) => _i10.HowToPlayView(goToGameOnComplete: args.goToGameOnComplete, key: args.key),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i12.CustomRouteTransition.sharedAxis,
       );
     },
   };
 
   @override
-  List<_i11.RouteConfig> get routes => [
-        _i11.RouteConfig(
-          HomeViewRoute.name,
-          path: '/',
-        ),
-        _i11.RouteConfig(
-          GameViewRoute.name,
-          path: '/play',
-        ),
-        _i11.RouteConfig(
-          LeaderboardViewRoute.name,
-          path: '/leaderboard',
-        ),
-        _i11.RouteConfig(
-          SettingsViewRoute.name,
-          path: '/settings',
-        ),
-        _i11.RouteConfig(
-          AboutViewRoute.name,
-          path: '/about',
-        ),
-        _i11.RouteConfig(
-          InfoceanViewRoute.name,
-          path: '/infocean',
-        ),
-        _i11.RouteConfig(
-          AfterGameViewRoute.name,
-          path: '/well-played',
-        ),
-        _i11.RouteConfig(
-          LevelUpDiverViewRoute.name,
-          path: '/level-up',
-        ),
-        _i11.RouteConfig(
-          HowToPlayViewRoute.name,
-          path: '/how-to-play',
-        ),
-      ];
+  List<_i1.RouteDef> get routes => _routes;
+
+  @override
+  Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-/// generated route for
-/// [_i1.HomeView]
-class HomeViewRoute extends _i11.PageRouteInfo<void> {
-  const HomeViewRoute()
-      : super(
-          HomeViewRoute.name,
-          path: '/',
-        );
-
-  static const String name = 'HomeView';
-}
-
-/// generated route for
-/// [_i2.GameView]
-class GameViewRoute extends _i11.PageRouteInfo<void> {
-  const GameViewRoute()
-      : super(
-          GameViewRoute.name,
-          path: '/play',
-        );
-
-  static const String name = 'GameView';
-}
-
-/// generated route for
-/// [_i3.LeaderboardView]
-class LeaderboardViewRoute extends _i11.PageRouteInfo<void> {
-  const LeaderboardViewRoute()
-      : super(
-          LeaderboardViewRoute.name,
-          path: '/leaderboard',
-        );
-
-  static const String name = 'LeaderboardView';
-}
-
-/// generated route for
-/// [_i4.SettingsView]
-class SettingsViewRoute extends _i11.PageRouteInfo<void> {
-  const SettingsViewRoute()
-      : super(
-          SettingsViewRoute.name,
-          path: '/settings',
-        );
-
-  static const String name = 'SettingsView';
-}
-
-/// generated route for
-/// [_i5.AboutView]
-class AboutViewRoute extends _i11.PageRouteInfo<void> {
-  const AboutViewRoute()
-      : super(
-          AboutViewRoute.name,
-          path: '/about',
-        );
-
-  static const String name = 'AboutView';
-}
-
-/// generated route for
-/// [_i6.InfoceanView]
-class InfoceanViewRoute extends _i11.PageRouteInfo<void> {
-  const InfoceanViewRoute()
-      : super(
-          InfoceanViewRoute.name,
-          path: '/infocean',
-        );
-
-  static const String name = 'InfoceanView';
-}
-
-/// generated route for
-/// [_i7.AfterGameView]
-class AfterGameViewRoute extends _i11.PageRouteInfo<AfterGameViewArgs> {
-  AfterGameViewRoute({
-    required bool isWon,
-    int? score,
-    _i12.Key? key,
-  }) : super(
-          AfterGameViewRoute.name,
-          path: '/well-played',
-          args: AfterGameViewArgs(
-            isWon: isWon,
-            score: score,
-            key: key,
-          ),
-        );
-
-  static const String name = 'AfterGameView';
-}
-
-class AfterGameViewArgs {
-  const AfterGameViewArgs({
+class AfterGameViewArguments {
+  const AfterGameViewArguments({
     required this.isWon,
     this.score,
     this.key,
@@ -263,216 +180,250 @@ class AfterGameViewArgs {
 
   final int? score;
 
-  final _i12.Key? key;
+  final _i11.Key? key;
 
   @override
   String toString() {
-    return 'AfterGameViewArgs{isWon: $isWon, score: $score, key: $key}';
+    return '{"isWon": "$isWon", "score": "$score", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant AfterGameViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.isWon == isWon && other.score == score && other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return isWon.hashCode ^ score.hashCode ^ key.hashCode;
   }
 }
 
-/// generated route for
-/// [_i8.LevelUpDiverView]
-class LevelUpDiverViewRoute extends _i11.PageRouteInfo<void> {
-  const LevelUpDiverViewRoute()
-      : super(
-          LevelUpDiverViewRoute.name,
-          path: '/level-up',
-        );
-
-  static const String name = 'LevelUpDiverView';
-}
-
-/// generated route for
-/// [_i9.HowToPlayView]
-class HowToPlayViewRoute extends _i11.PageRouteInfo<HowToPlayViewArgs> {
-  HowToPlayViewRoute({
-    required bool goToGameOnComplete,
-    _i12.Key? key,
-  }) : super(
-          HowToPlayViewRoute.name,
-          path: '/how-to-play',
-          args: HowToPlayViewArgs(
-            goToGameOnComplete: goToGameOnComplete,
-            key: key,
-          ),
-        );
-
-  static const String name = 'HowToPlayView';
-}
-
-class HowToPlayViewArgs {
-  const HowToPlayViewArgs({
-    required this.goToGameOnComplete,
+class HowToPlayViewArguments {
+  const HowToPlayViewArguments({
+    this.goToGameOnComplete = false,
     this.key,
   });
 
   final bool goToGameOnComplete;
 
-  final _i12.Key? key;
+  final _i11.Key? key;
 
   @override
   String toString() {
-    return 'HowToPlayViewArgs{goToGameOnComplete: $goToGameOnComplete, key: $key}';
+    return '{"goToGameOnComplete": "$goToGameOnComplete", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant HowToPlayViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.goToGameOnComplete == goToGameOnComplete && other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return goToGameOnComplete.hashCode ^ key.hashCode;
   }
 }
 
-extension RouterStateExtension on _i10.RouterService {
-  Future<dynamic> navigateToHomeView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return navigateTo(
-      const HomeViewRoute(),
-      onFailure: onFailure,
-    );
+extension NavigatorStateExtension on _i13.NavigationService {
+  Future<dynamic> navigateToHomeView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.homeView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> navigateToGameView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return navigateTo(
-      const GameViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> navigateToGameView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.gameView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> navigateToLeaderboardView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return navigateTo(
-      const LeaderboardViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> navigateToLeaderboardView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.leaderboardView,
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> navigateToSettingsView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return navigateTo(
-      const SettingsViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> navigateToSettingsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.settingsView,
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> navigateToAboutView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return navigateTo(
-      const AboutViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> navigateToAboutView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.aboutView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> navigateToInfoceanView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return navigateTo(
-      const InfoceanViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> navigateToInfoceanView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.infoceanView,
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> navigateToAfterGameView({
     required bool isWon,
     int? score,
-    _i12.Key? key,
-    void Function(_i11.NavigationFailure)? onFailure,
+    _i11.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   }) async {
-    return navigateTo(
-      AfterGameViewRoute(
-        isWon: isWon,
-        score: score,
-        key: key,
-      ),
-      onFailure: onFailure,
-    );
+    return navigateTo<dynamic>(Routes.afterGameView,
+        arguments: AfterGameViewArguments(isWon: isWon, score: score, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
-  Future<dynamic> navigateToLevelUpDiverView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return navigateTo(
-      const LevelUpDiverViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> navigateToLevelUpDiverView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.levelUpDiverView,
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> navigateToHowToPlayView({
-    required bool goToGameOnComplete,
-    _i12.Key? key,
-    void Function(_i11.NavigationFailure)? onFailure,
+    bool goToGameOnComplete = false,
+    _i11.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   }) async {
-    return navigateTo(
-      HowToPlayViewRoute(
-        goToGameOnComplete: goToGameOnComplete,
-        key: key,
-      ),
-      onFailure: onFailure,
-    );
+    return navigateTo<dynamic>(Routes.howToPlayView,
+        arguments: HowToPlayViewArguments(goToGameOnComplete: goToGameOnComplete, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
-  Future<dynamic> replaceWithHomeView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return replaceWith(
-      const HomeViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> replaceWithHomeView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.homeView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> replaceWithGameView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return replaceWith(
-      const GameViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> replaceWithGameView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.gameView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> replaceWithLeaderboardView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return replaceWith(
-      const LeaderboardViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> replaceWithLeaderboardView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.leaderboardView,
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> replaceWithSettingsView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return replaceWith(
-      const SettingsViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> replaceWithSettingsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.settingsView,
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> replaceWithAboutView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return replaceWith(
-      const AboutViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> replaceWithAboutView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.aboutView, id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
-  Future<dynamic> replaceWithInfoceanView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return replaceWith(
-      const InfoceanViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> replaceWithInfoceanView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.infoceanView,
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> replaceWithAfterGameView({
     required bool isWon,
     int? score,
-    _i12.Key? key,
-    void Function(_i11.NavigationFailure)? onFailure,
+    _i11.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   }) async {
-    return replaceWith(
-      AfterGameViewRoute(
-        isWon: isWon,
-        score: score,
-        key: key,
-      ),
-      onFailure: onFailure,
-    );
+    return replaceWith<dynamic>(Routes.afterGameView,
+        arguments: AfterGameViewArguments(isWon: isWon, score: score, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 
-  Future<dynamic> replaceWithLevelUpDiverView({void Function(_i11.NavigationFailure)? onFailure}) async {
-    return replaceWith(
-      const LevelUpDiverViewRoute(),
-      onFailure: onFailure,
-    );
+  Future<dynamic> replaceWithLevelUpDiverView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.levelUpDiverView,
+        id: routerId, preventDuplicates: preventDuplicates, parameters: parameters, transition: transition);
   }
 
   Future<dynamic> replaceWithHowToPlayView({
-    required bool goToGameOnComplete,
-    _i12.Key? key,
-    void Function(_i11.NavigationFailure)? onFailure,
+    bool goToGameOnComplete = false,
+    _i11.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)? transition,
   }) async {
-    return replaceWith(
-      HowToPlayViewRoute(
-        goToGameOnComplete: goToGameOnComplete,
-        key: key,
-      ),
-      onFailure: onFailure,
-    );
+    return replaceWith<dynamic>(Routes.howToPlayView,
+        arguments: HowToPlayViewArguments(goToGameOnComplete: goToGameOnComplete, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
   }
 }
