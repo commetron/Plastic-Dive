@@ -79,7 +79,8 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
       await camera.viewport.add(FpsTextComponent(position: Vector2(gameWidth - 20, 20), anchor: Anchor.topRight));
     }
 
-    await camera.viewport.add(Score(scoreNotifier: score, previousHighScore: previousHighScore));
+    final highScoreImage = await images.load('ui/high-score.png');
+    await camera.viewport.add(Score(scoreNotifier: score, previousHighScore: previousHighScore, highScoreStampImage: highScoreImage));
     await camera.viewport.add(AirTank(
         remainingTimeNotifier: remainingTime,
         initialTimeInSeconds: Constants.airTankCapacityInSeconds[airTankLevel],
