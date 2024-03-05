@@ -138,3 +138,13 @@ If you
 - want to share the game, feel free to do so! We would be happy to see our game being played by many people.
 - want to send us a gift, go snorkeling or diving, collect some garbage in the ocean, then send us a picture! This would be our best gift 🌊
 
+## 📼 Video transcript 
+
+Our earth is so beautiful and inspiring. Every day, we are amazed by the beauty of the landscapes, the diversity of the animals, and the colors of the oceans.
+Oceans are so deep and full of life... But also, of plastic. And let's be honest, we are all responsible for this. We are all part of the problem, but we can also be part of the solution.
+
+Introducing you: Plastic Dive, our game for the Global Gamers Challenge! Dive deep into vibrant underwater environments, and discover the colorful lives who are fighting against this plastic. Your mission? Clean up the ocean by collecting and disposing of plastic waste. The more waste you collect, the more points you will have to spend to improve your diver to dive deeper, faster, longer! But make sure to be back at the surface before your oxygen tank is empty or you will lose the game and all the points you have collected… and all your garbage will be back in the ocean. Be the best diver and reach the top of the leaderboard 🏆
+
+But Plastic Dive is not just a game – it's a call to action. As you progress through the game, you'll unlock real-world tips and facts about plastic pollution, empowering you to make positive changes in your own life to reduce plastic waste and protect our oceans.
+
+Get ready to embark on a meaningful adventure that educates, entertains, and inspires change. Try "Plastic Dive" now and join the fight against plastic pollution – because together, we can make a difference for our planet and its precious marine ecosystems.
