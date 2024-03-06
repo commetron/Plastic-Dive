@@ -11,7 +11,7 @@ class AngelFish extends Animal {
     super.anchor,
   });
 
-  static const double minDepth = 3000;
+  static const double minDepth = 2000;
   static const double maxDepth = 6000;
 
   @override

@@ -123,112 +123,112 @@ abstract class Animal extends SpriteComponent with HasGameReference<DiveGame> {
     switch (animalType) {
       case AnimalType.clownFish:
         return ClownFish(
-            position: Vector2(positionX, randBetween(ClownFish.minDepth, min(ClownFish.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(ClownFish.minDepth, min(ClownFish.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.coral1:
         return Coral(
-            position: Vector2(positionX, randBetween(Coral.minDepth, min(Coral.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(Coral.minDepth, min(Coral.maxDepth, maxWorldDeepness - 100), random)),
             number: 1,
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.coral2:
         return Coral(
-            position: Vector2(positionX, randBetween(Coral.minDepth, min(Coral.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(Coral.minDepth, min(Coral.maxDepth, maxWorldDeepness - 100), random)),
             number: 2,
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.coral3:
         return Coral(
-            position: Vector2(positionX, randBetween(Coral.minDepth, min(Coral.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(Coral.minDepth, min(Coral.maxDepth, maxWorldDeepness - 100), random)),
             number: 3,
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.exoticFish:
         return ExoticFish(
-            position: Vector2(positionX, randBetween(ExoticFish.minDepth, min(ExoticFish.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(ExoticFish.minDepth, min(ExoticFish.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.globeFish:
         return GlobeFish(
-            position: Vector2(positionX, randBetween(GlobeFish.minDepth, min(GlobeFish.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(GlobeFish.minDepth, min(GlobeFish.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.jellyfish:
         return JellyFish(
-            position: Vector2(positionX, randBetween(JellyFish.minDepth, min(JellyFish.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(JellyFish.minDepth, min(JellyFish.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.shark:
         return Shark(
-            position: Vector2(positionX, randBetween(Shark.minDepth, min(Shark.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(Shark.minDepth, min(Shark.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.anglerFish:
         return AnglerFish(
-            position: Vector2(positionX, randBetween(AnglerFish.minDepth, min(AnglerFish.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(AnglerFish.minDepth, min(AnglerFish.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.whale:
         return Whale(
-            position: Vector2(positionX, randBetween(Whale.minDepth, min(Whale.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(Whale.minDepth, min(Whale.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.angelFish:
         return AngelFish(
-            position: Vector2(positionX, randBetween(AngelFish.minDepth, min(AngelFish.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(AngelFish.minDepth, min(AngelFish.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.dolphin:
         return Dolphin(
-            position: Vector2(positionX, randBetween(Dolphin.minDepth, min(Dolphin.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(Dolphin.minDepth, min(Dolphin.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.giantSquid:
         return GiantSquid(
-            position: Vector2(positionX, randBetween(GiantSquid.minDepth, min(GiantSquid.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(GiantSquid.minDepth, min(GiantSquid.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.hammerheadShark:
         return HammerheadShark(
-            position: Vector2(positionX, randBetween(HammerheadShark.minDepth, min(HammerheadShark.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(HammerheadShark.minDepth, min(HammerheadShark.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.lionFish:
         return LionFish(
-            position: Vector2(positionX, randBetween(LionFish.minDepth, min(LionFish.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(LionFish.minDepth, min(LionFish.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.moonFish:
         return MoonFish(
-            position: Vector2(positionX, randBetween(MoonFish.minDepth, min(MoonFish.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(MoonFish.minDepth, min(MoonFish.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.parrotFish:
         return ParrotFish(
-            position: Vector2(positionX, randBetween(ParrotFish.minDepth, min(ParrotFish.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(ParrotFish.minDepth, min(ParrotFish.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.seaHorse:
         return SeaHorse(
-            position: Vector2(positionX, randBetween(SeaHorse.minDepth, min(SeaHorse.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(SeaHorse.minDepth, min(SeaHorse.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.seaTurtle:
         return SeaTurtle(
-            position: Vector2(positionX, randBetween(SeaTurtle.minDepth, min(SeaTurtle.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(SeaTurtle.minDepth, min(SeaTurtle.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.whaleShark:
         return WhaleShark(
-            position: Vector2(positionX, randBetween(WhaleShark.minDepth, min(WhaleShark.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(WhaleShark.minDepth, min(WhaleShark.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
       case AnimalType.tunaFish:
       default:
         // TODO not good that the abstraction knows the implementations
         return TunaFish(
-            position: Vector2(positionX, randBetween(TunaFish.minDepth, min(TunaFish.maxDepth, maxWorldDeepness), random)),
+            position: Vector2(positionX, randBetween(TunaFish.minDepth, min(TunaFish.maxDepth, maxWorldDeepness - 100), random)),
             isGoingRight: isGoingRight,
             maxWorldDeepness: maxWorldDeepness);
     }

@@ -12,7 +12,7 @@ class Dolphin extends Animal {
   });
 
   static const double minDepth = 30;
-  static const double maxDepth = 300;
+  static const double maxDepth = 1000;
 
   @override
   String get image => 'dolphin.png';
