@@ -6,8 +6,8 @@
 
 import 'package:stacked_services/stacked_services.dart';
 
-import '../ui/dialogs/infocean_details/infocean_details_dialog.dart';
 import 'app.locator.dart';
+import '../ui/dialogs/infocean_details/infocean_details_dialog.dart';
 
 enum DialogType {
   infoceanDetails,

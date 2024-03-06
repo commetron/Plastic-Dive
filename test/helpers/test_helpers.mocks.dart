@@ -764,6 +764,13 @@ class MockSharedPreferencesService extends _i1.Mock implements _i8.SharedPrefere
       ) as bool);
 
   @override
+  List<String> get unlockedGarbage => (super.noSuchMethod(
+        Invocation.getter(#unlockedGarbage),
+        returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
+      ) as List<String>);
+
+  @override
   _i5.Future<void> init() => (super.noSuchMethod(
         Invocation.method(
           #init,
@@ -826,6 +833,16 @@ class MockSharedPreferencesService extends _i1.Mock implements _i8.SharedPrefere
         ),
         returnValueForMissingStub: null,
       );
+
+  @override
+  _i5.Future<dynamic> addUnlockedGarbage(Map<String, int>? collectedGarbage) => (super.noSuchMethod(
+        Invocation.method(
+          #addUnlockedGarbage,
+          [collectedGarbage],
+        ),
+        returnValue: _i5.Future<dynamic>.value(),
+        returnValueForMissingStub: _i5.Future<dynamic>.value(),
+      ) as _i5.Future<dynamic>);
 
   @override
   _i5.Future<dynamic> clearPreferences() => (super.noSuchMethod(

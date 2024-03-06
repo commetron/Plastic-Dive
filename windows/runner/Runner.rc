@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", " com.nomaddev" "\0"
-            VALUE "FileDescription", "plasticdiver" "\0"
+            VALUE "FileDescription", "plasticdive" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "plasticdiver" "\0"
+            VALUE "InternalName", "plasticdive" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024  com.nomaddev. All rights reserved." "\0"
-            VALUE "OriginalFilename", "plasticdiver.exe" "\0"
-            VALUE "ProductName", "plasticdiver" "\0"
+            VALUE "OriginalFilename", "plasticdive.exe" "\0"
+            VALUE "ProductName", "plasticdive" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
