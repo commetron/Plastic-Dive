@@ -16,4 +16,7 @@ class PlasticBag extends Garbage {
 
   @override
   double get garbageWidth => 50;
+
+  @override
+  String get name => 'Plastic bag';
 }

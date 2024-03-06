@@ -66,12 +66,31 @@ class SharedPreferencesService extends InitializableDependency {
 
   toggleSoundEnabled() async => await _saveToDisk(_isSoundEnabledKey, !isSoundEnabled);
 
+  static const _unlockedGarbageKey = 'unlockedGarbage';
+
+  List<String> get unlockedGarbage => _getListFromDisk(_unlockedGarbageKey) ?? [];
+
+  Future addUnlockedGarbage(Map<String, int> collectedGarbage) {
+    var list = unlockedGarbage;
+    collectedGarbage.forEach((key, value) {
+      if (!list.contains(key)) {
+        list.add(key);
+      }
+    });
+    return _saveToDisk(_unlockedGarbageKey, list);
+  }
+
   Future clearPreferences() async {
     await _preferences.clear();
   }
 
   dynamic _getFromDisk(String key) {
     var value = _preferences.get(key);
+    return value;
+  }
+
+  dynamic _getListFromDisk(String key) {
+    var value = _preferences.getStringList(key);
     return value;
   }
 

@@ -59,33 +59,37 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
       InfoceanViewModel();
 
   _buildCard(BuildContext context, InfoceanViewModel viewModel, int index) {
-    return Card(
-      color: Colors.white.withOpacity(0.7),
-      child: Stack(
-        children: [
-          _buildImage(context, viewModel, index),
-          _buildPoints(context, viewModel, index),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildName(context, viewModel, index),
-                verticalSpaceSmall,
-                _buildLifeLong(context, viewModel, index),
-                verticalSpaceMedium,
-                Expanded(
-                  child: Text(
-                    viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? viewModel.source[index].description : "???",
-                    style: context.bodyMedium,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 10,
+    return InkWell(
+      onTap: viewModel.isCardUnlocked(viewModel.source[index]) ? () => viewModel.showInfoceanDetails(index) : null,
+      child: Card(
+        color: Colors.white.withOpacity(0.7),
+        child: Stack(
+          children: [
+            _buildImage(context, viewModel, index),
+            _buildPoints(context, viewModel, index),
+            _buildMoreInfo(context, viewModel, index),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildName(context, viewModel, index),
+                  verticalSpaceSmall,
+                  _buildLifeLong(context, viewModel, index),
+                  verticalSpaceMedium,
+                  Expanded(
+                    child: Text(
+                      viewModel.isCardUnlocked(viewModel.source[index]) ? viewModel.source[index].description : "???",
+                      style: context.bodyMedium,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 10,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -102,7 +106,7 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
             viewModel.source[index].imagePath,
             height: 100,
             width: 100,
-            color: viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? null : Colors.grey,
+            color: viewModel.isCardUnlocked(viewModel.source[index]) ? null : Colors.grey,
             // colorBlendMode: BlendMode.saturation,
           ),
         ),
@@ -112,16 +116,18 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
 
   Widget _buildName(BuildContext context, InfoceanViewModel viewModel, int index) {
     return Text(
-      viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel ? viewModel.source[index].name : "???",
+      viewModel.isCardUnlocked(viewModel.source[index]) ? viewModel.source[index].name : "???",
       style: context.titleMedium,
     );
   }
 
   Widget _buildLifeLong(BuildContext context, InfoceanViewModel viewModel, int index) {
     return Chip(
-      label: Text(viewModel.diveDepthLevel >= viewModel.source[index].requiredLevel
+      label: Text(viewModel.isCardUnlocked(viewModel.source[index])
           ? viewModel.source[index].lifeLong
-          : "Unlock: Dive level ${viewModel.source[index].requiredLevel}"),
+          : viewModel.source[index].requiredLevel == null
+              ? "Collect this garbage to unlock it"
+              : "Unlock: Dive level ${viewModel.source[index].requiredLevel}"),
     );
   }
 
@@ -132,11 +138,23 @@ class InfoceanView extends StackedView<InfoceanViewModel> {
         left: 20,
         child: Chip(
           padding: const EdgeInsets.all(5),
-          label: Text("${viewModel.source[index].points} points", style: context.bodySmall),
+          label: Text(viewModel.isCardUnlocked(viewModel.source[index]) ? "${viewModel.source[index].points} points" : "??? points",
+              style: context.bodySmall),
         ),
       );
     } else {
       return const SizedBox.shrink();
     }
+  }
+
+  Widget _buildMoreInfo(BuildContext context, InfoceanViewModel viewModel, int index) {
+    return Positioned(
+      top: 25,
+      right: 20,
+      child: Text(
+        viewModel.isCardUnlocked(viewModel.source[index]) ? "More info" : "",
+        style: context.bodyMedium,
+      ),
+    );
   }
 }

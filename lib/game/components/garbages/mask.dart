@@ -16,4 +16,7 @@ class Mask extends Garbage {
 
   @override
   double get garbageWidth => 25;
+
+  @override
+  String get name => 'Mask';
 }

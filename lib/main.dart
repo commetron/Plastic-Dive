@@ -47,6 +47,8 @@ class MainApp extends StatelessWidget {
       // AppTheme
       theme: appTheme,
 
+      debugShowCheckedModeBanner: false,
+
       // Routing
       initialRoute: Routes.homeView,
       onGenerateRoute: StackedRouter().onGenerateRoute,

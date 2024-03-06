@@ -16,4 +16,7 @@ class Straw extends Garbage {
 
   @override
   double get garbageWidth => 35;
+
+  @override
+  String get name => 'Straw';
 }

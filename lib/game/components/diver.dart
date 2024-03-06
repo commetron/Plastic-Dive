@@ -254,6 +254,7 @@ class Diver extends SpriteAnimationComponent with HasGameReference<DiveGame>, Co
       }
       // TODO Pass addScore method to Diver constructor
       game.score.value += garbage.points;
+      game.addCollectedGarbage(garbage);
     });
   }
 

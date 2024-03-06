@@ -16,4 +16,7 @@ class SodaCan extends Garbage {
 
   @override
   double get garbageWidth => 40;
+
+  @override
+  String get name => 'Soda can';
 }

@@ -16,4 +16,7 @@ class Cutlery extends Garbage {
 
   @override
   double get garbageWidth => 35;
+
+  @override
+  String get name => 'Plastic cutlery';
 }

@@ -16,4 +16,7 @@ class Lid extends Garbage {
 
   @override
   double get garbageWidth => 20;
+
+  @override
+  String get name => 'Lid';
 }

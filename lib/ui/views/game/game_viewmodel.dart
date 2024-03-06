@@ -25,7 +25,7 @@ class GameViewModel extends BaseViewModel {
 
   bool get isSoundEnabled => _sharedPreferencesService.isSoundEnabled;
 
-  Future onGameOver(bool isWon, int? score) async {
+  Future onGameOver(bool isWon, int? score, Map<String, int>? collectedGarbage) async {
     if (isWon && score != null) {
       await _sharedPreferencesService.addPoints(score);
       await _leaderboardService.addScore(LeaderboardEntry(
@@ -39,6 +39,10 @@ class GameViewModel extends BaseViewModel {
 
       if (score > highScore) {
         await _sharedPreferencesService.setHighScore(score);
+      }
+
+      if (collectedGarbage?.isNotEmpty == true) {
+        await _sharedPreferencesService.addUnlockedGarbage(collectedGarbage!);
       }
     }
     await _navigationService.replaceWithAfterGameView(isWon: isWon, score: score);

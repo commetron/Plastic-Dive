@@ -16,4 +16,7 @@ class ShampooBottle extends Garbage {
 
   @override
   double get garbageWidth => 45;
+
+  @override
+  String get name => 'Shampoo bottle';
 }

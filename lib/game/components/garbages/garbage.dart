@@ -48,6 +48,7 @@ enum GarbageType {
 }
 
 abstract class Garbage extends SpriteComponent with HasGameReference<DiveGame>, CollisionCallbacks {
+  abstract final String name;
   abstract final int points;
 
   ColorEffect? effect;

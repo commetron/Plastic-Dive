@@ -25,7 +25,7 @@ class SettingsViewModel extends FormViewModel with $SettingsView {
     rebuildUi();
     // TODO apply theme
     _snackbarService.showSnackbar(message: "✅ Settings updated", duration: const Duration(milliseconds: 1500));
-    _navigationService.back();
+    _navigationService.replaceWithHomeView();
   }
 
   void toggleSound(bool _) {

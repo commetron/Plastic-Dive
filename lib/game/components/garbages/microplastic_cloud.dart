@@ -16,4 +16,7 @@ class MicroplasticCloud extends Garbage {
 
   @override
   double get garbageWidth => 75;
+
+  @override
+  String get name => 'Microplastic';
 }

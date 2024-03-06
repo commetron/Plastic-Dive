@@ -3,7 +3,7 @@ import 'package:plasticdive/services/diver_upgrade_service.dart';
 import 'package:plasticdive/services/leaderboard_service.dart';
 import 'package:plasticdive/services/shared_preferences_service.dart';
 import 'package:plasticdive/ui/bottom_sheets/notice/notice_sheet.dart';
-import 'package:plasticdive/ui/dialogs/info_alert/info_alert_dialog.dart';
+import 'package:plasticdive/ui/dialogs/infocean_details/infocean_details_dialog.dart';
 import 'package:plasticdive/ui/views/about/about_view.dart';
 import 'package:plasticdive/ui/views/after_game/after_game_view.dart';
 import 'package:plasticdive/ui/views/game/game_view.dart';
@@ -29,7 +29,7 @@ import 'package:stacked_shared/stacked_shared.dart';
     CustomRoute(page: AfterGameView, path: '/well-played', transitionsBuilder: CustomRouteTransition.sharedAxis),
     CustomRoute(page: LevelUpDiverView, path: '/level-up', transitionsBuilder: CustomRouteTransition.sharedAxis),
     CustomRoute(page: HowToPlayView, path: '/how-to-play', transitionsBuilder: CustomRouteTransition.sharedAxis),
-// @stacked-route
+    // @stacked-route
   ],
   dependencies: [
     InitializableSingleton(classType: SharedPreferencesService),
@@ -40,14 +40,14 @@ import 'package:stacked_shared/stacked_shared.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: LeaderboardService),
     LazySingleton(classType: DiverUpgradeService),
-// @stacked-service
+    // @stacked-service
   ],
   bottomsheets: [
     StackedBottomsheet(classType: NoticeSheet),
     // @stacked-bottom-sheet
   ],
   dialogs: [
-    StackedDialog(classType: InfoAlertDialog),
+    StackedDialog(classType: InfoceanDetailsDialog),
     // @stacked-dialog
   ],
 )

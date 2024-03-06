@@ -26,10 +26,10 @@ final appTheme = ThemeData(
       Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(2, 2), blurRadius: 3),
     ]),
     bodyMedium: TextStyle(fontFamily: 'PixeloidSans', fontSize: 16, fontWeight: FontWeight.w400, color: Colors.white, shadows: [
-      Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(2, 2), blurRadius: 2),
+      Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(1, 1), blurRadius: 2),
     ]),
     bodySmall: TextStyle(fontFamily: 'PixeloidSans', fontSize: 14, fontWeight: FontWeight.w400, color: Colors.white, shadows: [
-      Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(1, 1), blurRadius: 2),
+      Shadow(color: Colors.black.withOpacity(0.7), offset: const Offset(1, 1), blurRadius: 1),
     ]),
   ),
 

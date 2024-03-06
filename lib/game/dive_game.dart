@@ -25,13 +25,15 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
   bool hasDived = false;
   ValueNotifier<double> remainingTime;
 
+  Map<String, int> collectedGarbage = {};
+
   // Timer
   final countdownTimer = Timer(0.1, autoStart: true, repeat: true);
 
   final ValueNotifier<double> remainingCollectTime = ValueNotifier(0.0);
   final remainingCollectTimeTimer = Timer(0.5, autoStart: false, repeat: true);
 
-  Function(bool hasWon, int score) onGameOver;
+  Function(bool hasWon, int score, Map<String, int>? collectedGarbage) onGameOver;
   int airTankLevel;
   int swimmingSpeedLevel;
   int collectingSpeedLevel;
@@ -193,7 +195,7 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
       FlameAudio.play(hasWon ? 'sfx/game-win.mp3' : 'sfx/game-over.mp3', volume: 0.4);
     }
 
-    onGameOver(hasWon, score);
+    onGameOver(hasWon, score, collectedGarbage);
   }
 
   startCollecting(Garbage garbage) {
@@ -214,5 +216,13 @@ class DiveGame extends FlameGame<DiveWorld> with HasKeyboardHandlerComponents {
 
   void exitGame() {
     endTheGame(false, score.value);
+  }
+
+  void addCollectedGarbage(Garbage garbage) {
+    if (collectedGarbage.containsKey(garbage.name)) {
+      collectedGarbage[garbage.name] = collectedGarbage[garbage.name]! + 1;
+    } else {
+      collectedGarbage[garbage.name] = 1;
+    }
   }
 }
