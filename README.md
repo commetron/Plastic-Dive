@@ -3,11 +3,11 @@
 
 # 🤿 Plastic Dive
 
-We are proud to present our very first game 🙌 
+We are proud to present our very first game 🙌
 
 We hope you enjoy it!
 
- **🎮 [Play the game](https://plastic-dive.web.app/)**
+**🎮 [Play the game](https://plastic-dive.web.app/)**
 
 ## 🐡 Description
 
@@ -35,13 +35,41 @@ This game has been made for the Global Gamers Challenge 2024. The [Global Gamers
 - [x] Compatible with Android, iOS, Web, MacOS, Windows and Linux
 - [x] Screens and game are responsive to any screen size
 
-## 📷 Screenshots & Video
+## 📷 Screenshots
+
+| Feature / screen  | 📱 Mobile | 💻 Desktop |
+| ------------- | ------------- | ------------- |
+| Home screen | <img src="screenshots/mobile/home.jpg" height="200">  | <img src="screenshots/desktop/home.jpg" height="200">  |
+| Introduction / Tutorial  | <img src="screenshots/mobile/intro-1.jpg" height="200">  | <img src="screenshots/desktop/intro-1.jpg" height="200">  |
+| In game  | <img src="screenshots/mobile/ingame-1.jpg" height="200">  | <img src="screenshots/desktop/ingame-1.jpg" height="200">  |
+| In game  | <img src="screenshots/mobile/ingame-2.jpg" height="200">  | <img src="screenshots/desktop/ingame-2.jpg" height="200">  |
+| Win  | <img src="screenshots/mobile/win-screen.jpg" height="200">  | <img src="screenshots/desktop/win-screen.jpg" height="200">  |
+| Upgrade diver  | <img src="screenshots/mobile/upgrade-diver.jpg" height="200">  | <img src="screenshots/desktop/upgrade-diver.jpg" height="200">  |
+| Leaderboard  | <img src="screenshots/mobile/leaderboard.jpg" height="200">  | <img src="screenshots/desktop/leaderboard.jpg" height="200">  |
+| Infocean / Educational content  | <img src="screenshots/mobile/garbage-dialog.jpg" height="200">  | <img src="screenshots/desktop/garbage-dialog.jpg" height="200">  |
+
+And more in the [screenshots](screenshots) folder!
+
+## 📼 Video
+
+[![Presentation video](https://i.ytimg.com/vi/20txhB9Rpxc/maxresdefault.jpg)](https://www.youtube.com/watch?v=20txhB9Rpxc "Plastic Dive - Presentation video")[https://www.youtube.com/shorts/20txhB9Rpxc](https://www.youtube.com/shorts/20txhB9Rpxc)
+
+### 💬 Transcript
+
+Our earth is so beautiful and inspiring. Every day, we are amazed by the beauty of the landscapes, the diversity of the animals, and the colors of the oceans.
+Oceans are so deep and full of life... But also, of plastic. And let's be honest, we are all responsible for this. We are all part of the problem, but we can also be part of the solution.
+
+Introducing you: Plastic Dive, our game for the Global Gamers Challenge! Dive deep into vibrant underwater environments, and discover the colorful lives who are fighting against this plastic. Your mission? Clean up the ocean by collecting and disposing of plastic waste. The more waste you collect, the more points you will have to spend to improve your diver to dive deeper, faster, longer! But make sure to be back at the surface before your oxygen tank is empty or you will lose the game and all the points you have collected… and all your garbage will be back in the ocean. Be the best diver and reach the top of the leaderboard 🏆
+
+But Plastic Dive is not just a game – it's a call to action. As you progress through the game, you'll unlock real-world tips and facts about plastic pollution, empowering you to make positive changes in your own life to reduce plastic waste and protect our oceans.
+
+Get ready to embark on a meaningful adventure that educates, entertains, and inspires change. Try "Plastic Dive" now and join the fight against plastic pollution – because together, we can make a difference for our planet and its precious marine ecosystems.
 
 ## 🕹️ How to play the game?
 
 📱 On mobile, you can play the game by using the joystick to make the diver swim and use the collect button to collect the garbage.
 
-💻 On computer, you can also use the keyboard arrows to move the diver and the space bar to collect the garbage.  
+💻 On computer, you can also use the keyboard arrows to move the diver and the space bar to collect the garbage.
 
 The game is over when the oxygen tank is empty, so make sure to be back at the surface before it is too late!
 
@@ -59,17 +87,17 @@ This game was created by [Marie Incourt](https://www.linkedin.com/in/marie-incou
 ### Our roles in this adventure
 
 - **Marie**:
-    - Inspiration / Creation of the idea, the concept
-    - DALL-E whisperer to create the assets for the games (animals, garbage, logo, backgrounds...)
-    - Project Manager
-    - Educational content teacher
-    - Quality Assurance & bugs finder
+  - Inspiration / Creation of the idea, the concept
+  - DALL-E whisperer to create the assets for the games (animals, garbage, logo, backgrounds...)
+  - Project Manager
+  - Educational content teacher
+  - Quality Assurance & bugs finder
 
-- Christophe:
-    - Flutter / Flame development
-    - Bugs creator (and hopefully fixer)
-    - Game master
-    - Testing on multi-platforms
+- **Christophe**:
+  - Flutter / Flame development
+  - Bugs creator (and hopefully fixer)
+  - Game master
+  - Testing on multi-platforms
 
 ## 🛠️ Technologies
 
@@ -107,6 +135,7 @@ We also want to thank the following artists for their amazing work:
 - [At Depth by Lish Grooves](https://soundcloud.com/lishgrooves/at-depth)
 - [Underwater Whale And Diving Sound Ambient by Saturn-3-Music](https://pixabay.com/sound-effects/underwater-whale-and-diving-sound-ambient-116185/)
 - [SFX effects by mixkit.co](https://mixkit.co/free-sound-effects)
+- Music from #Uppbeat (free for Creators!): https://uppbeat.io/t/monument-music/travel-in-the-ocean License code: TZLYBEUNZGDJ6JD7
 
 We couldn't have made this game without you! 🙏
 
@@ -131,20 +160,9 @@ We couldn't have made this game without you! 🙏
 
 ## 💌 Contact / Feedback
 
-If you 
+If you
 - have any feedback or want to contact us, feel free to reach out to us on [LinkedIn](https://www.linkedin.com/in/christopheleemans/).
-- want to report a bug, you can also open an issue on this repository. 
+- want to report a bug, you can also open an issue on this repository.
 - want to contribute to the game, feel free to open a pull request.
 - want to share the game, feel free to do so! We would be happy to see our game being played by many people.
 - want to send us a gift, go snorkeling or diving, collect some garbage in the ocean, then send us a picture! This would be our best gift 🌊
-
-## 📼 Video transcript 
-
-Our earth is so beautiful and inspiring. Every day, we are amazed by the beauty of the landscapes, the diversity of the animals, and the colors of the oceans.
-Oceans are so deep and full of life... But also, of plastic. And let's be honest, we are all responsible for this. We are all part of the problem, but we can also be part of the solution.
-
-Introducing you: Plastic Dive, our game for the Global Gamers Challenge! Dive deep into vibrant underwater environments, and discover the colorful lives who are fighting against this plastic. Your mission? Clean up the ocean by collecting and disposing of plastic waste. The more waste you collect, the more points you will have to spend to improve your diver to dive deeper, faster, longer! But make sure to be back at the surface before your oxygen tank is empty or you will lose the game and all the points you have collected… and all your garbage will be back in the ocean. Be the best diver and reach the top of the leaderboard 🏆
-
-But Plastic Dive is not just a game – it's a call to action. As you progress through the game, you'll unlock real-world tips and facts about plastic pollution, empowering you to make positive changes in your own life to reduce plastic waste and protect our oceans.
-
-Get ready to embark on a meaningful adventure that educates, entertains, and inspires change. Try "Plastic Dive" now and join the fight against plastic pollution – because together, we can make a difference for our planet and its precious marine ecosystems.
