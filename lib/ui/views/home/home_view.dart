@@ -110,28 +110,34 @@ class HomeView extends StackedView<HomeViewModel> {
           ),
           persistentFooterAlignment: AlignmentDirectional.center,
           persistentFooterButtons: [
-            GameButton(
-              onPressed: viewModel.switchSound,
-              size: 50,
-              child: viewModel.isSoundEnabled ? const Icon(Icons.volume_up, color: Colors.white) : const Icon(Icons.volume_off, color: Colors.white),
-            ),
-            responsiveHorizontalSpace(context),
-            GameButton(
-              onPressed: viewModel.navigateToLeaderboard,
-              size: 50,
-              child: const Icon(Icons.leaderboard, color: Colors.white),
-            ),
-            responsiveHorizontalSpace(context),
-            GameButton(
-              onPressed: viewModel.navigateToSettings,
-              size: 50,
-              child: const Icon(Icons.settings, color: Colors.white),
-            ),
-            responsiveHorizontalSpace(context),
-            GameButton(
-              onPressed: viewModel.navigateToAbout,
-              size: 50,
-              child: const Icon(Icons.info_outline, color: Colors.white),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GameButton(
+                  onPressed: viewModel.switchSound,
+                  size: 50,
+                  child:
+                      viewModel.isSoundEnabled ? const Icon(Icons.volume_up, color: Colors.white) : const Icon(Icons.volume_off, color: Colors.white),
+                ),
+                responsiveHorizontalSpace(context),
+                GameButton(
+                  onPressed: viewModel.navigateToLeaderboard,
+                  size: 50,
+                  child: const Icon(Icons.leaderboard, color: Colors.white),
+                ),
+                responsiveHorizontalSpace(context),
+                GameButton(
+                  onPressed: viewModel.navigateToSettings,
+                  size: 50,
+                  child: const Icon(Icons.settings, color: Colors.white),
+                ),
+                responsiveHorizontalSpace(context),
+                GameButton(
+                  onPressed: viewModel.navigateToAbout,
+                  size: 50,
+                  child: const Icon(Icons.info_outline, color: Colors.white),
+                ),
+              ],
             ),
           ],
         ),

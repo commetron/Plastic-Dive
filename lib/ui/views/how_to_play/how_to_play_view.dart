@@ -44,6 +44,7 @@ class HowToPlayView extends StackedView<HowToPlayViewModel> with $HowToPlayView 
             size: const Size(20.0, 20.0),
             color: Colors.white.withOpacity(0.7),
             activeColor: kcPrimaryColor,
+            spacing: const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3.0),
             activeSize: const Size(40.0, 20.0),
             activeShape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
