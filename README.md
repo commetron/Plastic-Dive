@@ -7,7 +7,11 @@ We are proud to present our very first game 🙌
 
 We hope you enjoy it!
 
-**🎮 [Play the game](https://plastic-dive.web.app/)**
+### 🎮 [Play the game (Web)](https://plastic-dive.web.app/)
+
+Or via
+- [Android build](https://github.com/n0mad-d3v/plastic-dive/releases/download/v0.1.0/android-plasticdive.apk)
+- [iOS TestFlight](https://testflight.apple.com/join/gNRCVc11)
 
 ## 🐡 Description
 
